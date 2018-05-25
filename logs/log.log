@@ -1,0 +1,22 @@
+2018-05-09 14:11:17,996 INFO Arrive Login page
+2018-05-09 14:11:23,641 INFO Arrive Default page of HRM
+2018-05-09 14:11:27,453 INFO Arrive Leave page
+2018-05-09 14:11:27,453 INFO Arrive Default page of HRM
+2018-05-09 14:11:30,680 INFO Arrive PIM page
+2018-05-09 14:11:30,680 INFO Click the %s menuname
+2018-05-09 14:11:31,400 INFO Arrive PIM Add Employee page
+2018-05-09 14:11:31,400 INFO Add employee record
+2018-05-09 14:11:33,573 INFO New Employee Added
+2018-05-09 14:11:36,579 INFO Click the % s menu
+2018-05-09 14:11:38,378 INFO Arrive Assign Leave page
+2018-05-09 14:11:47,424 INFO Assign new leave
+2018-05-09 14:11:51,055 INFO Assign leave for same date successfully
+2018-05-09 14:11:54,872 INFO Assign new leave
+2018-05-09 14:11:54,984 INFO Overlapping is correct
+2018-05-09 14:11:54,984 INFO Click the % s menu
+2018-05-09 14:12:07,493 INFO Assign new leave
+2018-05-09 14:12:11,163 INFO Assign leave for different date successfully
+2018-05-09 14:12:11,163 INFO Arrive Default page of HRM
+2018-05-09 14:12:14,359 INFO Arrive PIM page
+2018-05-09 14:12:14,359 INFO Click the %s menuname
+2018-05-09 14:12:15,236 INFO Arrive PIM Employee List page
