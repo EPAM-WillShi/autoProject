@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from pageobjects.mainpage import MainPage
+from lib.basepage import BasePage
 from lib.log import Log
 
-class Login(MainPage):
+class Login(BasePage):
     """
     login page
     """
@@ -14,8 +14,6 @@ class Login(MainPage):
     
     def __init__(self, browser):
         super(Login, self).__init__(browser)
-        self.switch_main_menu("Login")
-
         Log.info("Arrive Login page")   
             
     def login(self, username, passwd):
