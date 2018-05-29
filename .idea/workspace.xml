@@ -1,0 +1,934 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="097779f7-f1fe-40c3-9952-070614974f0a" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/autoProject.iml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/geckodriver.log" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pageobjects/cars.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pageobjects/flights.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pageobjects/hotels.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pageobjects/tours.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/testcase/geckodriver.log" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/testcase/test_cars.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/testcase/test_flights.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/testcase/test_hotels.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/testcase/test_tours.py" />
+      <change beforePath="$PROJECT_DIR$/config/config.py" afterPath="$PROJECT_DIR$/config/config.py" />
+      <change beforePath="$PROJECT_DIR$/logs/log.log" afterPath="$PROJECT_DIR$/logs/log.log" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/__init__.py" afterPath="$PROJECT_DIR$/report/2018-05-28-16_16_25_TestReport.html" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/admin.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/config/__init__.py" afterPath="$PROJECT_DIR$/report/2018-05-28-16_17_10_TestReport.html" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/config/email_config.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/config/email_sub.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/config/localization.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/config/modules.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/config/socia_media.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/job/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/job/edit_job_title.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/job/employment_status.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/job/job_categories.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/job/job_titles.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/job/pay_grades.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/job/work_shifts.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/nationalities.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/org/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/org/general_info.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/org/locations.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/org/structure.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/qual/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/qual/education.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/qual/languages.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/qual/licenses.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/qual/memberships.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/qual/skills.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/user/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/admin/user/users.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/dashboard.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/directory.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/assign_leave.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/configure/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/configure/holidays.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/configure/leave_period.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/configure/leave_type.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/configure/work_week.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/entitle/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/entitle/add_search_leave.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/leave.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/leave_list.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/leavetable.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/reports/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/leave/reports/entitle_user_report.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/login.py" afterPath="$PROJECT_DIR$/pageobjects/login.py" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/mainpage.py" afterPath="$PROJECT_DIR$/pageobjects/mainpage.py" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/myinfo.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/performance/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/performance/configure/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/performance/configure/kpis.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/performance/configure/trackers.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/performance/mr/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/performance/mr/manage_reviews.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/performance/performance.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/pim/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/pim/add_employee.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/pim/config/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/pim/config/custom_fields.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/pim/config/data_import.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/pim/config/optional_fields.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/pim/config/reporting_methods.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/pim/config/termination_reasons.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/pim/employee_list.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/pim/pim.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/pim/termination_reasons.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/recruitment/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/recruitment/candidates.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/recruitment/recruitment.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/recruitment/vacancies.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/recruitment/vacancy.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/time/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/time/attendance/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/time/projectinfo/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/time/projectinfo/customers.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/time/projectinfo/project.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/time/reports/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/time/time.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/time/timesheets/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/runtest.py" afterPath="$PROJECT_DIR$/runtest.py" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_admin/test_employment_status.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_admin/test_jobtitle.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_admin/test_pay_grades.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_admin/test_search_update_user.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_admin/test_users.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_admin/test_work_shifts.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_directory/test_directory.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_leave/test_add_search_leave.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_leave/test_assign_leave.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_leave/test_employee_report.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_leave/test_holidays.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_leave/test_leave.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_leave/test_leavelist.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_leave/test_leaveperiod.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_leave/test_leavetable.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_leave/test_leavetype.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_leave/test_leavetype_report.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_leave/test_workweek.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_login.py" afterPath="$PROJECT_DIR$/testcase/test_login.py" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_performance/test_add_performance_tracker_anne.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_pim/test_add_custom_julia.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_pim/test_add_employee_linda.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_pim/test_emplist_delete_bonnie.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_pim/test_pim_resetbtn_anne.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_pim/test_pim_searchCdtion_anne.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_pim/test_select_optional_julia.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_pim/test_termination_reason_christine.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_recruitment/test_candidate_reject_bonnie.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_recruitment/test_candidate_status_change_julia.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_recruitment/test_recruitment_candidate_julia.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_recruitment/test_recruitment_vacancies_julia.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_recruitment/test_vacancies_linda.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_time/test_customers_christine.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_time/test_project_linda.py" afterPath="" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="basepage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/basepage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="84" column="18" lean-forward="false" selection-start-line="84" selection-start-column="18" selection-end-line="84" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_flights.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcase/test_flights.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding>
+                <element signature="e#15#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_login.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcase/test_login.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+              <folding>
+                <element signature="e#15#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tours.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pageobjects/tours.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+              <folding>
+                <element signature="e#25#66#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flights.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pageobjects/flights.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+              <folding>
+                <element signature="e#25#66#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pageobjects/login.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="20" column="38" lean-forward="true" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_cars.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testcase/test_cars.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+              <folding>
+                <element signature="e#15#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_hotels.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcase/test_hotels.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+              <folding>
+                <element signature="e#15#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_tours.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcase/test_tours.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+              <folding>
+                <element signature="e#15#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>tearDown</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/com/utils.py" />
+        <option value="$PROJECT_DIR$/pageobjects/login.py" />
+        <option value="$PROJECT_DIR$/testcase/test_login.py" />
+        <option value="$PROJECT_DIR$/runtest.py" />
+        <option value="$PROJECT_DIR$/config/config.py" />
+        <option value="$PROJECT_DIR$/pageobjects/flights.py" />
+        <option value="$PROJECT_DIR$/pageobjects/cars.py" />
+        <option value="$PROJECT_DIR$/pageobjects/tours.py" />
+        <option value="$PROJECT_DIR$/pageobjects/hotels.py" />
+        <option value="$PROJECT_DIR$/testcase/test_flights.py" />
+        <option value="$PROJECT_DIR$/pageobjects/mainpage.py" />
+        <option value="$PROJECT_DIR$/testcase/test_cars.py" />
+        <option value="$PROJECT_DIR$/testcase/test_hotels.py" />
+        <option value="$PROJECT_DIR$/testcase/test_tours.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="790" />
+    <option name="y" value="203" />
+    <option name="width" value="1136" />
+    <option name="height" value="992" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="autoProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoProject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoProject" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoProject" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoProject" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoProject" type="462c0819:PsiDirectoryNode" />
+              <item name="logs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoProject" type="462c0819:PsiDirectoryNode" />
+              <item name="pageobjects" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoProject" type="462c0819:PsiDirectoryNode" />
+              <item name="testcase" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoProject" type="462c0819:PsiDirectoryNode" />
+              <item name="testfiles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="autoProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 2.7 (py-selenium) &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Linda\Auto_Tool\Auto2\linda\autoProject\pageobjects" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.runtest">
+    <configuration name="runtest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="autoProject" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/runtest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="Nosetests for test_cars.TestCars" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcase" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="autoProject" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_cars.TestCars&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    </configuration>
+    <configuration name="Nosetests for test_flights.TestFlights" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcase" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="autoProject" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_flights.TestFlights&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    </configuration>
+    <configuration name="Nosetests in test_cars.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcase" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="autoProject" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/testcase/test_cars.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="Nosetests in test_flights.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcase" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="autoProject" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/testcase/test_flights.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests for test_flights.TestFlights" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests in test_cars.py" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_cars.TestCars" />
+      <item index="3" class="java.lang.String" itemvalue="Python.runtest" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests in test_flights.py" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.runtest" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests in test_flights.py" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_flights.TestFlights" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests for test_cars.TestCars" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests in test_cars.py" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="097779f7-f1fe-40c3-9952-070614974f0a" name="Default" comment="" />
+      <created>1527489546628</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1527489546628</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Nosetests_for_test_cars_TestCars - 2018.05.28 at 17h 27m 56s.xml">
+      <configuration name="Nosetests for test_cars.TestCars" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_test_flights_TestFlights - 2018.05.28 at 17h 24m 40s.xml">
+      <configuration name="Nosetests for test_flights.TestFlights" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_test_flights_TestFlights - 2018.05.28 at 17h 25m 21s.xml">
+      <configuration name="Nosetests for test_flights.TestFlights" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_test_flights_TestFlights - 2018.05.28 at 17h 25m 32s.xml">
+      <configuration name="Nosetests for test_flights.TestFlights" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_test_flights_TestFlights - 2018.05.28 at 17h 26m 07s.xml">
+      <configuration name="Nosetests for test_flights.TestFlights" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_test_flights_TestFlights - 2018.05.28 at 17h 28m 55s.xml">
+      <configuration name="Nosetests for test_flights.TestFlights" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_test_flights_TestLogin - 2018.05.28 at 17h 26m 26s.xml">
+      <configuration name="Nosetests for test_flights.TestLogin" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_cars_py - 2018.05.28 at 17h 27m 34s.xml">
+      <configuration name="Nosetests in test_cars.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_flights_py - 2018.05.28 at 17h 29m 26s.xml">
+      <configuration name="Nosetests in test_flights.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test_login_py - 2018.05.28 at 17h 26m 01s.xml">
+      <configuration name="Nosetests in test_login.py" configurationId="tests" />
+    </history-entry>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18901795" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40654698" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/testcase/test_flights.py</url>
+          <line>15</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pageobjects/flights.py</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pageobjects/mainpage.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pageobjects/mainpage.py</url>
+          <line>27</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pageobjects/mainpage.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pageobjects/mainpage.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/testcase/test_flights.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/testcase/test_flights.py</url>
+          <line>14</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/testcase/test_flights.py</url>
+          <line>21</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/testcase/test_flights.py</url>
+          <line>24</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pageobjects/mainpage.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pageobjects/mainpage.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pageobjects/mainpage.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pageobjects/mainpage.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="73" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/runtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2109">
+          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+          <folding>
+            <element signature="e#80#89#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="5" column="35" lean-forward="true" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_flights.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_hotels.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageobjects/tours.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <folding>
+            <element signature="e#25#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageobjects/flights.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding>
+            <element signature="e#25#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_tours.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_cars.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageobjects/cars.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="11" column="43" lean-forward="true" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding>
+            <element signature="e#25#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/basepage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1425">
+          <caret line="84" column="18" lean-forward="false" selection-start-line="84" selection-start-column="18" selection-end-line="84" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/log.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/log.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageobjects/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2/typing.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="230" column="8" lean-forward="false" selection-start-line="230" selection-start-column="8" selection-end-line="230" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/nose/suite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="223" column="0" lean-forward="false" selection-start-line="223" selection-start-column="0" selection-end-line="223" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/nose/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="470" column="0" lean-forward="false" selection-start-line="470" selection-start-column="0" selection-end-line="470" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="17" column="30" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/geckodriver.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageobjects/cars.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="43" lean-forward="true" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding>
+            <element signature="e#25#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageobjects/mainpage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="36" column="65" lean-forward="false" selection-start-line="36" selection-start-column="65" selection-end-line="36" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="104" column="77" lean-forward="true" selection-start-line="104" selection-start-column="77" selection-end-line="104" selection-end-column="77" />
+          <folding>
+            <element signature="e#80#89#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageobjects/hotels.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="45" lean-forward="false" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+          <folding>
+            <element signature="e#25#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageobjects/tours.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+          <folding>
+            <element signature="e#25#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageobjects/login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="20" column="38" lean-forward="true" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pageobjects/flights.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding>
+            <element signature="e#25#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_flights.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_hotels.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_tours.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/basepage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="84" column="18" lean-forward="false" selection-start-line="84" selection-start-column="18" selection-end-line="84" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/test_cars.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
