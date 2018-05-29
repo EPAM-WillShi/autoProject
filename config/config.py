@@ -8,11 +8,8 @@ LOG_FILEMODE = 'w'  # 'a','r', 'w', 'r+', 'w'
 BROWSER = "firefox"
 # BROWSER = "chrome"
 
+# Open URL
+LOGIN_URL = "https://www.phptravels.net"
 
 
-LOGIN_URL = "http://opensource.demo.orangehrmlive.com"
-USER_NAME = "Admin"
-PASSWORD = "admin"
 
-EMPLOYEE = "William Zhang"
-MANAGER = "Thomas Fleming"

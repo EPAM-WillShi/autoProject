@@ -10,30 +10,25 @@ class TestLogin(unittest.TestCase):
     """
     Test login page
     """
-    login_url = config.LOGIN_URL
-    username = config.USER_NAME
-    passwd = config.PASSWORD
-    browser = config.BROWSER
-    
+
     @classmethod
-    def setUpClass(cls):    
-        driver = utils.get_browser_driver(cls.browser)
-        cls.alogin = Login(driver)
-        cls.alogin.open_browser(cls.login_url)
+    def setUpClass(cls):
+        pass
+
 
     @classmethod
     def tearDownClass(cls):
-        cls.alogin.quit_browser()
+        pass
+
+    # def test_login(self):
+    #     """
+    #     Test login function with correct username and password
+    #     """
+    #     self.login_with_user.login(self.username, self.passwd)
+        # Check the login status
+        # self.login_with_user.check_login_status()
+        # Log.info("Login successfully!")
         
-    def test_login_with_normal_account(self):
-        """
-        Test login function with correct username and password
-        """
-        Log.info("Test login function with username: %s password: %s" %(self.username, self.passwd))
-        self.alogin.login(self.username, self.passwd)
-        # Check the login status 
-        self.alogin.check_login_status()  
-        Log.info("Login successfully!")    
 
 if __name__ == "__main__":
     unittest.main()
