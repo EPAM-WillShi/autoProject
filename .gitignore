@@ -2,5 +2,6 @@
 *.pyc
 *.pyo
 /report
-/*geckodriver.log
+*geckodriver.log
 /logs/log.log
+/report
