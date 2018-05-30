@@ -1,0 +1,6 @@
+/.idea
+*.pyc
+*.pyo
+/report
+/geckodriver.log
+/logs/log.log
