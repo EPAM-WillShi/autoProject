@@ -9,10 +9,6 @@ import sys
 import argparse
 import webbrowser
 from lib.log import Log
-from lib.basepage import BasePage
-from com import utils
-from config import config
-
 
 
 USAGE_STR = '{} [param options]'
@@ -39,17 +35,13 @@ class Runner():
         Log.info('Init the test environment')
         '''
         print information under commandLine
-        '''
-        # driver = utils.get_browser_driver(config.BROWSER)
-        # self.login = BasePage(driver)
-        # self.login.open_browser(config.LOGIN_URL)
-
+        '''     
+        
     def tearDown(self):
-
+        
         '''
-        clear up the test environment
+        clear up the test environmet
         '''
-        # self.login.quit_browser()
         Log.info('clear the test environment')
         Log.close()
         
