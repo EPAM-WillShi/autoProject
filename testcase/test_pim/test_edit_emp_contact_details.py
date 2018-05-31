@@ -24,7 +24,7 @@ class TestContactDetails(unittest.TestCase):
     contact_street1 = "Xinghu Street"
     contact_city = "Suzhou"
     mobile = "18012345654"
-    workemail = "test2@epam.com"
+    workemail = "test3@epam.com"
 
     @classmethod
     def setUpClass(cls):
