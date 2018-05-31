@@ -32,6 +32,12 @@ class EmployeeList(PIM):
     reset_btn = ('xpath', './/input[@name="_reset"]')
     row1_column2 = ('xpath', './/tr[1]/td[3]')
     row2_column2 = ('xpath', './/tr[2]/td[3]')
+    edit_employee_ele = '//tr[./td[3]/a[text()="{}"]][./td[4]/a[text()="{}"]]//td[2]'
+    add_btn_ele = ('id', 'btnAdd')
+    save_btn_ele = ('ID', 'btnSave')
+    tab_ele = '//div[@id="employee-details"]//a[text()="{}"]'
+    first_name_ele = ('ID', 'firstName')
+    last_name_ele = ('ID', 'lastName')
 
     def __init__(self, browser):
         super(EmployeeList, self).__init__(browser)
@@ -168,6 +174,34 @@ class EmployeeList(PIM):
     #     self.split_linewrap_text(text1)
     #     return self.split_linewrap_text(text1)
 
+    def add_employee(self, first_name, last_name):
+        """
+        Add employee in Employee List page - added by Linda
+        """
+        self.click(self.add_btn_ele)
+        self.clear_text(self.first_name_ele)
+        self.input_text(first_name, self.first_name_ele)
+        self.clear_text(self.last_name_ele)
+        self.input_text(last_name, self.last_name_ele)
+        self.click(self.save_btn_ele)
 
+    def click_employee_to_edit(self, first_name, last_name):
+        """
+        Click an employee in Employee List page - added by Linda
+        """
+        employee = self.edit_employee_ele.format(first_name, last_name)
+        self.click(('xpath', employee))
+
+    def switch_employee_detail_page(self, tab_name):
+        """
+        Switch any Employee Details page - added by Linda
+        """
+        try:
+            tab = self.tab_ele.format(tab_name)
+            self.click(('xpath', tab))
+        except BaseException, e:
+            print e
+            Log.error(e)
+            raise "Element %s not found" % tab_name
 
 

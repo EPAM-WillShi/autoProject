@@ -4,7 +4,7 @@ Created on 2018/4/2
 @author: Angelia_Yao
 '''
 
-
+import os
 import sys
 import time
 from selenium.webdriver.common.by import By
@@ -15,6 +15,8 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from lib.log import Log
+from config.config import UPLOAD_PATH
+
 
 class BasePage(object):
     """
@@ -288,7 +290,8 @@ class BasePage(object):
         if element is None:
             return None
         else:
-            self.get_element(keys).send_keys(value)
+            element.clear()  # added by Linda
+            element.send_keys(value)
             
     def clear_text(self, keys):
         """
@@ -368,4 +371,15 @@ class BasePage(object):
         Get current window page
         """
         return self.driver.window_handles
+
+    def upload_file(self, value, keys):
+        """
+        Upload a file - added by Linda
+        """
+        element = self.get_element(keys)
+        if element is None:
+            return None
+        else:
+            path = os.getcwd().split("testcase")[0]
+            element.send_keys(path + UPLOAD_PATH + value)
 
