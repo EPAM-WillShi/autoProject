@@ -66,8 +66,9 @@ class EmployeeList(PIM):
         """
         emp = self.wait_unit_el_present(self.search_emp)
         if emp is not None:
-            self.clear_text(self.search_emp)
+            # self.clear_text(self.search_emp)
             self.input_text(employee, self.search_emp)
+            self.press_enter_key(self.search_emp)
             self.click(self.search_btn)
             query_res = self.get_element_text(self.delete_result)
             if query_res == 'No Records Found':
@@ -189,6 +190,8 @@ class EmployeeList(PIM):
         """
         Click an employee in Employee List page - added by Linda
         """
+        self.query_employee_by_name(first_name + " " + last_name)
+        self.sleep(3)
         employee = self.edit_employee_ele.format(first_name, last_name)
         self.click(('xpath', employee))
 
