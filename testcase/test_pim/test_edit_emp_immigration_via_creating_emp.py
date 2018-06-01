@@ -12,11 +12,11 @@ from pageobjects.pim.immigration import Immigration
 class TestImmigration(unittest.TestCase):
     """
     Test PIM Immigration page functions
-    Choose an employee, and then click it to go to Immigration page.
+    Create an employee, and then click it to go to Immigration page.
     """
-    # Choose an employee
-    first_name = "John"
-    last_name = "Smith"
+    # Create an employee
+    first_name = "linda"
+    last_name = "test"
 
     # Attachment CRUD
     attachment = "test.docx"
@@ -50,10 +50,12 @@ class TestImmigration(unittest.TestCase):
         cls.login.open_browser(config.LOGIN_URL)
         cls.login.login(config.USER_NAME, config.PASSWORD)
         cls.immigration = Immigration(cls.driver)
-        cls.immigration.open_immigration_page_via_editing_emp(cls.first_name, cls.last_name)
+        cls.immigration.open_immigration_page_via_creating_emp(cls.first_name, cls.last_name)
 
     @classmethod
     def tearDownClass(cls):
+        cls.immigration.click_menu("Employee List")
+        cls.immigration.delete_employee(cls.first_name + " " + cls.last_name)
         cls.immigration.quit_browser()
 
     def test_add_immigration(self):  # Add an immigration record
@@ -72,6 +74,7 @@ class TestImmigration(unittest.TestCase):
         self.immigration.edit_immigration(self.document, self.new_document, self.new_number, self.new_issued_date,
                                           self.new_expiry_date, self.new_eligible_status, self.new_issued_by,
                                           self.new_eligible_review_date, self.new_comments)
+        self.assertTrue(self.immigration.check_immigration_exist(self.new_document))
         self.immigration.check_immigration_details(self.new_document, self.new_number, self.new_issued_date,
                                                    self.new_expiry_date, self.new_issued_by)
         self.immigration.delete_all_immigration()
