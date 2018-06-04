@@ -33,6 +33,7 @@ class TestLeavePeriod(unittest.TestCase):
         self.LP.select_start_month(self.start_month)
         self.LP.select_start_date(self.start_date)
         self.LP.check_end_date(self.end_date)
+        self.LP.save_leave_period()
         self.LP.check_current_leave_period(self.current_leave_period)
 
     @classmethod
