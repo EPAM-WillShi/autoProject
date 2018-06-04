@@ -32,7 +32,7 @@ class Testemailconfig(unittest.TestCase):
         cls.login.open_browser(config.LOGIN_URL)
         cls.login.login(config.USER_NAME, config.PASSWORD)
         cls.emailcof = EmailConfig(cls.driver)
-        cls.emailcof.max_browser()
+        # cls.emailcof.max_browser()
         cls.emailcof.switch_menu(cls.menu)
 
     def test_save_email_config(self):

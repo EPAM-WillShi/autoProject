@@ -20,7 +20,7 @@ class Testemailsubscriptions(unittest.TestCase):
         cls.login.open_browser(config.LOGIN_URL)
         cls.login.login(config.USER_NAME, config.PASSWORD)
         cls.emailsub = EmailSub(cls.driver)
-        cls.emailsub.max_browser()
+        # cls.emailsub.max_browser()
         EmailConfig(cls.driver).switch_menu(cls.menu)
 
     def test_edit_notification(self):
