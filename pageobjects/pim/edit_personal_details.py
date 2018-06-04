@@ -87,6 +87,13 @@ class EditPersonalDetails(EmployeeList):
         assert "Successfully Saved" in self.get_element_text(self.flag)
         Log.info("Edit basic information for personal details successfully!")
 
+    def edit_personal_details_cancel_add_attahment_comments(self, attachment, comments):
+        self.click(self.add_btn)
+        self.upload_file(attachment, self.select_file)
+        self.input_text(comments, self.comment)
+        self.click(self.cancel_btn)
+        Log.info("Cancel add attachment and comments!")
+
     def edit_personal_details_add_attachment_comments(self, attachment, comments):
         self.click(self.add_btn)
         self.upload_file(attachment, self.select_file)
@@ -102,6 +109,13 @@ class EditPersonalDetails(EmployeeList):
         self.click(self.save_comment_only)
         assert "Successfully Saved" in self.get_element_text(self.flag)
         Log.info("Edit comments for personal details successfully!")
+
+    def edit_personal_details_cancel_edit_attachment_comments(self, attachment, comments):
+        self.click(self.edit_attachment_btn)
+        self.upload_file(attachment, self.select_file)
+        self.input_text(comments, self.comment)
+        self.click(self.cancel_btn)
+        Log.info("Cancel edit attachemnt and comments!")
 
     def edit_personal_details_edit_attachment_comments(self, attachment, comments):
         self.click(self.edit_attachment_btn)

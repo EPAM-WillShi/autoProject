@@ -13,9 +13,9 @@ class TestWorkShifts(unittest.TestCase):
     """
     browser = config.BROWSER
     # set testing data
-    add_name = 'Dora_testing'
-    workHourFrom = '09:15'
-    workHourTo = '17:30'
+    add_name = 'Joanna_Workshift'
+    workhourfrom = '09:15'
+    workhourto = '17:30'
 
     @classmethod
     def setUpClass(cls):
@@ -26,11 +26,11 @@ class TestWorkShifts(unittest.TestCase):
         cls.shift = WorkShifts(cls.driver)
         Log.info("Start testing Work shift page")
 
-    def test_add_work_shift(self):
+    def test_add_one_work_shift(self):
         """
-        Test Case  -  Work shift add
+        Test Case  -  one Work shift add
         """
-        self.shift.add_work_shift(self.add_name, self.workHourFrom, self.workHourTo)
+        self.shift.add_one_work_shift(self.add_name, self.workhourfrom, self.workhourto)
         self.shift.assert_message("Successfully Saved")
 
     def test_delete_work_shift(self):
@@ -38,7 +38,15 @@ class TestWorkShifts(unittest.TestCase):
         Test Case  - Work shift delete the added record
         """
         self.shift.delete_work_shift(self.add_name)
-        self.shift.assert_message("Successfully Deleted")
+
+    def test_add_multiple_work_shift(self):
+        """
+        Test Case  -  one Work shift add
+        """
+        self.shift.add_multiple_work_shift(self.add_name, self.workhourfrom, self.workhourto, '8.25')
+
+    # def test_edit_work_shift(self):
+    #     self.shift.edit_work_shit(self.add_name)
 
     @classmethod
     def tearDownClass(cls):

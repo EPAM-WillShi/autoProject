@@ -56,19 +56,25 @@ class TestPersonalDetails(unittest.TestCase):
     def test_case3_edit_personal_details_basic_information(self):
         self.edit_personal_details.edit_personal_details_basic_information(self.gender, self.marital, self.nation, self.dob)
 
-    def test_case4_edit_personal_details_add_attachment(self):
+    def test_case4_edit_personal_details_cancel_add_attahment_comments(self):
+        self.edit_personal_details.edit_personal_details_cancel_add_attahment_comments(self.attachment1, self.comments1)
+
+    def test_case5_edit_personal_details_add_attachment_comments(self):
         self.edit_personal_details.edit_personal_details_add_attachment_comments(self.attachment1, self.comments1)
 
-    def test_case5_edit_personal_details_edit_commentsonly(self):
+    def test_case6_edit_personal_details_edit_commentsonly(self):
         self.edit_personal_details.edit_personal_details_edit_commentsonly(self.attachment2, self.comments2)
 
-    def test_case6_edit_personal_details_edit_attachment_comments(self):
+    def test_case7_edit_personal_details_cancel_edit_attachment_comments(self):
+        self.edit_personal_details.edit_personal_details_cancel_edit_attachment_comments(self.attachment2, self.comments2)
+
+    def test_case8_edit_personal_details_edit_attachment_comments(self):
         self.edit_personal_details.edit_personal_details_edit_attachment_comments(self.attachment3, self.comments3)
 
-    def test_case7_edit_personal_details_delete_record_for_attachment(self):
+    def test_case9_edit_personal_details_delete_record_for_attachment(self):
         self.edit_personal_details.edit_personal_details_delete_record_for_attachment(self.file_name)
 
-    def test_case8_edit_personal_details_delete_all_records(self):
+    def test_case10_edit_personal_details_delete_all_records(self):
         self.edit_personal_details.edit_personal_details_add_attachment_comments(self.attachment1, self.comments1)
         self.edit_personal_details.edit_personal_details_add_attachment_comments(self.attachment2, self.comments2)
         self.edit_personal_details.edit_personal_details_add_attachment_comments(self.attachment3, self.comments3)
@@ -80,4 +86,4 @@ class TestPersonalDetails(unittest.TestCase):
 
 
 if __name__ == '__main__':
-        unittest.main
+    unittest.main()
