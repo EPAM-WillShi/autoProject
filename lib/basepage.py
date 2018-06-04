@@ -341,7 +341,6 @@ class BasePage(object):
             Select(self.get_element(keys)).select_by_visible_text(value)
         except NoSuchElementException:
             print "Could not locate the element value {}".format(value)
-            sys.exit(-1)
 
     def get_first_select(self, keys):
         """
