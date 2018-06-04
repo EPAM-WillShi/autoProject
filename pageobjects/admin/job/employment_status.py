@@ -13,7 +13,7 @@ class EmploymentStatus(Admin):
     Employment Status page
     """
 
-    # Define declaration for Employment Status status page
+    # Define declaration for Employment status page
     add_btn = ('ID', 'btnAdd')
     delete_btn = ('ID', 'btnDelete')
     select_all_checkbox = ('ID', 'ohrmList_chkSelectAll')
@@ -30,12 +30,10 @@ class EmploymentStatus(Admin):
 
     # Define declaration for Employment Status table
     empstatus_namelist = ("xpath", "//tbody/tr/td[2]/a")
-    edit_record = ('link_text', 'test employment status')
-    delete_record = ("xpath", "//a[contains(text(),'test employment status')]/../../td[1]/input")
     success_flag = ("xpath", "//*[@class='message success fadable']")
+    del_element = '//a[text()="{}"] /../../ td[1]/input'
 
-
-    def __init__(self,browser):
+    def __init__(self, browser):
         super(EmploymentStatus, self).__init__(browser)
 
     def select_menu(self):
@@ -81,7 +79,6 @@ class EmploymentStatus(Admin):
             Log.info("Input employment status less than or equal to 50 characters is allowed")
         self.click(self.cancel_btn)
 
-
     def add_employee_status(self, employment_status_name):
         """
         Try to add a employment status via click save button
@@ -90,53 +87,76 @@ class EmploymentStatus(Admin):
         self.click(self.add_btn)
         self.clear_text(self.empstatus_namefield)
         self.input_text(employment_status_name, self.empstatus_namefield)
-        self.sleep(3)
+        self.sleep(2)
         self.click(self.save_btn)
         assert "Successfully Saved" in self.get_element_text(self.success_flag)
         Log.info("Create employment status Successfully")
 
 
-    # def add_employee_status(self, employment_status_name):
-    #     """
-    #     Try to add a new employment status via clicking save button
-    #     """
-    #     Log.info("Start to add employment status function via click Add button")
-    #     check_epstatus_name = self.check_if_emp_status_exist(employment_status_name)
-    #     if check_epstatus_name is None:
-    #         self.click(self.add_btn)
-    #         self.clear_text(self.empstatus_namefield)
-    #         self.input_text(employment_status_name, self.empstatus_namefield)
-    #         self.sleep(3)
-    #         self.click(self.save_btn)
-    #         assert "Successfully Saved" in self.get_element_text(self.success_flag)
-    #         Log.info("Create new employment status Successfully")
-
-    def edit_employee_status(self, edit_name):
+    def edit_employee_status(self, exist_name, edit_name):
         """
          Try to edit exist employment status
         """
         Log.info("Start to edit exist employment status")
-        self.click(self.edit_record)
-        self.sleep(3)
-        self.clear_text(self.empstatus_namefield)
-        self.input_text(edit_name, self.empstatus_namefield)
-        self.sleep(3)
-        self.click(self.save_btn)
-        assert "Successfully Saved" in self.get_element_text(self.success_flag)
-        Log.info("Edit exist employment status Successfully")
+        status_name_list = self.get_elements_texts(self.empstatus_namelist)
+        if exist_name in status_name_list:
+            edit_element = ('LINK_TEXT', exist_name)
+            self.click(edit_element)
+            self.sleep(2)
+            self.clear_text(self.empstatus_namefield)
+            self.sleep(2)
+            self.input_text(edit_name, self.empstatus_namefield)
+            if edit_name == '':
+                self.sleep(2)
+                Log.info("Your edit name is NULL")
+            elif edit_name not in status_name_list:
+                self.sleep(2)
+                self.click(self.save_btn)
+                assert "Successfully Saved" in self.get_element_text(self.success_flag)
+                Log.info("Edit exist employment status Successfully")
+            else:
+                self.sleep(2)
+                self.clear_text(self.empstatus_namefield)
+                Log.info("The edit_name is conflict with current exist employee status")
+        else:
+            Log.info("There's no special employment status need to edit.")
 
     def delete_employee_status(self, employment_status_name):
         """
-        Try to delete exist employment status
+        Try to delete exist employment status, user created but not default ones
         """
         Log.info("Start to delete employment status record")
         check_epstatus_name = self.check_if_emp_status_exist(employment_status_name)
         if check_epstatus_name == employment_status_name:
-            self.sleep(3)
-            self.click(self.delete_record)
-            self.sleep(3)
+            checkbox = self.del_element.format(employment_status_name)
+            self.click(('XPATH', checkbox))
+            self.sleep(2)
             self.click(self.delete_btn)
-            self.sleep(3)
+            self.sleep(2)
             self.click(self.dialog_delete_btn)
             assert "Successfully Deleted" in self.get_element_text(self.success_flag)
             Log.info("Employment status record is deleted Successfully!")
+        else:
+            Log.info("No exist employee status need to delete")
+
+    def delete_muluser_employee_status(self, default_status_list):
+        """
+        Try delete all user new created employee status and keep default ones
+        """
+        Log.info("Start to delete all user defined employee status and keep ones")
+        self.click(self.select_all_checkbox)
+        self.sleep(2)
+        def_epstatus_num = len(default_status_list)
+        for i in range(0, int(def_epstatus_num)):
+            default_status = default_status_list[i]
+            ele = str(default_status)
+            checkbox = self.del_element.format(ele)
+            self.click(('XPATH',checkbox))
+            self.sleep(2)
+            i += 1
+        self.click(self.delete_btn)
+        self.sleep(2)
+        self.click(self.dialog_delete_btn)
+        assert "Successfully Deleted" in self.get_element_text(self.success_flag)
+        Log.info("Employment status user records are deleted Successfully without any default ones!")
+
