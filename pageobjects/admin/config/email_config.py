@@ -31,13 +31,13 @@ class EmailConfig(Admin):
     def __init__(self, browser):
         super(Admin, self).__init__(browser)
 
-    def switch_menu(self):
+    def switch_menu(self, menu):
         """
         Back to Email Configuration page
         """
         self.click_menu("Admin")
         self.click_menu("Configuration")
-        self.click_menu("Email Configuration")
+        self.click_menu(menu)
 
     def validate_title(self, ptitle):
         assert ptitle == self.get_element_text(self.page_title)
