@@ -39,7 +39,7 @@ class Testemailconfig(unittest.TestCase):
         self.emailcof.select_sendmothod(self.sentas,self.sendmothod)
         self.emailcof.enter_smtpinfo(self.smtphost, self.smtpport,self.smtpuser, self.smtppsd)
         self.emailcof.enter_testemail(self.testemail)
-        self.emailcof.check_info(self.sentas, self.smtphost, self.smtpport,self.smtpuser, self.attkey)
+        self.emailcof.check_info(self.sentas, self.smtphost, self.smtpport,self.smtpuser, self.attkey)    #
     # def test_edit_email_config(self):
     #     self.emailcof.switch_menu()
         self.emailcof.edit_email(self.sendmothod1, self.sendmothod2, self.path, self.attkey)
