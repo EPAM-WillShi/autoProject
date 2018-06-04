@@ -1,4 +1,15 @@
-2018-05-28 13:19:13,401 DEBUG start : run test method under Runner.py
-2018-05-28 13:19:13,401 INFO Init the test environment
-2018-05-28 13:19:13,401 INFO python 2.7.14 (v2.7.14:84471935ed, Sep 16 2017, 20:25:58) [MSC v.1500 64 bit (AMD64)]
-2018-05-28 13:19:15,700 INFO finish run test cases
+2018-06-01 09:53:58,519 INFO Arrive Login page
+2018-06-01 09:54:05,252 INFO Arrive Default page of HRM
+2018-06-01 09:54:08,604 INFO Arrive PIM page
+2018-06-01 09:54:08,604 INFO Click the %s menuname
+2018-06-01 09:54:09,180 INFO Arrive PIM Employee List page
+2018-06-01 09:54:12,721 INFO Arrive Job_page
+2018-06-01 09:54:12,723 INFO Start to edit job information...
+2018-06-01 09:54:18,226 INFO Successfully Updated
+2018-06-01 09:54:18,226 INFO Start to replace contract...
+2018-06-01 09:54:19,964 INFO Successfully Updated
+2018-06-01 09:54:19,964 INFO Start to delete contract...
+2018-06-01 09:54:21,698 INFO Successfully Updated
+2018-06-01 09:54:21,698 INFO Start to terminate employment...
+2018-06-01 09:54:25,871 INFO Successfully Updated
+2018-06-01 09:54:27,118 INFO Successfully Updated
