@@ -58,8 +58,8 @@ class LeavePeriod(Leave):
         Log.info("Current leave period is updated - pass!")
 
     def save_leave_period(self):
-        self.wait_unit_el_present(self.save_bth)
-        self.click(self.save_bth)
+        self.wait_unit_el_present(self.save_btn)
+        self.click(self.save_btn)
         self.wait_unit_el_present(self.success_msg)
         assert "Successfully Saved" in self.get_element_text(self.success_msg)
         Log.info("Leave period is saved - pass!")
