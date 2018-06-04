@@ -383,3 +383,14 @@ class BasePage(object):
             path = os.getcwd().split("testcase")[0]
             element.send_keys(path + UPLOAD_PATH + value)
 
+    # Added by Anne
+    def check_element_selected(self, keys):
+        """
+        Check radio or checkbox is selected or not
+        """
+        try:
+            self.get_element(keys).is_selected()
+            print("Enabled")
+        except Exception as e:
+            print ('disabled', format(e))
+

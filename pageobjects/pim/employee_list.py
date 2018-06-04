@@ -12,12 +12,12 @@ class EmployeeList(PIM):
     search_empid = ('id', 'empsearch_id')
     search_emp = ('id', 'empsearch_employee_name_empName')
     search_btn = ('id', 'searchBtn')
-    select_row = ('name', 'chkSelectRow[]')
+    select_row = ('id', 'ohrmList_chkSelectAll')
     delete_btn = ('id', 'btnDelete')
-    delete_box = ('xpath', './/*[@id="deleteConfModal"]//p')
-    cancel_btn = ('xpath', './/*[@class="btn cancel"]')
-    ok_btn = ('xpath', './/*[@id="dialogDeleteBtn"]')
-    delete_result = ('xpath', './/*[@id="resultTable"]//td')
+    delete_box = ('xpath', '//div/p')
+    cancel_btn = ('xpath', '//input[@value="Cancel"]')
+    ok_btn = ('id', 'dialogDeleteBtn')
+    delete_result = ('xpath', '//td')
     check_all = ('id', 'ohrmList_chkSelectAll')
     check_all_ret = ('xpath', './/input[contains(@id,"ohrmList_chkSelectRecord")]')
     uncheck_all_ret = ('xpath', './/table[@id="resultTable"]/tbody/tr/td[1][not(@check)]')
@@ -66,8 +66,9 @@ class EmployeeList(PIM):
         """
         emp = self.wait_unit_el_present(self.search_emp)
         if emp is not None:
-            self.clear_text(self.search_emp)
+            # self.clear_text(self.search_emp)
             self.input_text(employee, self.search_emp)
+            self.press_enter_key(self.search_emp)
             self.click(self.search_btn)
             query_res = self.get_element_text(self.delete_result)
             if query_res == 'No Records Found':
@@ -75,45 +76,33 @@ class EmployeeList(PIM):
             else:
                 ele_exist = True
             return ele_exist
-    
+
     def cancel_del_employee(self, employee):
         """
-        Cancel delete employee function
+        Cancel delete employee function -- Updated by Linda
+        1. Search for employee
+        2. Choose the employee and click the delete option
+        3. Click cancel button
+        4. Check if the employee exists
         """
-        # Check if the employee exist
-        check_flag = self.query_employee_by_name(employee)
-        if check_flag is False:
-            firstname = employee.split()[0]
-            lastname = employee.split()[1]
-            addemployee = AddEmployee(self.driver)
-            addemployee.add_user_employee(firstname, lastname)
-            self.click_menu("Employee List") 
-            Log.info("Back to Employee list page after create new employee")
-            self.query_employee_by_name(employee)
-        # Delete the employee   
+        self.query_employee_by_name(employee)
         self.click(self.select_row)
         self.click(self.delete_btn)
         assert 'Delete records?' == self.get_element_text(self.delete_box)
         self.click(self.cancel_btn)
-        Log.info("Cancel of employee deletion succeed")    
-    
+        check_flag = self.query_employee_by_name(employee)
+        assert check_flag is True
+        Log.info("Cancel of employee deletion succeed")
+
     def delete_employee(self, employee):
         """
-        Delete employee:
+        Delete employee:  -- Updated by Linda
         1. Search for employee
-        2. choose the employee and click the delete option(cancel/ok)
+        2. Choose the employee and click the delete option
+        3. Click ok button
+        4. Check if "No Records Found" is shown
         """
-        # Check if the employee exist
-        check_flag = self.query_employee_by_name(employee)
-        if check_flag is False:
-            firstname = employee.split()[0]
-            lastname = employee.split()[1]
-            addemployee = AddEmployee(self.driver)
-            addemployee.add_user_employee(firstname, lastname)
-            self.click_menu("Employee List") 
-            Log.info("Back to Employee list page after create new employee")
-            self.query_employee_by_name(employee)
-        # Delete the employee   
+        self.query_employee_by_name(employee)
         self.click(self.select_row)
         self.click(self.delete_btn)
         assert 'Delete records?' == self.get_element_text(self.delete_box)
@@ -189,6 +178,7 @@ class EmployeeList(PIM):
         """
         Click an employee in Employee List page - added by Linda
         """
+        self.query_employee_by_name(first_name + " " + last_name)
         employee = self.edit_employee_ele.format(first_name, last_name)
         self.click(('xpath', employee))
 
