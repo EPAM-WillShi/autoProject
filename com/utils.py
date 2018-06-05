@@ -33,7 +33,7 @@ def set_combox_value(driver,  element,  value):
         element.select_by_visible_text(value)
     except NoSuchElementException:
         print "Could not locate the element value {}".format(value)
-        sys.exit(-1)
+
 
 
 def check_is_alert_present(driver):
