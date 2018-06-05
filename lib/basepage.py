@@ -14,6 +14,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.action_chains import ActionChains
 from lib.log import Log
 from config.config import UPLOAD_PATH
 
@@ -230,7 +231,7 @@ class BasePage(object):
         elif get_method in ['TAG', 'tag']:
             element = (By.TAG_NAME, element)
         try:
-            return WebDriverWait(self.driver, 10).until(ec.presence_of_element_located(element))
+            return WebDriverWait(self.driver, 20).until(ec.visibility_of_element_located(element))
         except NoSuchElementException:
             return None
         except TimeoutException:
@@ -393,4 +394,16 @@ class BasePage(object):
             print("Enabled")
         except Exception as e:
             print ('disabled', format(e))
+
+    def mouse_move_to_element(self, keys):
+        """
+        Mouse move to the element - Added by Linda
+        """
+        mouse = self.get_element(keys)
+        if mouse is not None:
+            ActionChains(self.driver).move_to_element(mouse).perform()
+
+
+
+
 
