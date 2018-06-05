@@ -8,8 +8,8 @@ LOG_FILEMODE = 'w'  # 'a','r', 'w', 'r+', 'w'
 UPLOAD_PATH = 'testfiles'
 
 # BROWSER define the browser type (chrome, ie, firefox) for testing
-# BROWSER = "firefox"
-BROWSER = "chrome"
+BROWSER = "firefox"
+# BROWSER = "chrome"
 
 
 
