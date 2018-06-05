@@ -1,15 +1,14 @@
-2018-06-01 09:53:58,519 INFO Arrive Login page
-2018-06-01 09:54:05,252 INFO Arrive Default page of HRM
-2018-06-01 09:54:08,604 INFO Arrive PIM page
-2018-06-01 09:54:08,604 INFO Click the %s menuname
-2018-06-01 09:54:09,180 INFO Arrive PIM Employee List page
-2018-06-01 09:54:12,721 INFO Arrive Job_page
-2018-06-01 09:54:12,723 INFO Start to edit job information...
-2018-06-01 09:54:18,226 INFO Successfully Updated
-2018-06-01 09:54:18,226 INFO Start to replace contract...
-2018-06-01 09:54:19,964 INFO Successfully Updated
-2018-06-01 09:54:19,964 INFO Start to delete contract...
-2018-06-01 09:54:21,698 INFO Successfully Updated
-2018-06-01 09:54:21,698 INFO Start to terminate employment...
-2018-06-01 09:54:25,871 INFO Successfully Updated
-2018-06-01 09:54:27,118 INFO Successfully Updated
+2018-06-04 10:48:53,431 INFO Arrive Login page
+2018-06-04 10:49:00,911 INFO Arrive Default page of HRM
+2018-06-04 10:49:04,213 INFO Arrive Admin page
+2018-06-04 10:49:04,213 INFO Click the % s menu
+2018-06-04 10:49:04,306 INFO Click the % s menu
+2018-06-04 10:49:05,071 INFO Arrive Admin Memberships page
+2018-06-04 10:49:06,509 INFO Arrive Default page of HRM
+2018-06-04 10:49:09,934 INFO Arrive PIM page
+2018-06-04 10:49:09,934 INFO Click the %s menuname
+2018-06-04 10:49:10,558 INFO Arrive PIM Employee List page
+2018-06-04 10:49:14,878 INFO Arrive Membership_page
+2018-06-04 10:49:17,598 INFO Successfully Saved
+2018-06-04 10:49:19,223 INFO Successfully Saved
+2018-06-04 10:49:20,536 INFO Successfully Deleted
