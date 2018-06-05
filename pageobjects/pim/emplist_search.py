@@ -16,6 +16,7 @@ class EmployeeListSearch(EmployeeList):
     search_sub_unit = ('id', 'empsearch_sub_unit')
     search_btn = ('id', 'searchBtn')
     reset_btn = ('id', 'resetBtn')
+    search_status = ('id', 'empsearch_employee_status')
 
     def __init__(self, browser):
         super(EmployeeListSearch, self).__init__(browser)
@@ -81,6 +82,21 @@ class EmployeeListSearch(EmployeeList):
         self.set_combox_value(sub_unit, self.search_sub_unit)
         self.click(self.search_btn)
         Log.info("Search employee by Sub Unit!")
+        search_res = self.get_element_text(self.srch_result)
+        if search_res == "No Records Found":
+            print("No records found!")
+        else:
+            print("Record is found!")
+        self.click(self.reset_btn)
+
+    def search_emp_by_status(self, status):
+        """
+        Search employee by status
+        """
+        self.wait_unit_el_present(self.search_status)
+        self.set_combox_value(status, self.search_status)
+        self.click(self.srch_btn)
+        Log.info("Search employee by Status!")
         search_res = self.get_element_text(self.srch_result)
         if search_res == "No Records Found":
             print("No records found!")
