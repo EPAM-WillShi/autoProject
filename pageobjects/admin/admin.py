@@ -7,7 +7,7 @@ class Admin(MainPage):
     """
     Admin page main components
     """
-    menuBar = ".//*[@id='{}']"
+    menuBar = "//div[@class='menu']//a[@id='{}']"
     
     def __init__(self, browser):
         super(Admin, self).__init__(browser)
