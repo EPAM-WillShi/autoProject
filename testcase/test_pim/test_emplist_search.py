@@ -19,6 +19,7 @@ class TestSearchById(unittest.TestCase):
     supervios_name = "John Smith"
     job_title = "IT Manager"
     sub_unit = "IT"
+    status = 'Full-Time Contract'
 
     @classmethod
     def setUpClass(cls):
@@ -43,6 +44,9 @@ class TestSearchById(unittest.TestCase):
 
     def test_case5_emplist_search_by_sub_unit(self):
         self.emplist_search.search_emp_by_sub_unit(self.sub_unit)
+
+    def test_case6_emplist_search_by_status(self):
+        self.emplist_search.search_emp_by_status(self.status)
 
     @classmethod
     def tearDownClass(cls):
