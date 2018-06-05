@@ -24,7 +24,6 @@ def get_browser_driver(browser):
         driver = webdriver.Firefox()
     else:
         print "Currently not support this browser {}".format(browser)
-        sys.exit(-1)
     return driver
 
 
