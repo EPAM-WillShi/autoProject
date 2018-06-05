@@ -51,7 +51,6 @@ class MainPage(BasePage):
             menu = self.dir_menu
         else:
             print "Didn't find the menu %s" % menuname
-            exit(1)        
         targetMenu = self.wait_unit_el_present(("xpath",menu))
         if targetMenu is not None:
             self.click(("xpath", menu))  
