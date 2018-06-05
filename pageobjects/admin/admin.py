@@ -23,6 +23,7 @@ class Admin(MainPage):
         try:
             element = self.get_element(("link_text", menu_name)) 
             element.click()
+            self.sleep(1)
         except:
             if menuname == "Employment Status":
                 newmenu = "menu_admin_{}".format("employmentStatus")

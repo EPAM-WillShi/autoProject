@@ -13,6 +13,7 @@ class EmailConfig(Admin):
     """
     page_title = ('xpath', ".//h1[text()='Mail Configuration']")
     edit_btn = ('id', 'editBtn')
+    edit_xpath =('xpath',  './/input[@id="editBtn"]')
     reset_btn = ('id', 'resetBtn')
     sent_as = ('id', 'emailConfigurationForm_txtMailAddress')
     send_method = ('id', 'emailConfigurationForm_cmbMailSendingMethod')
@@ -30,13 +31,13 @@ class EmailConfig(Admin):
     def __init__(self, browser):
         super(Admin, self).__init__(browser)
 
-    def switch_menu(self):
+    def switch_menu(self, menu):
         """
         Back to Email Configuration page
         """
         self.click_menu("Admin")
         self.click_menu("Configuration")
-        self.click_menu("Email Configuration")
+        self.click_menu(menu)
 
     def validate_title(self, ptitle):
         assert ptitle == self.get_element_text(self.page_title)
@@ -67,11 +68,24 @@ class EmailConfig(Admin):
         assert smtphost == self.get_element_attribute(self.smtp_host, attkey)
         assert smtpport == self.get_element_attribute(self.smtp_port, attkey)
         assert smtpuser == self.get_element_attribute(self.smtp_user, attkey)
+        self.sleep(3)
         if self.get_element_attribute(self.test_email, attkey) is None:
             print 'pass'
         else:
             print 'failed'
         self.check_element_selected(self.use_smtp)
         self.check_element_selected(self.tls)
+        self.sleep(3)
+
+    def edit_email(self, method, method1, path, attkey):
+        self.click(self.edit_xpath)
+        self.set_combox_value(method, self.send_method)
+        self.input_text(path, self.path)
+        self.click(self.save_btn)
+        print self.get_element_attribute(self.send_method, attkey)
+        print self.get_element_attribute(self.path, attkey)
+        assert method1 == self.get_element_attribute(self.send_method, attkey)
+        assert path == self.get_element_attribute(self.path, attkey)
+        Log.info("edit successfully")
 
 

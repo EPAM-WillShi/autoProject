@@ -341,7 +341,6 @@ class BasePage(object):
             Select(self.get_element(keys)).select_by_visible_text(value)
         except NoSuchElementException:
             print "Could not locate the element value {}".format(value)
-            sys.exit(-1)
 
     def get_first_select(self, keys):
         """
@@ -380,8 +379,9 @@ class BasePage(object):
         if element is None:
             return None
         else:
-            path = os.getcwd().split("testcase")[0]
-            element.send_keys(path + UPLOAD_PATH + value)
+            path = os.path.dirname(os.path.abspath('.')).split("testcase")[0]
+            path = os.path.join(path, UPLOAD_PATH, value)
+            element.send_keys(path)
 
     # Added by Anne
     def check_element_selected(self, keys):

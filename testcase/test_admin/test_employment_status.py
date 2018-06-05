@@ -16,13 +16,17 @@ class TestEmploymentStatus(unittest.TestCase):
     Test Employment Status page functions
     """
     browser = config.BROWSER
-
+    # set testing data
     null_status_name = ''
     limit_status_name = 'ABCDEFGHJIKLMNOPQRSTUVXXYZabcdehhjhjhjhjhjhlklklkfghijklmnopqrstuvwxyz'
-    valid_status_name = 'test employment status'
-    update_name = 'test employment status_updated'
     mul_status_name = 'employment status add'
     mul_time = 5
+    valid_status_name = 'test employment status'
+    update_name_null = ''
+    update_name_duplicate = 'test employment status'
+    update_name_valid = 'test employment status_updated'
+    def_epstatus_namelist = ['Freelance', 'Full-Time Contract', 'Full-Time Permanent',
+                             'Full-Time Probation', 'Part-Time Contract', 'Part-Time Internship']
 
     @classmethod
     def setUpClass(cls):
@@ -33,7 +37,7 @@ class TestEmploymentStatus(unittest.TestCase):
         cls.es = EmploymentStatus(cls.driver)
         Log.info("SetupClass for Employment Status- passed")
         cls.es.select_menu()
-        Log.info("Arrive to Employment Status page")
+        Log.info("Arrive to Admin->Job:Employment Status page")
 
     def test_case1_check_null_employee_textfiled(self):
         """
@@ -54,7 +58,6 @@ class TestEmploymentStatus(unittest.TestCase):
     def test_case3_add_employee_status(self):
         """
         Test Case3: Try to add one new employment status
-        Steps: 1. Check 'status name' exist or not, 2. if not exist, to new, else skip run add function
         """
         Log.info("Start to run test_case3_add_employee_status")
         check_epstatus_name = self.es.check_if_emp_status_exist(self.valid_status_name)
@@ -67,7 +70,6 @@ class TestEmploymentStatus(unittest.TestCase):
     def test_case4_add_mul_employee_status(self):
         """
         Test Case4: Try to add multiple employment status
-        Steps: 1. Check 'multiple status name' exist or not, 2. if not exist, to new multiple time, else skip run add function
         """
         Log.info("Start to run test_case4_add_mul_employee_status")
         check_epstatus_name = self.es.check_if_emp_status_exist(self.mul_status_name)
@@ -81,20 +83,50 @@ class TestEmploymentStatus(unittest.TestCase):
         else:
             Log.info("Don't run Test Case 4: Add multiple employment status - skipped...")
 
+    def test_case5_edit_empty_employee_status(self):
+        """
+        Test Case5: Try to find exist employee status and modify into NULL for employee status
+        """
+        Log.info("Start to run test_case5_edit_empty_employee_status")
+        self.es.edit_employee_status(self.valid_status_name, self.update_name_null)
+        Log.info("Run Test Case 5: Edit exist employment status to empty not allowed")
 
-    # def test_case2_edit_employee_status(self):
-    #     self.es.add_employee_status(self.status_name)
-    #     self.es.edit_employee_status(self.update_name)
-    #     self.es.delete_employee_status(self.update_name)
-    #
-    # def test_case3_delete_employee_status(self):
-    #     self.es.delete_employee_status(self.status_name)
+    def test_case6_edit_duplicate_employee_status(self):
+        """
+        Test Case6: Try to find exist employee status and modify into duplicate one
+        """
+        Log.info("Start to run test_case6_edit_duplicate_employee_status")
+        self.es.edit_employee_status(self.valid_status_name, self.update_name_duplicate)
+        Log.info("Run Test Case 6: Edit duplicate employee status not allowed")
+
+    def test_case7_edit_employee_status(self):
+        """
+        Test Case7: Try to find exist employee status and modify into a new valid employee status
+        """
+        Log.info("Start to run test_case7_edit_employee_status")
+        self.es.edit_employee_status(self.valid_status_name, self.update_name_valid)
+        Log.info("Run Test Case 7: Edit exist employment status into new valid one - completed")
+
+    def test_case8_delete_employee_status(self):
+        """
+        Test Case8: Try to delete one employee status
+        """
+        Log.info("Start to run test_case8_delete_employee_status")
+        self.es.delete_employee_status(self.update_name_valid)
+        Log.info("Run Test Case 8: Delete exist employment status - completed!")
+
+    def test_case9_delete_mul_employee_status(self):
+        """
+        Test Case9: Try to delete user defined multiple employee status
+        """
+        Log.info("Start to run test_case9_delete_mul_employee_status")
+        self.es.delete_muluser_employee_status(self.def_epstatus_namelist)
+        Log.info("Run Test Case 9: Delete multiple user defined employment status - completed!")
 
     @classmethod
     def tearDownClass(cls):
         cls.es.quit_browser()
-
-
+        Log.info("End of testing employment status page")
 
 if __name__ == "__main__":
     unittest.main()
