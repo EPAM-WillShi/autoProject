@@ -32,21 +32,31 @@ class TestSearchById(unittest.TestCase):
 
     def test_case1_search_employee_by_name(self):
         self.emplist_search.search_employee_by_name(self.srch_empname)
+        self.emplist_search.check_all_textbox_empty()
 
     def test_case2_search_employee_by_id(self):
         self.emplist_search.search_employee_by_id(self.srch_empid)
+        self.emplist_search.check_all_textbox_empty()
 
     def test_case3_emplist_search_by_supervisor_name(self):
         self.emplist_search.search_emp_by_supervisor_name(self.supervios_name)
+        self.emplist_search.check_all_textbox_empty()
 
     def test_case4_emplist_search_by_job_title(self):
         self.emplist_search.search_emp_by_job_title(self.job_title)
+        self.emplist_search.check_all_textbox_empty()
 
     def test_case5_emplist_search_by_sub_unit(self):
         self.emplist_search.search_emp_by_sub_unit(self.sub_unit)
+        self.emplist_search.check_all_textbox_empty()
 
     def test_case6_emplist_search_by_status(self):
         self.emplist_search.search_emp_by_status(self.status)
+        self.emplist_search.check_all_textbox_empty()
+
+    def test_reset(self):
+        self.emplist_search.search_employee_by_name(self.srch_empname)
+        self.emplist_search.check_all_textbox_empty()
 
     @classmethod
     def tearDownClass(cls):
