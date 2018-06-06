@@ -13,15 +13,18 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as ec
 # from unittest.TestCase import ExpectedException
 # from selenium.webdriver.common.keys import Keys
-
+from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
 
 def get_browser_driver(browser):
+    firefox_profile = FirefoxProfile()
+    firefox_profile.set_preference('permissions.default.stylesheet', 2)  # Disable CSS
+    firefox_profile.set_preference('permissions.default.image', 2)  # Disable image
     if re.match(r'(i|I)(e|E)', browser):
         driver = webdriver.Ie()
     elif re.match(r'(c|C)(h|H)(r|R)(o|O)(m|M)(e|E)', browser):
         driver = webdriver.Chrome()
     elif re.match(r'(f|F)(i|I)(r|R)(e|E)(f|F)(o|O)(x|X)', browser):
-        driver = webdriver.Firefox()
+        driver = webdriver.Firefox(firefox_profile)
     else:
         print "Currently not support this browser {}".format(browser)
     return driver
