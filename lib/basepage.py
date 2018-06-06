@@ -365,6 +365,17 @@ class BasePage(object):
         Log.info("Current page title is %s" % self.driver.current_url)
         return self.driver.current_url
 
+    # Added by Anne
+    def check_element_selected(self, keys):
+        """
+        Check radio or checkbox is selected or not
+        """
+        try:
+            self.get_element(keys).is_selected()
+            print("Enabled")
+        except Exception as e:
+            print ('disabled', format(e))
+
     # Added by Linda
     def get_all_window(self):
         """
@@ -380,20 +391,13 @@ class BasePage(object):
         if element is None:
             return None
         else:
-            path = os.path.dirname(os.path.abspath('.')).split("testcase")[0]
-            path = os.path.join(path, UPLOAD_PATH, value)
+            path = os.path.abspath(UPLOAD_PATH)
+            if "testcase" in path:
+                path = path.split("testcase")[0]
+                path = os.path.join(path, UPLOAD_PATH)
+            path = os.path.join(path, value)
+            Log.info("The path is %s." % path)
             element.send_keys(path)
-
-    # Added by Anne
-    def check_element_selected(self, keys):
-        """
-        Check radio or checkbox is selected or not
-        """
-        try:
-            self.get_element(keys).is_selected()
-            print("Enabled")
-        except Exception as e:
-            print ('disabled', format(e))
 
     def mouse_move_to_element(self, keys):
         """
