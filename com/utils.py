@@ -4,30 +4,46 @@ import sys
 import re
 import random
 import time
-# rom config.config import BROWSER
 from selenium import webdriver
-#from symbol import except_clause
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as ec
-# from unittest.TestCase import ExpectedException
-# from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
+from config.config import IMAGE_ENABLED
+
+
 
 def get_browser_driver(browser):
-    firefox_profile = FirefoxProfile()
-    firefox_profile.set_preference('permissions.default.stylesheet', 2)  # Disable CSS
-    firefox_profile.set_preference('permissions.default.image', 2)  # Disable image
-    if re.match(r'(i|I)(e|E)', browser):
-        driver = webdriver.Ie()
-    elif re.match(r'(c|C)(h|H)(r|R)(o|O)(m|M)(e|E)', browser):
-        driver = webdriver.Chrome()
-    elif re.match(r'(f|F)(i|I)(r|R)(e|E)(f|F)(o|O)(x|X)', browser):
-        driver = webdriver.Firefox(firefox_profile)
+    if re.match(r'(o|O)(f|F)(f|F)', IMAGE_ENABLED):
+        if re.match(r'(i|I)(e|E)', browser):
+            driver = webdriver.Ie()
+        elif re.match(r'(c|C)(h|H)(r|R)(o|O)(m|M)(e|E)', browser):
+            chrome_profile = webdriver.ChromeOptions()
+            prefs = {'profile.default_content_setting_values': 2}
+            chrome_profile.add_experimental_option('prefs', prefs)
+            driver = webdriver.Chrome(chrome_options=chrome_profile)
+        elif re.match(r'(f|F)(i|I)(r|R)(e|E)(f|F)(o|O)(x|X)', browser):
+            firefox_profile = FirefoxProfile()
+            firefox_profile.set_preference('permissions.default.stylesheet', 2)  # Disable CSS
+            firefox_profile.set_preference('permissions.default.image', 2)  # Disable image
+            driver = webdriver.Firefox(firefox_profile)
+        else:
+            print "Currently not support this browser {}".format(browser)
+        return driver
     else:
-        print "Currently not support this browser {}".format(browser)
-    return driver
+        if re.match(r'(i|I)(e|E)', browser):
+            driver = webdriver.Ie()
+        elif re.match(r'(c|C)(h|H)(r|R)(o|O)(m|M)(e|E)', browser):
+            driver = webdriver.Chrome()
+        elif re.match(r'(f|F)(i|I)(r|R)(e|E)(f|F)(o|O)(x|X)', browser):
+            driver = webdriver.Firefox()
+        else:
+            print "Currently not support this browser {}".format(browser)
+        return driver
+
+
+
 
 
 def set_combox_value(driver,  element,  value):
