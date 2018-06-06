@@ -39,6 +39,7 @@ class EmployeeList(PIM):
     first_name_ele = ('ID', 'firstName')
     last_name_ele = ('ID', 'lastName')
 
+
     def __init__(self, browser):
         super(EmployeeList, self).__init__(browser)
         self.click_menu("Employee List")
@@ -156,6 +157,27 @@ class EmployeeList(PIM):
     def get_reset_result(self, keys):
         self.click(self.reset_btn)
         self.wait_unit_el_present(keys)
+
+    def check_all_textbox_empty(self):
+        """
+        Check reset the search, all textbox empty - add by Rachel
+        """
+        self.sleep(2)
+        emp = self.get_element_attribute(self.search_empname, 'value')
+        empsupname = self.get_element_attribute(self.search_empsupname, 'value')
+        epmid = self.get_element_attribute(self.search_empid, 'value')
+        empjobtl = self.get_element_attribute(self.search_empjobtl, 'value')
+        empsts = self.get_element_attribute(self.search_empsts, 'value')
+        subunit = self.get_element_attribute(self.search_subunit, 'value')
+        includ = self.get_element_attribute(self.search_includ, 'value')
+        if emp == "Type for hints..." and empsupname == "Type for hints..." \
+                and epmid == "Type Employee Id..." and empjobtl == "0" and empsts == "0" and subunit == "0"\
+                and includ == "1":
+            Log.info("Reset successfully.")
+        else:
+            Log.info("Reset failed.")
+
+
 
     # def get_listvalue(self, keys):
     #     text = self.get_element_text(keys)
