@@ -26,7 +26,7 @@ class TestAddDependents(unittest.TestCase):
     relationship = "note"
     dateOfBirth = "1990-05-09"
     first_name = 'rachel'
-    last_name = 'test9'
+    last_name = 'test'
 
     # create an attachment
     attachment = "test.docx"
@@ -42,19 +42,21 @@ class TestAddDependents(unittest.TestCase):
         cls.login.login(config.USER_NAME, config.PASSWORD)
         cls.dep = Dependents(cls.driver)
         cls.dep.open_dependents_page_via_creating_emp(cls.first_name, cls.last_name)
-        # self.dep.open_dependents_page_via_editing_emp(self.first_name, self.last_name)
 
     def test_add_dependents_after_creating_emp_type_child(self):
         self.dep.add_dependents_without_specify(self.name, self.relationshipType_child, self.dateOfBirth)
+        self.dep.check_dependents_list(self.name, self.relationshipType_child, self.dateOfBirth)
         self.dep.delete_the_first_dependents()
 
     def test_add_dependents_after_creating_emp_type_other(self):
         self.dep.add_dependents_with_specify(self.name, self.relationshipType_other, self.relationship, self.dateOfBirth)
+        self.dep.check_dependents_list(self.name, self.relationship, self.dateOfBirth)
         self.dep.delete_the_first_dependents()
 
     def test_edit_the_first_dependents_save(self):
         self.dep.add_dependents_without_specify(self.name, self.relationshipType_child, self.dateOfBirth)
         self.dep.edit_the_first_dependents_save(self.name1)
+        self.dep.check_dependents_list(self.name1, self.relationshipType_child, self.dateOfBirth)
         self.dep.delete_the_first_dependents()
 
     def test_edit_the_first_dependents_cancel(self):
