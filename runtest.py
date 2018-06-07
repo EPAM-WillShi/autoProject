@@ -124,6 +124,10 @@ class Runner():
             webbrowser.open_new(reportpath)
         except BaseException,Error:
             print 'Error happend when open the test report:' + Error
+        cmd = 'taskkill /F /IM firefox.exe'
+        os.system(cmd)
+        cmd = 'taskkill /F /IM geckodriver.exe'
+        os.system(cmd)
             
             
 if __name__ == '__main__':
