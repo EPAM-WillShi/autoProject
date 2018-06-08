@@ -1,6 +1,7 @@
 # coding:utf-8
 """
 Created by Tina Lu
+Updated by Linda
 """
 import unittest
 from config import config
@@ -54,7 +55,7 @@ class TestAssignLeave(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """
-         Login, create an employee and go to Assign leave entitlement page
+         Login, create an employee, add entitlements and go to Assign leave entitlement page
          """
         cls.driver = utils.get_browser_driver(cls.browser)
         cls.login = Login(cls.driver)
@@ -70,7 +71,7 @@ class TestAssignLeave(unittest.TestCase):
 
     def test_case1_check_balance_leave(self):
         """
-        Test assign leave for same date, then verify balance
+        Test assign leave for an employee,  then verify balance
         """
         self.assignleave.select_name_and_type(self.name, self.leave_type_input)
         actual_result = self.assignleave.check_leave_balance()
