@@ -2,13 +2,14 @@
 """
 Created on 2018/4/17
 @author: Yolanda Zhang
+Edited on 2018/6/8 by Rachel
 """
 
 import unittest
 from config import config
 from com import utils
 from pageobjects.login import Login
-from pageobjects.leave.workweek import WorkWeek
+from pageobjects.leave.configure.work_week import WorkWeek
 
 
 class TestWorkWeek(unittest.TestCase):
@@ -16,6 +17,9 @@ class TestWorkWeek(unittest.TestCase):
     Test work week page functions
     """
     browser = config.BROWSER
+    login_url = config.LOGIN_URL
+    username = config.USER_NAME
+    passwd = config.PASSWORD
 
     @classmethod
     def setUpClass(cls):
