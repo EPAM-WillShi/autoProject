@@ -6,6 +6,8 @@ import unittest
 from config import config
 from com import utils
 from pageobjects.login import Login
+from pageobjects.pim.employee_list import EmployeeList
+from pageobjects.leave.entitle.employee_entitlements import EmployeeEntitlements
 from pageobjects.leave.assign_leave import AssignLeave
 
 
@@ -15,18 +17,39 @@ class TestAssignLeave(unittest.TestCase):
     """
     browser = config.BROWSER
 
-    first_name = "Tina"
-    last_name = "AssignLeave"
+    first_name = "linda"
+    last_name = "test"
+    name = "linda test"
+    period = "2018-01-01 - 2018-12-31"
+    entitlement = "10"
     leave_type_input = "Vacation US"
     date_input = "2018-05-02"
-    from_date_iput = "2018-05-03"
-    to_date_iput = "2018-05-04"
     partial_days = "All Days"
-    duraton_input_samedate = "Full Day"
-    duration_input_differdate = "Specify Time"
-    time_from = "09:00"
-    time_to = "17:00"
-    comment_input = "Assign leave test"
+    duration = "Specify Time"
+    half_day = "Morning"
+    time_from = "10:00"
+    time_to = "16:00"
+    time_duration = "6"
+    from_date_input = "2018-05-07"
+    to_date_input = "2018-05-10"
+    partial_day = "Start and End Day"
+    first_duration = "Specify Time"
+    first_half_day = "Morning"
+    first_time_from = "09:00"
+    first_time_to = "11:00"
+    first_time_duration = "2"
+    second_duration = "Specify Time"
+    second_half_day = "Morning"
+    second_time_from = "15:00"
+    second_time_to = "15:30"
+    second_time_duration = "0.5"
+    expected_result = "linda test" + "Vacation US" + "10.00" + "" + "0.00" + "0.00" + "0.00" + "10.00"
+    comment = "added"
+    expected_result_same_date = "linda test" + "Vacation US" + "10.00" + "" + "0.75" + "0.00" + "0.00" + "9.25"
+    expected_result_diff_date = "linda test" + "Vacation US" + "10.00" + "" + "3.06" + "0.00" + "0.00" + "6.94"
+    balance = "10.00view details"
+    balance_same_date = "9.25view details"
+    balance_diff_date = "6.94view details"
 
     @classmethod
     def setUpClass(cls):
@@ -37,45 +60,62 @@ class TestAssignLeave(unittest.TestCase):
         cls.login = Login(cls.driver)
         cls.login.open_browser(config.LOGIN_URL)
         cls.login.login(config.USER_NAME, config.PASSWORD)
-
+        cls.employeelist = EmployeeList(cls.driver)
+        cls.employeelist.add_employee(cls.first_name, cls.last_name)
+        cls.employeelist.find_employee(cls.name)
+        cls.addleave = EmployeeEntitlements(cls.driver)
+        cls.addleave.add_entitlement(cls.name, cls.leave_type_input,
+                                     cls.period, cls.entitlement)
         cls.assignleave = AssignLeave(cls.driver)
-        cls.assignleave.create_employee(cls.first_name, cls.last_name)
 
-        cls.assignleave.select_menu()
-
-    def test_case1_assign_leave_same_date(self):
+    def test_case1_check_balance_leave(self):
         """
         Test assign leave for same date, then verify balance
         """
-        self.assignleave.select_name_type(self.first_name + " " + self.last_name,self.leave_type_input)
-        self.assignleave.input_samedate_duration_comment(self.date_input,
-                                                         self.duraton_input_samedate, self.comment_input)
-        self.assignleave.assign()
-        self.assignleave.verify_balance_samedate(self.first_name + " " + self.last_name,
-                                                 self.leave_type_input,self.date_input)
+        self.assignleave.select_name_and_type(self.name, self.leave_type_input)
+        actual_result = self.assignleave.check_leave_balance()
+        self.assertEqual(actual_result, self.balance)
+        actual_result_of_balance_details = self.assignleave.check_leave_balance_details()
+        self.assertEqual(actual_result_of_balance_details, self.expected_result)
 
+    def test_case2_assign_leave_same_date(self):
+        """
+        Test assign leave for same date, then verify balance
+        """
+        self.assignleave.select_name_and_type(self.name, self.leave_type_input)
+        self.assignleave.input_date(self.date_input, self.date_input)
+        self.assignleave.input_duration(self.duration, self.half_day, self.time_from, self.time_to, self.time_duration)
+        self.assignleave.input_comment(self.comment)
         self.assignleave.assign()
-        self.assignleave.check_overlapping(self.date_input, self.leave_type_input)
+        actual_result = self.assignleave.check_leave_balance()
+        self.assertEqual(actual_result, self.balance_same_date)
+        actual_result_of_balance_details = self.assignleave.check_leave_balance_details()
+        self.assertEqual(actual_result_of_balance_details, self.expected_result_same_date)
 
-    # def test_case2_assign_leave_multiperiod(self):
-    #     """
-    #     Test assign leave for different date, then verify balance
-    #     """
-        self.assignleave.click_menu("Assign Leave")
-        self.assignleave.select_name_type(self.first_name + " " + self.last_name, self.leave_type_input)
-        self.assignleave.input_multiperiod_partial(self.from_date_iput, self.to_date_iput, self.partial_days)
-        self.assignleave.input_duration_time_comment(self.duration_input_differdate,
-                                                     self.time_from,self.time_to, self.comment_input)
+    def test_case3_assign_leave_multiperiod(self):
+        """
+        Test assign leave for different date, then verify balance
+        """
+        self.assignleave.select_name_and_type(self.name, self.leave_type_input)
+        self.assignleave.input_date(self.from_date_input, self.to_date_input)
+        self.assignleave.input_partial_day(self.partial_day, self.first_duration, self.first_half_day,
+                                           self.first_time_from, self.first_time_to, self.first_time_duration,
+                                           self.second_duration, self.second_half_day, self.second_time_from,
+                                           self.second_time_to, self.second_time_duration)
+        self.assignleave.input_comment(self.comment)
         self.assignleave.assign()
-        self.assignleave.verify_balance_multiperiod(self.first_name + " " + self.last_name, self.leave_type_input,
-                                                    self.from_date_iput, self.to_date_iput)
+        actual_result = self.assignleave.check_leave_balance()
+        self.assertEqual(actual_result, self.balance_diff_date)
+        actual_result_of_balance_details = self.assignleave.check_leave_balance_details()
+        self.assertEqual(actual_result_of_balance_details, self.expected_result_diff_date)
 
     @classmethod
     def tearDownClass(cls):
         """
         Delete employee and logout
         """
-        cls.assignleave.delete_employee(cls.first_name, cls.last_name)
+        cls.employeelist = EmployeeList(cls.driver)
+        cls.employeelist.delete_employee(cls.name)
         cls.login.quit_browser()
 
 
