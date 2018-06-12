@@ -64,12 +64,14 @@ class AssignLeave(Leave):
         self.click_menu("Assign Leave")
         Log.info("Arrive Assign Leave page")
 
-    def select_name_and_type(self, name, leave_type):
+    def select_name_and_type(self, leave_type, *args):
         """
         Select Employee Name and Leave Type
         """
         self.set_combox_value(leave_type, self.leave_type)
-        self.input_text(name, self.employee_name)
+        args = "".join(args)
+        if args != "":
+            self.input_text(args, self.employee_name)
         self.press_enter_key(self.employee_name)
 
     def check_leave_balance(self):
