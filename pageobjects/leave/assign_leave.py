@@ -50,6 +50,7 @@ class AssignLeave(Leave):
     second_time_duration = ('xpath', '//span[@id="assignleave_secondDuration_specify_time_content"]//input')
     success_flag = ('class', 'message success fadable')
     details_windows = ('xpath', '//h3[text()="OrangeHRM - Leave Balance Details"]')
+    ok_button = ("id", "confirmOkButton")
 
     def __init__(self, browser):
         super(AssignLeave, self).__init__(browser)
@@ -181,5 +182,6 @@ class AssignLeave(Leave):
         Assign leave
         """
         self.click(self.assign_btn)
+        self.click(self.ok_button)
         Log.info("Assign leave")
 
