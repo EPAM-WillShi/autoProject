@@ -73,7 +73,7 @@ class TestAssignLeave(unittest.TestCase):
         """
         Test assign leave for an employee,  then verify balance
         """
-        self.assignleave.select_name_and_type(self.name, self.leave_type_input)
+        self.assignleave.select_name_and_type(self.leave_type_input, self.name)
         actual_result = self.assignleave.check_leave_balance()
         self.assertEqual(actual_result, self.balance)
         actual_result_of_balance_details = self.assignleave.check_leave_balance_details()
@@ -83,7 +83,7 @@ class TestAssignLeave(unittest.TestCase):
         """
         Test assign leave for same date, then verify balance
         """
-        self.assignleave.select_name_and_type(self.name, self.leave_type_input)
+        self.assignleave.select_name_and_type(self.leave_type_input, self.name)
         self.assignleave.input_date(self.date_input, self.date_input)
         self.assignleave.input_duration(self.duration, self.half_day, self.time_from, self.time_to, self.time_duration)
         self.assignleave.input_comment(self.comment)
@@ -97,7 +97,7 @@ class TestAssignLeave(unittest.TestCase):
         """
         Test assign leave for different date, then verify balance
         """
-        self.assignleave.select_name_and_type(self.name, self.leave_type_input)
+        self.assignleave.select_name_and_type(self.leave_type_input, self.name)
         self.assignleave.input_date(self.from_date_input, self.to_date_input)
         self.assignleave.input_partial_day(self.partial_day, self.first_duration, self.first_half_day,
                                            self.first_time_from, self.first_time_to, self.first_time_duration,
