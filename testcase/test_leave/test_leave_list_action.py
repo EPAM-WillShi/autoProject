@@ -47,7 +47,7 @@ class TestLeaveList(unittest.TestCase):
     def test_assign_leave(self):
         self.assignleave = AssignLeave(self.driver)
         self.assignleave.select_menu()
-        self.assignleave.select_name_and_type(self.emp_name, self.leave_type)
+        self.assignleave.select_name_and_type(self.leave_type, self.emp_name)
         self.assignleave.input_date(self.from_date, self.to_date)
         time.sleep(2)
         self.assignleave.assign()
