@@ -20,10 +20,10 @@ class TestLeaveList(unittest.TestCase):
     Test leave list page functions
     """
     f_name = "Christine"
-    l_name = "Lu"
+    l_name = "Lu1"
 
     # Assign leave
-    emp_name = "Christine Lu"
+    emp_name = "Christine Lu1"
     leave_type = "Vacation US"
     from_date = "2018-06-12"
     to_date = "2018-06-17"
