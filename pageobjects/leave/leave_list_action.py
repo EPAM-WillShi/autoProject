@@ -16,7 +16,7 @@ class LeaveList(Leave):
     area = ("xpath", "//*[@id='frmFilterLeave']/fieldset/ol/li[1]/label")
     from_date = ("id", "calFromDate")
     to_date = ("id", "calToDate")
-    leave_status = ("id", "leaveList_chkSearchFilter_checkboxgroup_allcheck")
+    leave_status = ("id", "leaveList_chkSearchFilter_2")
     srch_btn = ("id", "btnSearch")
     srch_result = ('xpath', './/*[@id="resultTable"]//td')
     action_list = ("xpath", "//table[@id='resultTable']/tbody/tr[1]/td[last()]/select")
