@@ -4,28 +4,44 @@ import sys
 import re
 import random
 import time
-# rom config.config import BROWSER
 from selenium import webdriver
-#from symbol import except_clause
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as ec
-# from unittest.TestCase import ExpectedException
-# from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
+from config.config import IMAGE_ENABLED
+
 
 
 def get_browser_driver(browser):
-    if re.match(r'(i|I)(e|E)', browser):
-        driver = webdriver.Ie()
-    elif re.match(r'(c|C)(h|H)(r|R)(o|O)(m|M)(e|E)', browser):
-        driver = webdriver.Chrome()
-    elif re.match(r'(f|F)(i|I)(r|R)(e|E)(f|F)(o|O)(x|X)', browser):
-        driver = webdriver.Firefox()
+    if re.match(r'(o|O)(f|F)(f|F)', IMAGE_ENABLED):
+        if re.match(r'(i|I)(e|E)', browser):
+            driver = webdriver.Ie()
+        elif re.match(r'(c|C)(h|H)(r|R)(o|O)(m|M)(e|E)', browser):
+            option = webdriver.ChromeOptions()
+            option.add_argument('--headless')
+            driver = webdriver.Chrome(chrome_options=option)
+        elif re.match(r'(f|F)(i|I)(r|R)(e|E)(f|F)(o|O)(x|X)', browser):
+            option = webdriver.FirefoxOptions()
+            option.add_argument('-headless')
+            driver = webdriver.Firefox(firefox_options=option)
+        else:
+            print "Currently not support this browser {}".format(browser)
+        return driver
     else:
-        print "Currently not support this browser {}".format(browser)
-        sys.exit(-1)
-    return driver
+        if re.match(r'(i|I)(e|E)', browser):
+            driver = webdriver.Ie()
+        elif re.match(r'(c|C)(h|H)(r|R)(o|O)(m|M)(e|E)', browser):
+            driver = webdriver.Chrome()
+        elif re.match(r'(f|F)(i|I)(r|R)(e|E)(f|F)(o|O)(x|X)', browser):
+            driver = webdriver.Firefox()
+        else:
+            print "Currently not support this browser {}".format(browser)
+        return driver
+
+
+
 
 
 def set_combox_value(driver,  element,  value):
@@ -34,7 +50,7 @@ def set_combox_value(driver,  element,  value):
         element.select_by_visible_text(value)
     except NoSuchElementException:
         print "Could not locate the element value {}".format(value)
-        sys.exit(-1)
+
 
 
 def check_is_alert_present(driver):

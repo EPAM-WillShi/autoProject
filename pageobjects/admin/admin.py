@@ -7,7 +7,7 @@ class Admin(MainPage):
     """
     Admin page main components
     """
-    menuBar = ".//*[@id='{}']"
+    menuBar = "//div[@class='menu']//a[@id='{}']"
     
     def __init__(self, browser):
         super(Admin, self).__init__(browser)
@@ -17,23 +17,31 @@ class Admin(MainPage):
     def click_menu(self, menuname):
         """
         Click ADMIN page menu
-        """   
-        Log.info("Click the % s menu") 
-        menu_name =  menuname.title() 
+        """
+        Log.info("Click the % s menu" % menuname)
+        menu_name = menuname.title()
         try:
-            element = self.get_element(("link_text", menu_name)) 
+            element = self.get_element(("link_text", menu_name))
             element.click()
             self.sleep(1)
         except:
             if menuname == "Employment Status":
                 newmenu = "menu_admin_{}".format("employmentStatus")
             else:
-                newmenu = "menu_admin_{}".format(menuname)
-            menu = self.menuBar.format(newmenu)    
+                newmenu = menu_name.replace(" ", "")
+                newmenu = "menu_admin_{}".format(newmenu)
+            menu = self.menuBar.format(newmenu)
             try:
                 element = self.get_element(("xpath", menu))
-                element.click()
+                try:
+                    element.click()
+                except:
+                    self.mouse_move_to_element(("xpath", menu))
             except BaseException, e:
                 print e
                 Log.error(e)
-                raise "Element %s not found" %menuname  
+                raise "Element %s not found" %menuname
+
+
+
+

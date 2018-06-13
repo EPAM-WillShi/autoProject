@@ -30,6 +30,7 @@ class Dependents(EmployeeList):
     dep_the_first_attachments_checkbox = ('xpath', '//table[@id="tblAttachments"]/tbody/tr[1]/td[1]/input')
     dep_the_first_attachments_name = ('xpath', '//table[@id="tblAttachments"]/tbody/tr[1]/td[2]/a')
     dep_the_first_attachments_edit = ('xpath', '//table[@id="tblAttachments"]/tbody/tr[1]/td[8]/a')
+    the_first_record = '//table[@id="dependent_list"]/tbody/tr[1]'
 
     def __init__(self, browser):
         super(Dependents, self).__init__(browser)
@@ -42,7 +43,9 @@ class Dependents(EmployeeList):
         self.switch_employee_detail_page("Dependents")
         page_ele = self.get_element(self.dep_success_flag)
         if page_ele is not None:
-            Log.info("Arrive Dependents_page")
+            Log.info("Arrive Dependents page via creating emp")
+        else:
+            Log.info("Cannot arrive Dependents page via creating emp")
 
     def open_dependents_page_via_editing_emp(self, first_name, last_name):
         """
@@ -57,9 +60,9 @@ class Dependents(EmployeeList):
         self.switch_employee_detail_page("Dependents")
         page_ele = self.get_element(self.dep_success_flag)
         if page_ele is not None:
-            Log.info("Arrive Immigration page via editing emp")
+            Log.info("Arrive Dependents page via editing emp")
         else:
-            Log.info("Cannot arrive Immigration page via editing emp")
+            Log.info("Cannot arrive Dependents page via editing emp")
 
     def add_dependents_without_specify(self, name, relationship, date_of_birth):
         """
@@ -73,6 +76,12 @@ class Dependents(EmployeeList):
         self.input_text(date_of_birth, self.dep_birth_date)
         self.click(self.dep_save_btn)
         Log.info("The child type dependent record is added.")
+
+    def check_dependents_list(self, name, relationship, date_of_birth):
+        expected_text = name + " " + str.lower(relationship) + " " + date_of_birth
+        actual_text = self.get_element_text(('xpath', self.the_first_record))
+        assert actual_text == expected_text
+        Log.info("The record is correct.")
 
     def add_dependents_with_specify(self, name, relationship, please_specify, date_of_birth):
         """

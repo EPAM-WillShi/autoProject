@@ -17,18 +17,21 @@ class TestAddDependents(unittest.TestCase):
     passwd = config.PASSWORD
     browser = config.BROWSER
 
+    # Choose an employee
+    first_name = "John"
+    last_name = "Smith"
+
     # Create a Dependent
-    name = "Dependents"
-    name1 = "Dependents1"
-    name2 = "Dependents2"
+    name = "A Dependents"
+    name1 = "A Dependents1"
+    name2 = "A Dependents2"
     relationshipType_child = "Child"
     relationshipType_other = "Other"
     relationship = "note"
     dateOfBirth = "1990-05-09"
-    first_name = 'rachel'
-    last_name = 'test'
 
-    # create an attachment
+
+    # Create an attachment
     attachment = "test.docx"
     comment = "Added attachment"
     new_attachment = "testedit.docx"
@@ -41,7 +44,7 @@ class TestAddDependents(unittest.TestCase):
         cls.login.open_browser(config.LOGIN_URL)
         cls.login.login(config.USER_NAME, config.PASSWORD)
         cls.dep = Dependents(cls.driver)
-        cls.dep.open_dependents_page_via_creating_emp(cls.first_name, cls.last_name)
+        cls.dep.open_dependents_page_via_editing_emp(cls.first_name, cls.last_name)
 
     def test_add_dependents_after_creating_emp_type_child(self):
         self.dep.add_dependents_without_specify(self.name, self.relationshipType_child, self.dateOfBirth)
