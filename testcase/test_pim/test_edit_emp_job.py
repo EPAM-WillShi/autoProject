@@ -3,7 +3,7 @@ import unittest
 from config import config
 from com import utils
 from pageobjects.login import Login
-from pageobjects.pim.job import Job
+from pageobjects.pim.emplist_job import Job
 
 
 class TestJob(unittest.TestCase):
@@ -20,17 +20,16 @@ class TestJob(unittest.TestCase):
     first_name = "dora1"
     last_name = "test"
 
-    #Job information
     jobtitle = "CEO"
     empStatus = "Freelance"
     jobcategory = "Sales Workers"
-    joindate = "2018-07-17"
+    joindate = "17-07-2018"
     subunit = "Sales"
     location = "Texas R&D"
-    startdate = "2018-07-17"
-    enddate = "2020-07-16"
+    startdate = "17-07-2018"
+    enddate = "16-07-2020"
     contract = "jobcontract.txt"
-    terdate = "2019-07-17"
+    terdate = "17-07-2019"
     repcontract = "repcontract.txt"
 
 
@@ -45,28 +44,38 @@ class TestJob(unittest.TestCase):
 
     def test_case1_add_emp_job(self):
         """
-        test_case1_add job information for employee
+        test case1_add job_information for employee
         """
         self.job.add_emp_job(self.jobtitle, self.empStatus, self.jobcategory, self.joindate, self.subunit,
-                               self.location, self.startdate, self.enddate, self.contract)
+                              self.location,self.startdate,self.enddate, self.contract)
         self.job.verify_edit_job_success("Successfully Updated")
 
-    def test_case2_edit_current_contract(self):
+    def test_case2_replace_current_contract(self):
         """
-        test_case2_replace contract and delete contract
+        test case2_replace_current_contract
         """
         self.job.replace_current_contract(self.repcontract)
         self.job.verify_edit_job_success("Successfully Updated")
-        self.job.delete_current_contract()
-        self.job.verify_edit_job_success("Successfully Updated")
 
-    def test_case3_actions_on_employment(self):
+    def test_case3_terminate_employment(self):
         """
-        test_case3_terminate employment and activate employment
+        test case3_terminate_employment
         """
         self.job.terminate_employment(self.terdate)
         self.job.verify_edit_job_success("Successfully Updated")
-        self.job.activate_employment()
+
+    def test_case4_delete_current_contract(self):
+        """
+        test case4_delete_current_contract
+        """
+        self.job.delete_current_contract()
+        self.job.verify_edit_job_success("Successfully Updated")
+
+    def test_case5_activate_employment(self):
+        """
+        test case5_activate_employment
+        """
+        self.job.activate_employment(self.terdate)
         self.job.verify_edit_job_success("Successfully Updated")
 
     @classmethod

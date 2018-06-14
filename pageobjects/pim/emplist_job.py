@@ -93,6 +93,7 @@ class Job(EmployeeList):
         self.click(self.rep_contract)
         self.upload_file(repcontract, self.contract_details)
         self.click(self.edit_btn)
+        self.sleep(2)
         assert self.get_element_text(self.contract_file).encode("utf-8") == repcontract
 
     def delete_current_contract(self):
@@ -119,7 +120,7 @@ class Job(EmployeeList):
         self.click(self.ter_conf_btn)
         assert terdate in self.get_element_text(self.ter_msg).encode("utf-8")
 
-    def activate_employment(self):
+    def activate_employment(self, terdate):
         """
         Activate the employment for current employee
         """
