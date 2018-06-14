@@ -13,9 +13,13 @@ class TestOrgStructure(unittest.TestCase):
     """
     browser = config.BROWSER
     # set testing data
-    top1_unit_id = '111'
-    top1_unit_name = 'Tower2'
-    top1_unit_desc = "The unit is Tower2"
+    add_unit_id = '111'
+    add_unit_name = 'Tower2'
+    add_unit_desc = "The unit is Tower2"
+
+    edit_unit_id = '333'
+    edit_unit_name = 'Tower2_edit'
+    edit_unit_desc = "The unit is updated"
 
     @classmethod
     def setUpClass(cls):
@@ -28,27 +32,38 @@ class TestOrgStructure(unittest.TestCase):
 
     def test_case01_init_structure(self):
         """
-        Test Case  -  top1 unit add
+        Test Case  -  structure init check
         """
         self.structure.verify_init_structure()
 
-    def test_case02_add_top1_unit(self):
+    def test_case02_add_unit(self):
         """
-        Test Case  -  top1 unit add
+        Test Case  -  structure unit add
         """
-        self.structure.add_top1_unit(self.top1_unit_id, self.top1_unit_name, self.top1_unit_desc)
+        self.structure.add_unit(self.add_unit_id, self.add_unit_name, self.add_unit_desc)
 
     def test_case03_delete_unit(self):
         """
         Test Case  -  structure unit delete
         """
-        self.structure.delete_unit(self.top1_unit_id + " : " + self.top1_unit_name)
+        self.structure.delete_unit()
+
+    def test_case04_edit_unit(self):
+        """
+        Test Case  -  structure unit edit
+        """
+        self.structure.edit_unit(self.edit_unit_id, self.edit_unit_name, self.edit_unit_desc)
+
+    def test_case05_delete_unit(self):
+        """
+        Test Case  -  structure unit delete
+        """
+        self.structure.delete_unit()
 
     @classmethod
     def tearDownClass(cls):
         cls.login.quit_browser()
         Log.info("End testing organization structure page")
-
 
 if __name__ == "__main__":
     unittest.main()
