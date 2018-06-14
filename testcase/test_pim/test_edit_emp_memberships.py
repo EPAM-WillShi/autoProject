@@ -28,8 +28,8 @@ class TestMemberships(unittest.TestCase):
     amount = "110"
     currency = "Chinese Yuan Renminbi"
     abb_currency = "CNY"  # Abbreviation of currency
-    com_date = "2018-06-02"
-    renew_date = "2020-06-02"
+    com_date = "02-06-2018"
+    renew_date = "02-06-2020"
 
     modified_pay = "Individual"
     modified_amount = "1000"
