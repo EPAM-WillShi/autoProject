@@ -3,10 +3,7 @@
 Created on 2018/6/6
 @author: Joanna Li
 """
-from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
+import random
 from lib.log import Log
 from pageobjects.admin.admin import Admin
 class Structure(Admin):
@@ -22,6 +19,8 @@ class Structure(Admin):
     add_btn = ("class_name", "addButton")
     delete_btn = ("class_name", "deleteButton")
     delete_btn_path = "//a[text()='{}']/following-sibling::a[2]"
+    add_btn_path = "//a[text()='{}']/following-sibling::a[1]"
+    super_name_path = "//a[text()='{}']/../../preceding-sibling::a[3]"
     structure_tree = ("id", "node_1")
     top1_namelink = "//li[@id='node_1']/a[@class='editLink']"
     top1_add_btn = "//li[@id='node_1']/a[@class='addButton']"
@@ -30,6 +29,7 @@ class Structure(Admin):
     delete_message = "Successfully Deleted"
     label_text = "display: none"
     label_flag = ("xpath", "//a[@class='editLink']")
+    unit_tree = ("class_name", "treeview")
 
     # dialog unit objects
     unit_id = ("id", "txtUnit_Id")
@@ -51,28 +51,17 @@ class Structure(Admin):
         Log.info("Start to verify structure tree is disabled when come to from menu")
         assert self.is_label_structure()
 
-    def add_top1_unit(self, unit_id, unit_name, unit_desc):
-        Log.info("Start to add a unit of top 1")
-        self.click(self.edit_btn)
-        self.wait_unit_el_present(("xpath", self.top1_add_btn))
-        assert self.get_element_attribute(self.edit_btn, "value") == 'Done'
-        if not self.check_unitname_exists(unit_id + " : " + unit_name):
-            self.click(("xpath", self.top1_add_btn))
-            self.type_unit_fields(unit_id, unit_name, unit_desc)
-            self.click(self.unit_save_btn)
-            # assert self.get_element_text(self.message_text) == self.save_message
-            self.click(self.edit_btn)
-            self.sleep(3)
-            assert self.is_label_structure()
-            Log.info("Top 1 unit is added successfully")
-        else:
-            Log.info("The unit name have already exist, do nothing! please add one unit changing name")
-
     def check_unitname_exists(self, unit_name):
         is_exist = False
         eles = self.get_elements(self.edit_link)
         for ele in eles:
-            if ele.text == unit_name:
+            unit_id_name = ele.text
+            if ":" in unit_id_name:
+                list = unit_id_name.split(":")
+                unit_name_text = list[1].strip()
+            else:
+                unit_name_text = unit_id_name
+            if unit_name_text == unit_name:
                 is_exist = True
                 break
         return is_exist
@@ -93,36 +82,94 @@ class Structure(Admin):
                 break
         return is_label
 
-    def delete_unit(self, unit_idname):
+    def delete_unit(self):
         Log.info("Start to delete a unit in structure")
         self.click(self.edit_btn)
-        self.wait_unit_el_present(("xpath", self.top1_add_btn))
+        self.sleep(3)
         assert self.get_element_attribute(self.edit_btn, "value") == 'Done'
-        selector = ('xpath', self.delete_btn_path.format(unit_idname))
-        self.click(selector)
+        eles = self.get_elements(self.edit_link)
+        tolunits = len(eles)
+        i = random.randint(0, tolunits - 1)
+        unit_id_name = eles[i].text
+        delselector = ("xpath", self.delete_btn_path.format(unit_id_name))
+        self.click(delselector)
         self.click(self.unit_ok_btn)
-        self.sleep(2)
+        self.sleep(3)
         # assert self.get_element_text(self.message_text) == self.delete_message
-        assert (not self.check_unitname_exists(unit_idname))
+        if ":" in unit_id_name:
+            list = unit_id_name.split(":")
+            unit_name_text = list[1].strip()
+        else:
+            unit_name_text = unit_id_name
+        assert (not self.check_unitname_exists(unit_name_text))
         self.click(self.edit_btn)
         self.sleep(3)
         assert self.is_label_structure()
 
-    def edit_unit(self, orig_unit_id, orig_unit_name, unit_id, unit_name, unit_desc):
+    def add_unit(self, unit_id, unit_name, unit_desc):
+        Log.info("Start to add a unit in structure")
+        self.click(self.edit_btn)
+        self.sleep(2)
+        assert self.get_element_attribute(self.edit_btn, "value") == 'Done'
+        eles = self.get_elements(self.edit_link)
+        tolunits = len(eles)
+        i = random.randint(0, tolunits - 1)
+        unit_id_name = eles[i].text
+        addselector = ("xpath", self.add_btn_path.format(unit_id_name))
+        self.click(addselector)
+        self.type_unit_fields(unit_id, unit_name, unit_desc)
+        self.click(self.unit_save_btn)
+        if not self.check_unitname_exists(unit_name):
+            self.sleep(3)
+            superselector = ("xpath", self.super_name_path.format(unit_id + " : " + unit_name))
+            assert unit_id_name == self.get_element(superselector).text
+            self.click(self.edit_btn)
+            self.is_label_structure()
+            Log.info("The new unit is added sucessfully")
+        else:
+            Log.info("The unit name has already exist")
+
+    def edit_unit(self, unit_id, unit_name, unit_desc):
         Log.info("Start to edit a unit")
         self.click(self.edit_btn)
         self.wait_unit_el_present(("xpath", self.top1_add_btn))
         assert self.get_element_attribute(self.edit_btn, "value") == 'Done'
-        if not self.check_unitname_exists(unit_id + " : " + unit_name):
-            self.click(("xpath", self.top1_add_btn))
-            self.type_unit_fields(unit_id, unit_name, unit_desc)
-            self.click(self.unit_save_btn)
-            # assert self.get_element_text(self.message_text) == self.save_message
+        self.verify_unit_display()
+        self.type_unit_fields(unit_id, unit_name, unit_desc)
+        self.click(self.unit_save_btn)
+        if not self.check_unitname_exists(unit_name):
+        # assert self.get_element_text(self.message_text) == self.save_message
             self.click(self.edit_btn)
+            self.sleep(3)
             assert self.is_label_structure()
-            Log.info("Top 1 unit is added successfully")
+            Log.info("The unit is edited successfully")
         else:
-            Log.info("The unit name have already exist, do nothing! please add one unit changing name")
+            Log.info("The unit name is already exist")
+
+    def verify_unit_display(self):
+        eles = self.get_elements(self.edit_link)
+        tolunits = len(eles)
+        i = random.randint(0, tolunits-1)
+        unit_id_name = eles[i].text
+        if ":" in unit_id_name:
+            list = unit_id_name.split(":")
+            unit_id = list[0].strip()
+            unit_name = list[1].strip()
+        else:
+            unit_id = ""
+            unit_name = unit_id_name
+        eles[i].click()
+        idele = self.get_element(self.unit_id)
+        nameele = self.get_element(self.unit_name)
+        assert idele.get_attribute("value") == unit_id
+        assert nameele.get_attribute("value") == unit_name
+
+
+
+
+
+
+
 
 
 
