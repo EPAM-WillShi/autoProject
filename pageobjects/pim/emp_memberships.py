@@ -3,7 +3,7 @@
 from lib.log import Log
 from decimal import *
 from pageobjects.pim.employee_list import EmployeeList
-from pageobjects.admin.qual.memberships import QualityMemberships
+
 
 class Memberships(EmployeeList):
     """
