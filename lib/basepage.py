@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Created on 2018/4/2
 @author: Angelia_Yao
-'''
+"""
 
 import os
-import sys
 import time
+from random import choice
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
@@ -26,8 +26,8 @@ class BasePage(object):
     def __init__(self, driver):
         try:
             self.driver = driver
-            #self.driver.implicitly_wait(10) # 设置隐式等待时间为10s
-        except Exception,e:
+            #  self.driver.implicitly_wait(10) # 设置隐式等待时间为10s
+        except Exception, e:
             print e
             raise NameError('The driver {} error'.format(driver))
         
@@ -57,7 +57,7 @@ class BasePage(object):
             
     def max_browser(self):
         """
-        Maxmium browser
+        Maximum browser
         """
         self.driver.maximize_window()   
          
@@ -96,18 +96,18 @@ class BasePage(object):
             locator = (By.XPATH, value)
         elif key in ['link_text', 'LINK_TEXT']:
             locator = (By.LINK_TEXT, value)
-        elif key in ['ID','id']:
+        elif key in ['ID', 'id']:
             locator = (By.ID, value)
-        elif key  in ['NAME', 'name']:
+        elif key in ['NAME', 'name']:
             locator = (By.NAME, value)
         elif key in ['CLASS_NAME', 'class_name']:
-            element = (By.CLASS_NAME, value)
+            locator = (By.CLASS_NAME, value)
         elif key in ['TAG', 'tag']:
-            element = (By.TAG_NAME, value)                      
+            locator = (By.TAG_NAME, value)
         try:
             element = wait.until(ec.presence_of_element_located(locator))
-        except Exception:
-            Log.exception("Failed to wait element!")
+        except BaseException, e:
+            Log.error(e)
             self.get_windows_img()
         self.sleep(2)
         return element
@@ -170,7 +170,6 @@ class BasePage(object):
         self.driver.switch_to.alert().dismiss()
     
     def get_elements_texts(self, keys):
-        # type: (object) -> object
         """
         Get one group elements texts
         """
@@ -181,8 +180,8 @@ class BasePage(object):
                 text = element.text
                 text_list.append(text.encode("utf-8"))
         except BaseException, e:
-            Log.error(" Unable to find the element, please \
-              check your keys %s" % keys)
+            Log.error(" Unable to find the element, please "
+                      "check your keys %s" % keys)
             Log.error(e)
         return text_list
                     
@@ -191,20 +190,22 @@ class BasePage(object):
         Check if element visible
         """
         flag = False
- 
-        element = self.wait_unit_el_present(xpath)
-        if element is not None:
-            flag = True
-#         for retry in range(5):
-#             try:
-#                 self.driver.find_element_by_xpath(xpath)
-#                 flag = True
-#             except NoSuchElementException:
-#                 if retry == 0:
-#                     print("\tWait for element loading:")
-#                 time.sleep(5)
-        return flag    
-               
+        try:
+            element = self.wait_unit_el_present(xpath)
+            if element is not None:
+                flag = True
+            #         for retry in range(5):
+            #             try:
+            #                 self.driver.find_element_by_xpath(xpath)
+            #                 flag = True
+            #             except NoSuchElementException:
+            #                 if retry == 0:
+            #                     print("\tWait for element loading:")
+            #                 time.sleep(5)
+            return flag
+        except BaseException, e:
+            Log.error(e)
+
     def get_element(self, keys):
         """
         Get one element, keys is a tuple
@@ -238,30 +239,33 @@ class BasePage(object):
             return None
         
     def get_element_text(self, keys):
-        # type: (object) -> object
         """
         Get element text
         """
-        element = self.get_element(keys)
-        if element is None:
-            return None
-        else:
-            return element.text
+        try:
+            element = self.get_element(keys)
+            if element is None:
+                return None
+            else:
+                return element.text
+        except BaseException, e:
+            Log.error(e)
 
     def get_element_attribute(self, keys, attkey):
-        # type: (object, object) -> object
         """
         Get element attribute value
         """
-        element = self.get_element(keys)        
-        if element is None:
-            return None
-        else:
-            value = element.get_attribute(attkey)
-            return value
-        
+        try:
+            element = self.get_element(keys)
+            if element is None:
+                return None
+            else:
+                value = element.get_attribute(attkey)
+                return value
+        except BaseException, e:
+            Log.error(e)
+
     def get_elements(self, keys):
-        # type: (object) -> object
         """
         Get one group elements
         """
@@ -287,45 +291,60 @@ class BasePage(object):
         """
         Input text
         """
-        element = self.get_element(keys)
-        if element is None:
-            return None
-        else:
-            element.clear()  # added by Linda
-            element.send_keys(value)
-            
+        try:
+            element = self.get_element(keys)
+            if element is None:
+                return None
+            else:
+                element.clear()  # added by Linda
+                element.send_keys(value)
+        except BaseException, e:
+            Log.error(e)
+
     def clear_text(self, keys):
         """
         Clear the text box
         """
-        element = self.get_element(keys)
-        if element is None:
-            return None
-        else:
-            self.get_element(keys).clear()
-            
+        try:
+            element = self.get_element(keys)
+            if element is None:
+                return None
+            else:
+                self.get_element(keys).clear()
+        except BaseException, e:
+            Log.error(e)
+
     def press_enter_key(self, keys):
         """
         Todo  need test later
         """
-        self.get_element(keys).send_keys(Keys.ENTER)
+        try:
+            self.get_element(keys).send_keys(Keys.ENTER)
+        except BaseException, e:
+            Log.error(e)
 
     def click(self, keys):
         """
         Click button
         """
-        element = self.get_element(keys)
-        if element is None:
-            raise Exception
-        else:        
-            self.get_element(keys).click()  
+        try:
+            element = self.get_element(keys)
+            if element is None:
+                raise Exception
+            else:
+                self.get_element(keys).click()
+        except BaseException, e:
+            Log.error(e)
 
     def get_page_title(self):
         """
         Get page title
         """
-        Log.info("Current page title is %s" % self.driver.title)
-        return self.driver.title
+        try:
+            Log.info("Current page title is %s" % self.driver.title)
+            return self.driver.title
+        except BaseException, e:
+            Log.error(e)
 
     def script(self, src):
         """
@@ -334,7 +353,6 @@ class BasePage(object):
         self.driver.execute_script(src)
         
     def set_combox_value(self, value, keys):
-        # type: (object, object) -> object
         """
         Choose combox value
         """
@@ -347,25 +365,33 @@ class BasePage(object):
         """
         get select option first value
         """
-
-        value1 = Select(self.get_element(keys)).first_selected_option.text
-        return value1
+        try:
+            value1 = Select(self.get_element(keys)).first_selected_option.text
+            return value1
+        except BaseException, e:
+            Log.error(e)
 
     def select_option(self, keys, option):
         """
         select option
         """
-        value = Select(self.get_element(keys)).select_by_index(option)
-        return value
+        try:
+            value = Select(self.get_element(keys)).select_by_index(option)
+            return value
+        except BaseException, e:
+            Log.error(e)
 
     def get_page_url(self):
         """
         Get page title
         """
-        Log.info("Current page title is %s" % self.driver.current_url)
-        return self.driver.current_url
+        try:
+            Log.info("Current page title is %s" % self.driver.current_url)
+            return self.driver.current_url
+        except BaseException, e:
+            Log.error(e)
 
-    # Added by Anne
+    #  Added by Anne
     def check_element_selected(self, keys):
         """
         Check radio or checkbox is selected or not
@@ -381,31 +407,53 @@ class BasePage(object):
         """
         Get current window page
         """
-        return self.driver.window_handles
+        try:
+            return self.driver.window_handles
+        except BaseException, e:
+            Log.error(e)
 
     def upload_file(self, value, keys):
         """
         Upload a file - added by Linda
         """
-        element = self.get_element(keys)
-        if element is None:
-            return None
-        else:
-            path = os.path.abspath(UPLOAD_PATH)
-            if "testcase" in path:
-                path = path.split("testcase")[0]
-                path = os.path.join(path, UPLOAD_PATH)
-            path = os.path.join(path, value)
-            Log.info("The path is %s." % path)
-            element.send_keys(path)
+        try:
+            element = self.get_element(keys)
+            if element is None:
+                return None
+            else:
+                path = os.path.abspath(UPLOAD_PATH)
+                if "testcase" in path:
+                    path = path.split("testcase")[0]
+                    path = os.path.join(path, UPLOAD_PATH)
+                path = os.path.join(path, value)
+                Log.info("The path is %s." % path)
+                element.send_keys(path)
+        except BaseException, e:
+            Log.error(e)
 
     def mouse_move_to_element(self, keys):
         """
         Mouse move to the element - Added by Linda
         """
-        mouse = self.get_element(keys)
-        if mouse is not None:
-            ActionChains(self.driver).move_to_element(mouse).perform()
+        try:
+            mouse = self.get_element(keys)
+            if mouse is not None:
+                ActionChains(self.driver).move_to_element(mouse).perform()
+        except BaseException, e:
+            Log.error(e)
+
+    def get_random_data(self, keys):
+        """
+        Get random data - Added by Linda
+        """
+        try:
+            elements = self.get_elements(keys)
+            element = choice(elements)
+            element_text = element.text
+            return element_text
+        except Exception, e:
+            Log.error(e)
+
 
 
 
