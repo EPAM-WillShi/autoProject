@@ -1,4 +1,3 @@
-
 # Setting the log file path.
 LOG_FILE = 'logs\log.log'
 LOG_LEVEL = 'debug'  # debug,info,warn,error,critical
@@ -23,5 +22,4 @@ EMPLOYEE = "William Zhang"
 MANAGER = "Thomas Fleming"
 EMAIL_SUB = "Email Subscriptions"
 EMAIL_CON = "Email Configuration"
-
-
+EMAIL_LOCAL = "Localization"
