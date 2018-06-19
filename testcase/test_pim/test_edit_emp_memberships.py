@@ -34,6 +34,9 @@ class TestMemberships(unittest.TestCase):
     modified_pay = "Individual"
     modified_amount = "1000"
 
+    filename = "jobcontract.txt"
+    description = "Attachment description"
+
     @classmethod
     def setUpClass(cls):
         cls.driver = utils.get_browser_driver(cls.browser)
@@ -67,6 +70,26 @@ class TestMemberships(unittest.TestCase):
          test_case3_delete membership
          """
         self.memberships.delete_membership(self.membership)
+        self.memberships.verify_membership_success("Successfully Deleted")
+
+    def test_case4_cancel_adding_attachment(self):
+        """
+        test_case4_cancel_adding_attachment
+        """
+        self.memberships.cancel_adding_attachment(self.filename, self.description)
+
+    def test_case5_add_attachment(self):
+        """
+        test_case5_add_attachment
+        """
+        self.memberships.add_attachment(self.filename, self.description)
+        self.memberships.verify_membership_success("Successfully Saved")
+
+    def test_case6_delete_attachment(self):
+        """
+        test_case6_delete_attachment
+        """
+        self.memberships.delete_attachment(self.filename)
         self.memberships.verify_membership_success("Successfully Deleted")
 
     @classmethod

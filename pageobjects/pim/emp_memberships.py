@@ -32,6 +32,16 @@ class Memberships(EmployeeList):
     chk_box = '//td[2]/a[contains(text(),"{}")]/../../td[1]//input'
     del_btn = ('ID', 'delMemsBtn')
 
+    add_attach_btn = ('ID', 'btnAddAttachment')
+    browser_btn = ('ID', 'ufile')
+    comment = ('ID', 'txtAttDesc')
+    upload_btn = ('ID', 'btnSaveAttachment')
+    cancel_attach_btn = ('ID', 'cancelButton')
+    attach_names = ('XPATH', '//*[@id="tblAttachments"]//td[2]')
+    attach_des = '//*[@id="tblAttachments"]//td[2]/a[normalize-space(text())= "{}"]/../../td[3]'
+    del_attach_btn = ('ID', 'btnDeleteAttachment')
+    attach_checkbox = '//*[@id="tblAttachments"]//td[2]/a[normalize-space(text())= "{}"]/../..//input'
+
     def __int__(self, browser):
         super(Memberships, self).__int__(browser)
         self.switch_main_menu("PIM")
@@ -100,6 +110,41 @@ class Memberships(EmployeeList):
         """
         assert return_message in self.get_element_text(self.message)
         Log.info(return_message)
+
+    def cancel_adding_attachment(self, filename, description):
+        """
+        Cancel adding an attachment
+        """
+        self.click(self.add_attach_btn)
+        self.upload_file(filename, self.browser_btn)
+        self.input_text(description, self.comment)
+        self.click(self.cancel_attach_btn)
+        assert self.get_element(('LINK_TEXT', filename)) is None
+        Log.info("Cancelling to attach a file")
+
+    def add_attachment(self, filename, description):
+        """
+        add attachment
+        """
+        self.click(self.add_attach_btn)
+        self.upload_file(filename, self.browser_btn)
+        self.input_text(description, self.comment)
+        self.click(self.upload_btn)
+        attachment_description = self.attach_des.format(filename)
+        assert filename in self.get_elements_texts(self.attach_names)
+        assert self.get_element_text(('XPATH', attachment_description)).encode("utf-8") == description
+
+    def delete_attachment(self,filename):
+        """
+        delete_attachment
+        """
+        checkbox =('XPATH', self.attach_checkbox.format(filename))
+        self.click(checkbox)
+        self.click(self.del_attach_btn)
+
+
+
+
 
 
 
