@@ -42,7 +42,7 @@ class TestLeaveList(unittest.TestCase):
         cls.login.login(config.USER_NAME, config.PASSWORD)
 
     def test_add_employee(self):
-        self.addemployee =  AddEmployee(self.driver)
+        self.addemployee = AddEmployee(self.driver)
         self.addemployee.add_user_employee(self.f_name, self.l_name)
 
     def test_assign_leave(self):
@@ -67,4 +67,4 @@ class TestLeaveList(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main() 
