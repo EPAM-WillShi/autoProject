@@ -23,13 +23,13 @@ class TestJob(unittest.TestCase):
     jobtitle = "CEO"
     empStatus = "Freelance"
     jobcategory = "Sales Workers"
-    joindate = "17-07-2018"
+    joindate = "2015-01-01"
     subunit = "Sales"
     location = "Texas R&D"
-    startdate = "17-07-2018"
-    enddate = "16-07-2020"
+    startdate = "2015-01-01"
+    enddate = "2019-06-16"
     contract = "jobcontract.txt"
-    terdate = "17-07-2019"
+    terdate = "2018-05-17"
     repcontract = "repcontract.txt"
 
 
