@@ -6,6 +6,7 @@ Created on 2018/4/2
 
 import os
 import time
+import random
 from random import choice
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
@@ -454,8 +455,17 @@ class BasePage(object):
         except Exception, e:
             Log.error(e)
 
-
-
-
-
-
+    def select_random_list(self, keys):
+        """
+        select a random value from dropdown list
+        """
+        value = self.get_element_text(keys).encode('utf-8')
+        value_list = value.rsplit('\n')
+        length = len(value_list)
+        if value[0] == '--Select--':
+            num = random.randint(1, length - 1)
+        elif value[0] == '-- Month --':
+            num = random.randint(1, length - 1)
+        else:
+            num = random.randint(0, length - 1)
+        self.select_option(keys, num)
