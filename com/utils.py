@@ -119,14 +119,14 @@ def input_random_date(*args):
 #     alert.accept()
 #
 #
-# def random_suffix():
-#     # now = "%d" % (time.time() * 1000)
-#     # rd = random.randint(1000, 9999)
-#     rd = randint(1, 100)
-#     # suffix = '_' + str(now) + '_' + str(rd)
-#     suffix = '_00' + str(rd)
-#     return suffix
-#
+def random_suffix():
+    # now = "%d" % (time.time() * 1000)
+    # rd = random.randint(1000, 9999)
+    rd = randint(1, 100)
+    # suffix = '_' + str(now) + '_' + str(rd)
+    suffix = '_00' + str(rd)
+    return suffix
+
 #
 # def select_frame(driver, frame):
 #     driver.switch_to.parent_frame()
