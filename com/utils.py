@@ -19,7 +19,7 @@ def get_browser_driver(browser):
         option.add_argument('--no-sandbox')
         driver = webdriver.Chrome(chrome_options=option)
         return driver
-    else:
+    elif platform_type == 'Windows':
         if re.match(r'(i|I)(e|E)', browser):
             driver = webdriver.Ie()
         elif re.match(r'(c|C)(h|H)(r|R)(o|O)(m|M)(e|E)', browser):
@@ -29,6 +29,8 @@ def get_browser_driver(browser):
         else:
             print "Currently not support this browser {}".format(browser)
         return driver
+    else:
+        print "Currently not support this platform {}".format(platform_type)
 
 
 def input_random_number(*args):
