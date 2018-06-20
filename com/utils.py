@@ -46,18 +46,18 @@ def input_random_number(*args):
     return number
 
 
-def input_random_name(*args):
+def input_random_text(*args):
     try:
         if len(args) == 0:
-            name_length = randrange(4, 8)
+            text_length = randrange(4, 8)
         else:
-            name_length = args[0]
-        name = ''.join(choice(lc) for _ in range(name_length))
+            text_length = args[0]
+        text = ''.join(choice(lc) for _ in range(text_length))
     except Exception, e:
         Log.error("% s, please transfer one digit param." % e)
-    name = name.title()
-    Log.info("Input the password: % s" % name)
-    return name
+        text = text.capitalize()
+    Log.info("Input the password: % s" % text)
+    return text
 
 
 def input_random_password(*args):
