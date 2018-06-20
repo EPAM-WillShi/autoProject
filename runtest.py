@@ -116,12 +116,17 @@ class Runner:
         print runcmd
         os.system(runcmd)
         Log.info('finish run test cases')
+        platform_type = platform.system()
         try:
             report_path = os.path.abspath(output_report)
-            webbrowser.open_new(report_path)
+            if platform_type == 'Windows':
+                webbrowser.open_new(report_path)
+            elif platform_type == 'Linux':
+                print "The report path is {}".format(report_path)
+            else:
+                print "Currently not support this platform {}".format(platform_type)
         except BaseException, e:
             Log.error('Error happened when open the test report: %s' % e)
-        platform_type = platform.system()
         if platform_type == 'Linux':
             os.system('pkill -9 chrome')
             os.system('pkill -9 firefox')
