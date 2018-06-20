@@ -35,6 +35,7 @@ class HolidayNew(Leave):
     confirm_delete_btn = ('id', 'dialogDeleteBtn')
     cancel_delete_btn = ('xpath', '//*[@id="deleteConfModal"]/div[3]/input[2]')
     delete_text = ('xpath', '// *[ @ id = "deleteConfModal"] / div[2] / p')
+    message = ('xpath', "//div[contains(@class,'success')]")
 
     def __init__(self, browser):
         super(HolidayNew, self).__init__(browser)
@@ -83,6 +84,7 @@ class HolidayNew(Leave):
             Log.info("The holiday is correct.")
         else:
             Log.info("The holiday is incorrect.")
+        self.click(self.cancel_btn)
 
     def add_holiday_save(self, name):
         self.click(self.add_btn)
@@ -90,7 +92,10 @@ class HolidayNew(Leave):
         self.input_text(name, self.holiday_name)
         self.set_holiday_element()
         self.click(self.save_btn)
-        Log.info("Create a " + name + " holiday and save.")
+        if "Successfully Saved" in self.get_element_text(self.message):
+            Log.info("Create a " + name + " holiday and save.")
+        else:
+            Log.info("Create a " + name + " holiday failed")
 
     def add_holiday_cancel(self, name):
         self.click(self.add_btn)
@@ -140,6 +145,7 @@ class HolidayNew(Leave):
         self.input_text(date_from, self.date_from)
         self.input_text(date_to, self.date_to)
         self.click(self.search_btn)
+        Log.info("Search holidays.")
 
 
 
