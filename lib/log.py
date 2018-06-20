@@ -1,12 +1,12 @@
-'''
+"""
 @author: angelia
-'''
+"""
 import os
 import logging
 from config.config import LOG_FILE, LOG_LEVEL, LOG_FILEMODE
 
 
-class Log():
+class Log:
     _single = None
     _fileHdlr = None
     _logger = None
@@ -25,7 +25,7 @@ class Log():
         Log._single = self
 
     @staticmethod
-    def getInstance():
+    def getinstance():
         try:
             _single = Log()
         except Log, s:
@@ -39,10 +39,11 @@ class Log():
                 Log._logger = logging.getLogger('simple')
                 if Log._fileHdlr is None:
                     path = os.getcwd().split("testcase")[0]
-                    logfile =path + LOG_FILE
+                    logfile = path + LOG_FILE
                     if os.path.exists(logfile):
                         filename = logfile
                     else:
+                        os.mkdir('logs')
                         filename = 'logs/log.log'
                     Log._fileHdlr = logging.FileHandler(filename, LOG_FILEMODE)
                     formatter = logging.Formatter(
