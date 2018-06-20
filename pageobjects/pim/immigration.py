@@ -39,6 +39,12 @@ class Immigration(EmployeeList):
     comment_ele = '//table[@id="tblAttachments"]//td[3][normalize-space(text())="{}"]'
     check_all_attachments = ('id', 'attachmentsCheckAll')
     cancel_attachment_btn = ('id', 'cancelButton')
+    document_data = ('xpath', '//ul[@class="radio_list"]//label')
+    issued_by_data = ('xpath', '//select[@id="immigration_country"]/option')
+    person_page_ele = ('xpath', '//h1[text()="Personal Details"]')
+    select_ele = ('xpath', '//td[2]/a')
+    click_selected_ele = '//td[2]/a[text()="{}"]'
+    random_record_ele = ('xpath', '//form[@id="frmImmigrationDelete"]//td[2]')
 
     def __init__(self, browser):
         super(Immigration, self).__init__(browser)
@@ -49,34 +55,31 @@ class Immigration(EmployeeList):
         """
         try:
             self.add_employee(first_name, last_name)
-        except Exception:
-            BaseException("Cannot create employee successfully.")
+        except Exception, e:
+            Log.error(e)
         self.switch_employee_detail_page("Immigration")
         page_ele = self.get_element(self.success_flag)
-        if page_ele is not None:
-            Log.info("Arrive Immigration page via creating emp")
-        else:
-            Log.info("Cannot arrive Immigration page via creating emp")
+        assert page_ele is not None
+        Log.info("Arrive Immigration page via creating emp")
 
-    def open_immigration_page_via_editing_emp(self, first_name, last_name):
+    def open_immigration_page_via_editing_emp(self):
         """
         Go to Immigration page via editing an employee
         """
         try:
-            self.click_employee_to_edit(first_name, last_name)
-        except:
-            self.add_employee(first_name, last_name)
-            self.click_menu("Employee List")
-            self.click_employee_to_edit(first_name, last_name)
+            select_data = self.get_random_data(self.select_ele)
+            click_ele = self.click_selected_ele.format(select_data)
+            self.click(('xpath', click_ele))
+            assert self.get_element(self.person_page_ele) is not None
+            Log.info("Arrive Personal Details page of id: %s" % select_data)
+        except Exception, e:
+            Log.error(e)
         self.switch_employee_detail_page("Immigration")
         page_ele = self.get_element(self.success_flag)
-        if page_ele is not None:
-            Log.info("Arrive Immigration page via editing emp")
-        else:
-            Log.info("Cannot arrive Immigration page via editing emp")
+        assert page_ele is not None
+        Log.info("Arrive Immigration page via editing emp")
 
-    def input_immigration_details(self, document, number, issued_date, expiry_date,
-                                  eligible_status, issued_by, eligible_review_date, comments):
+    def input_immigration_details(self, document, number, **kwargs):
         """
         Input the immigration details
         """
@@ -84,75 +87,58 @@ class Immigration(EmployeeList):
         document_ele = self.document_radio.format(document)
         self.click(('xpath', document_ele))
         self.input_text(number, self.immigration_number)
-        if issued_date is not None:
-            self.input_text(issued_date, self.issued_date_ele)
-            self.press_enter_key(self.issued_date_ele)
-        if expiry_date is not None:
-            self.input_text(expiry_date, self.expired_date_ele)
-            self.press_enter_key(self.expired_date_ele)
-        if eligible_status is not None:
-            self.input_text(eligible_status, self.eligible_status_ele)
-        if issued_by is not None:
-            self.set_combox_value(issued_by, self.issued_by_ele)
-        if eligible_review_date is not None:
-            self.input_text(eligible_review_date, self.eligible_review_date_ele)
-            self.press_enter_key(self.eligible_review_date_ele)
-        if comments is not None:
-            self.input_text(comments, self.comments_ele)
+        for k, v in kwargs.items():
+            if k == "issued_date":
+                self.input_text(kwargs[k], self.issued_date_ele)
+                self.press_enter_key(self.issued_date_ele)
+            if k == "expiry_date":
+                self.input_text(kwargs[k], self.expired_date_ele)
+                self.press_enter_key(self.expired_date_ele)
+            if k == "eligible_status":
+                self.input_text(kwargs[k], self.eligible_status_ele)
+            if k == "issued_by":
+                self.set_combox_value(kwargs[k], self.issued_by_ele)
+            if k == "eligible_review_date":
+                self.input_text(kwargs[k], self.eligible_review_date_ele)
+                self.press_enter_key(self.eligible_review_date_ele)
+            if k == "comments":
+                self.input_text(kwargs[k], self.comments_ele)
 
-    def add_immigration(self, document, number, issued_date, expiry_date,
-                        eligible_status, issued_by, eligible_review_date, comments):
+    def cancel_immigration(self):
         """
-        Add an immigration record
+        Cancel the operation
         """
-        self.click(self.add_btn)
-        self.input_immigration_details(document, number, issued_date, expiry_date,
-                                       eligible_status, issued_by, eligible_review_date, comments)
-        self.click(self.save_btn)
-        Log.info("The immigration record is added.")
-
-    def cancel_add_immigration(self, document, number, issued_date, expiry_date,
-                               eligible_status, issued_by, eligible_review_date, comments):
-        """
-        Cancel the immigration record creation
-        """
-        self.click(self.add_btn)
-        self.input_immigration_details(document, number, issued_date, expiry_date,
-                                       eligible_status, issued_by, eligible_review_date, comments)
         self.click(self.cancel_btn)
-        Log.info("Cancel the immigration record creation.")
+        Log.info("Cancel the operation.")
 
-    def edit_immigration(self, old_document, document, number, issued_date, expiry_date,
-                         eligible_status, issued_by, eligible_review_date, comments):
+    def save_immigration(self):
         """
-        Edit an immigration record
+        Save the operation
         """
-        self.click(('link_text', old_document))
-        self.input_immigration_details(document, number, issued_date, expiry_date,
-                                       eligible_status, issued_by, eligible_review_date, comments)
         self.click(self.save_btn)
-        Log.info("The immigration record is edited.")
+        Log.info("The immigration record is saved.")
 
-    def cancel_edit_immigration(self, old_document, document, number, issued_date, expiry_date,
-                         eligible_status, issued_by, eligible_review_date, comments):
-        """
-        Cancel the immigration record editing
-        """
-        self.click(('link_text', old_document))
-        self.input_immigration_details(document, number, issued_date, expiry_date,
-                                       eligible_status, issued_by, eligible_review_date, comments)
-        self.click(self.cancel_btn)
-        Log.info("Cancel the immigration record editing.")
-
-    def check_immigration_details(self, document, number, issued_date, expiry_date, issued_by):
+    def check_immigration_details(self, document, number, **kwargs):
         """
         Check the immigration details
         """
-        expected_text = document + " " + number + " " + issued_by + " " + issued_date + " " + expiry_date
         check_details = self.check_all_values.format(number)
-        actual_text = self.get_element_text(('xpath', check_details))
-        assert actual_text == expected_text
-        Log.info("The immigration record is correct.")
+        actual_result = self.get_element_text(('xpath', check_details))
+        if kwargs != {}:
+            kwargs.update({"document": document, "number": number})
+            expected_result = sorted(kwargs.items())
+            actual_value = actual_result.split()
+            actual_key = ["document", "number", "issued_by", "issued_date", "expiry_date"]
+            actual_dict = dict(zip(actual_key, actual_value))
+            actual_result = sorted(actual_dict.items())
+        else:
+            expected_result = document + " " + number
+        try:
+            assert actual_result == expected_result
+            Log.info("The immigration record is correct.")
+        except Exception, e:
+            Log.info("The actual result: % s and the expected result: % s" % (actual_result, expected_result))
+            Log.error(e)
 
     def check_immigration_exist(self, document):
         """
@@ -166,14 +152,16 @@ class Immigration(EmployeeList):
             Log.info("The immigration record doesn't exist.")
             return False
 
-    def delete_immigration(self, document):
+    def delete_immigration(self):
         """
         Delete an immigration record
         """
-        check_immigration = self.check_one_ele.format(document)
+        old_record = self.get_random_data(self.random_record_ele)
+        check_immigration = self.check_one_ele.format(old_record)
         self.click(('xpath', check_immigration))
         self.click(self.delete_btn)
         Log.info("The immigration record is deleted.")
+        return old_record
 
     def delete_all_immigration(self):
         """
@@ -272,6 +260,40 @@ class Immigration(EmployeeList):
         else:
             Log.info("The attachment doesn't exist.")
             return False
+
+    def click_add_btn(self):
+        """
+        Click Add button to add immigration page
+        """
+        self.click(self.add_btn)
+
+    def click_existing_record(self):
+        """
+        Click an existing immigration record
+        """
+        existing_document = self.get_random_data(self.random_record_ele)
+        immigration_row = self.immigration_row_ele.format(existing_document)
+        record = self.get_element_text(('xpath', immigration_row))
+        issued_by = record.split(" ")[2]
+        self.click(('link_text', existing_document))
+        return existing_document, issued_by
+
+    def get_document_data(self):
+        """
+        Get random 'document' data
+        """
+        document_data = self.get_random_data(self.document_data)
+        return document_data
+
+    def get_issued_by_data(self):
+        """
+        Get random 'issued by' data
+        """
+        issued_by_data = self.get_random_data(self.issued_by_data)
+        return issued_by_data
+
+
+
 
 
 
