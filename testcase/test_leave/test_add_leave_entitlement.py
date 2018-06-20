@@ -18,7 +18,7 @@ class TestAddLeaveEntitlement(unittest.TestCase):
     browser = config.BROWSER
 
     # Create an employee
-    first_name = "dora2"
+    first_name = "11dora"
     last_name = "testing"
 
     leave_type = "Vacation US"
