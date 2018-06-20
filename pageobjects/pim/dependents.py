@@ -2,7 +2,7 @@
 
 from lib.log import Log
 from pageobjects.pim.employee_list import EmployeeList
-from selenium.webdriver.support.ui import Select
+
 
 
 class Dependents(EmployeeList):
@@ -80,8 +80,10 @@ class Dependents(EmployeeList):
     def check_dependents_list(self, name, relationship, date_of_birth):
         expected_text = name + " " + str.lower(relationship) + " " + date_of_birth
         actual_text = self.get_element_text(('xpath', self.the_first_record))
-        assert actual_text == expected_text
-        Log.info("The record is correct.")
+        if actual_text == expected_text:
+            Log.info("The record is correct.")
+        else:
+            Log.info("The record is incorrect.")
 
     def add_dependents_with_specify(self, name, relationship, please_specify, date_of_birth):
         """
