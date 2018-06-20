@@ -1,26 +1,25 @@
 # coding:utf-8
-
-import sys
 import re
-import random
-import time
+import platform
+from datetime import datetime, timedelta
+from string import digits as dig
+from string import ascii_lowercase as lc
+from string import ascii_uppercase as up
+from string import punctuation as pun
+from random import randrange, choice, randint
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support import expected_conditions as ec
-from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
-from config.config import IMAGE_ENABLED
-
+from lib.log import Log
 
 
 def get_browser_driver(browser):
-    if re.match(r'(o|O)(f|F)(f|F)', IMAGE_ENABLED):
+    platform_type = platform.system()
+    if platform_type == 'Linux':
         if re.match(r'(i|I)(e|E)', browser):
             driver = webdriver.Ie()
         elif re.match(r'(c|C)(h|H)(r|R)(o|O)(m|M)(e|E)', browser):
             option = webdriver.ChromeOptions()
             option.add_argument('--headless')
+            option.add_argument('--no-sandbox')
             driver = webdriver.Chrome(chrome_options=option)
         elif re.match(r'(f|F)(i|I)(r|R)(e|E)(f|F)(o|O)(x|X)', browser):
             option = webdriver.FirefoxOptions()
@@ -41,63 +40,120 @@ def get_browser_driver(browser):
         return driver
 
 
-
-
-
-def set_combox_value(driver,  element,  value):
-    element = Select(driver.find_element(*element))
+def input_random_number(*args):
     try:
-        element.select_by_visible_text(value)
-    except NoSuchElementException:
-        print "Could not locate the element value {}".format(value)
+        if len(args) == 0:
+            number_length = randrange(4, 8)
+        else:
+            number_length = args[0]
+        number = ''.join(choice(dig)for _ in range(number_length))
+    except Exception, e:
+        Log.error("% s, please transfer one digit param." % e)
+    Log.info("Input the number: % s" % number)
+    return number
 
 
-
-def check_is_alert_present(driver):
-    wait = WebDriverWait(driver, 10)
+def input_random_name(*args):
     try:
-        wait.until(ec.alert_is_present())
-        found_alert = True
-    except Exception:
-        print "No alert dialog is pop up"
-    return found_alert
+        if len(args) == 0:
+            name_length = randrange(4, 8)
+        else:
+            name_length = args[0]
+        name = ''.join(choice(lc) for _ in range(name_length))
+    except Exception, e:
+        Log.error("% s, please transfer one digit param." % e)
+    name = name.title()
+    Log.info("Input the password: % s" % name)
+    return name
 
 
-def dismiss_alert(driver):
-        driver.switch_to.alert().dismiss()
-        # driver.switchTo().alert().dismiss()
+def input_random_password(*args):
+    try:
+        if len(args) == 0:
+            password_length = randrange(4, 8)
+        else:
+            password_length = args[0]
+        password = ''.join(choice(lc + up + dig + pun)for _ in range(password_length))
+    except Exception, e:
+        Log.error("% s, please transfer one digit param." % e)
+    Log.info("Input the password: % s" % password)
+    return password
 
 
-def accept_alert(driver):
-    alert = driver.switch_to_alert()
-    alert.accept()
+def input_random_date(*args):
+    now = datetime.now()
+    try:
+        if len(args) == 0:
+            day = randint(1, 30)
+            before_now = now - timedelta(day)
+            after_now = now + timedelta(day)
+            date = choice([before_now, after_now])
+        else:
+            args = datetime.strptime(args[0], '%Y-%m-%d').date()
+            duration = randint(1, 10)
+            date = args + timedelta(duration)
+        date_format = date.strftime("%Y-%m-%d")
+    except Exception, e:
+        Log.error("% s, please transfer one date, its format is 'YYYY/MM/DD'." % e)
+    Log.info("Generate the date: %s " % date_format)
+    return date_format
 
 
-def random_suffix():
-    #now = "%d" % (time.time() * 1000)
-    #rd = random.randint(1000, 9999)
-    rd = random.randint(1,100)
-    #suffix = '_' + str(now) + '_' + str(rd)
-    suffix = '_00' + str(rd)
-    return suffix
-
-
-def select_frame(driver, frame):
-    driver.switch_to.parent_frame()
-    driver.switch_to.frame(frame)
-
-def check_element(driver, xpath):
-    for retry in range(12):
-        try:
-            driver.find_element_by_xpath(xpath)
-            return True
-        except NoSuchElementException:
-            if retry == 0:
-                print("\tWait for element loading:")
-            time.sleep(5)
-            wait_time = (retry + 1) * 5
-            print("\t%d seconds" % wait_time)
-#===============================================================================
+# # ===============================================================================
+# def set_combox_value(driver,  element,  value):
+#     element = Select(driver.find_element(*element))
+#     try:
+#         element.select_by_visible_text(value)
+#     except NoSuchElementException:
+#         print "Could not locate the element value {}".format(value)
+#
+#
+# def check_is_alert_present(driver):
+#     wait = WebDriverWait(driver, 10)
+#     try:
+#         wait.until(ec.alert_is_present())
+#         found_alert = True
+#     except Exception:
+#         print "No alert dialog is pop up"
+#     return found_alert
+#
+#
+# def dismiss_alert(driver):
+#         driver.switch_to.alert().dismiss()
+#         # driver.switchTo().alert().dismiss()
+#
+#
+# def accept_alert(driver):
+#     alert = driver.switch_to_alert()
+#     alert.accept()
+#
+#
+# def random_suffix():
+#     # now = "%d" % (time.time() * 1000)
+#     # rd = random.randint(1000, 9999)
+#     rd = randint(1, 100)
+#     # suffix = '_' + str(now) + '_' + str(rd)
+#     suffix = '_00' + str(rd)
+#     return suffix
+#
+#
+# def select_frame(driver, frame):
+#     driver.switch_to.parent_frame()
+#     driver.switch_to.frame(frame)
+#
+#
+# def check_element(driver, xpath):
+#     for retry in range(12):
+#         try:
+#             driver.find_element_by_xpath(xpath)
+#             return True
+#         except NoSuchElementException:
+#             if retry == 0:
+#                 print("\tWait for element loading:")
+#             time.sleep(5)
+#             wait_time = (retry + 1) * 5
+#             print("\t%d seconds" % wait_time)
+# ===============================================================================
 #  
 # def init_case(csid, cstitle, cssummary):
 #     print("\nAtmos - %s : %s" % (csid, cstitle))
@@ -169,4 +225,4 @@ def check_element(driver, xpath):
 #     print("Input sysadmin's password: %s" % passwd)
 #     input_text(".//*[@id='login_form']/table/tbody/tr[8]/td[3]/input", passwd)
 #     click_button('Login', ".//*[@id='login_form']/table/tbody/tr[13]/td[2]/table/tbody/tr/td[4]/span")
-#===============================================================================
+# ===============================================================================
