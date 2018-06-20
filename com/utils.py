@@ -14,19 +14,10 @@ from lib.log import Log
 def get_browser_driver(browser):
     platform_type = platform.system()
     if platform_type == 'Linux':
-        if re.match(r'(i|I)(e|E)', browser):
-            driver = webdriver.Ie()
-        elif re.match(r'(c|C)(h|H)(r|R)(o|O)(m|M)(e|E)', browser):
-            option = webdriver.ChromeOptions()
-            option.add_argument('--headless')
-            option.add_argument('--no-sandbox')
-            driver = webdriver.Chrome(chrome_options=option)
-        elif re.match(r'(f|F)(i|I)(r|R)(e|E)(f|F)(o|O)(x|X)', browser):
-            option = webdriver.FirefoxOptions()
-            option.add_argument('-headless')
-            driver = webdriver.Firefox(firefox_options=option)
-        else:
-            print "Currently not support this browser {}".format(browser)
+        option = webdriver.ChromeOptions()
+        option.add_argument('--headless')
+        option.add_argument('--no-sandbox')
+        driver = webdriver.Chrome(chrome_options=option)
         return driver
     else:
         if re.match(r'(i|I)(e|E)', browser):
