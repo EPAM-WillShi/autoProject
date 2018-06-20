@@ -8,9 +8,8 @@ import time
 import sys
 import argparse
 import webbrowser
-import re
+import platform
 from lib.log import Log
-from config.config import PLATFORM
 
 
 USAGE_STR = '{} [param options]'
@@ -122,19 +121,17 @@ class Runner:
             webbrowser.open_new(report_path)
         except BaseException, e:
             Log.error('Error happened when open the test report: %s' % e)
-        try:
-            if re.match(r'(l|L)(i|I)(n|N)(u|U)(x|X)', PLATFORM):
-                os.system('pkill -9 firefox')
-                os.system('pkill -9 geckodriver')
-                Log.info("firefox and geckodriver processes don't exist.")
-            elif re.match(r'(w|W)(i|I)(n|N)(d|D)(o|O)(w|W)(s|S)', PLATFORM):
-                os.system('taskkill /F /IM geckodriver.exe')
-                os.system('taskkill /F /IM firefox.exe')
-                Log.info("firefox and geckodriver processes don't exist.")
-            else:
-                Log.info('please transfer the correct platform name.')
-        except Exception, e:
-            Log.error('Error happened when kill firefox and geckodriver processes: %s' % e)
+        platform_type = platform.system()
+        if platform_type == 'Linux':
+            os.system('pkill -9 firefox')
+            os.system('pkill -9 geckodriver')
+            Log.info("firefox and geckodriver processes don't exist.")
+        elif platform_type == 'Windows':
+            os.system('taskkill /F /IM geckodriver.exe')
+            os.system('taskkill /F /IM firefox.exe')
+            Log.info("firefox and geckodriver processes don't exist.")
+        else:
+            Log.info("Currently not support this platform {}".format(platform_type))
 
             
 if __name__ == '__main__':
