@@ -17,28 +17,28 @@ class TestImmigration(unittest.TestCase):
 
     # Attachment CRUD
     attachment = "test.docx"
-    comment = utils.input_random_name()
+    comment = utils.input_random_text()
     new_attachment = "testedit.docx"
-    new_comment = utils.input_random_name()
+    new_comment = utils.input_random_text()
 
     # Immigration CRUD
     # document = "Visa"
     number = utils.input_random_number()
     issued_date = utils.input_random_date()
     expiry_date = utils.input_random_date(issued_date)
-    eligible_status = utils.input_random_name()
+    eligible_status = utils.input_random_text()
     # issued_by = "China"
     eligible_review_date = utils.input_random_date(issued_date)
-    comments = utils.input_random_name()
+    comments = utils.input_random_text()
 
     # new_document = "Passport"
     new_number = utils.input_random_number()
     new_issued_date = utils.input_random_date()
     new_expiry_date = utils.input_random_date(new_issued_date)
-    new_eligible_status = utils.input_random_name()
+    new_eligible_status = utils.input_random_text()
     # new_issued_by = "United States"
     new_eligible_review_date = utils.input_random_date(new_issued_date)
-    new_comments = utils.input_random_name()
+    new_comments = utils.input_random_text()
 
     
 
