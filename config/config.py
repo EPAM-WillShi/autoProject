@@ -7,16 +7,9 @@ LOG_FILEMODE = 'w'  # 'a','r', 'w', 'r+', 'w'
 # Setting the uploaded file path.
 UPLOAD_PATH = 'testfiles'
 
-# PLATFORM define the platform type (Linux, Windows) for testing
-# PLATFORM = "Liunx"
-PLATFORM = "Windows"
-
 # BROWSER define the browser type (chrome, ie, firefox) for testing
 BROWSER = "firefox"
 # BROWSER = "chrome"
-
-# If the value is "off", the image is disabled, if the value is "on" or "", the image is enabled
-IMAGE_ENABLED = ""
 
 # Login
 LOGIN_URL = "http://opensource.demo.orangehrmlive.com"
