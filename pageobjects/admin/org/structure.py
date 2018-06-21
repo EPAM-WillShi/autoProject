@@ -127,6 +127,8 @@ class Structure(Admin):
             self.is_label_structure()
             Log.info("The new unit is added sucessfully")
         else:
+            self.click(self.edit_btn)
+            self.is_label_structure()
             Log.info("The unit name has already exist")
 
     def edit_unit(self, unit_id, unit_name, unit_desc):
@@ -144,6 +146,8 @@ class Structure(Admin):
             assert self.is_label_structure()
             Log.info("The unit is edited successfully")
         else:
+            self.click(self.edit_btn)
+            self.is_label_structure()
             Log.info("The unit name is already exist")
 
     def verify_unit_display(self):

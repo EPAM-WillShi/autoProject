@@ -18,7 +18,7 @@ class Test_Directory(unittest.TestCase):
     browser = config.BROWSER
     search_name = "Linda"
     search_jobtitle = "HR Manager"
-    search_location = "    Texas R&D"
+    search_location = "    New York Sales Office"
 
     first_name = "Molly Test"
     last_name = "Xue"
@@ -45,19 +45,19 @@ class Test_Directory(unittest.TestCase):
         self.directory.resetDirectory(self.search_name,self.search_jobtitle,self.search_location)
         Log.info("Test reset function on Directory Page for name, job title and location - passed")
 
-    def testcase2_searchDirectory_One(self):
-        """
-        Directory page test search functions one by one for name, job title and location
-        """
-        self.directory.searchDirectory_One(self.search_name, self.search_jobtitle, self.search_location)
-        Log.info("Test search function by name, jobtitle, location one by one - passed")
-
-    def testcase3_searchDirectory_All(self):
-        """
-        Directory page test search functions together for name, job title and location - existed
-        """
-        self.directory.search_SearchDirectory_All(self.search_name, self.search_jobtitle, self.search_location)
-        Log.info("Test exist result while search function by name, jobtitle, location together - passed")
+    # def testcase2_searchDirectory_One(self):
+    #     """
+    #     Directory page test search functions one by one for name, job title and location
+    #     """
+    #     self.directory.searchDirectory_One(self.search_name, self.search_jobtitle, self.search_location)
+    #     Log.info("Test search function by name, jobtitle, location one by one - passed")
+    #
+    # def testcase3_searchDirectory_All(self):
+    #     """
+    #     Directory page test search functions together for name, job title and location - existed
+    #     """
+    #     self.directory.search_SearchDirectory_All(self.search_name, self.search_jobtitle, self.search_location)
+    #     Log.info("Test exist result while search function by name, jobtitle, location together - passed")
 
     def testcase4_searchDirectory_No(self):
         """
