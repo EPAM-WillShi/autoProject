@@ -47,8 +47,8 @@ class Reportto(EmployeeList):
         self.click_menu("Employee List")
         Log.info("Arrive Employee list page")
 
-    def open_report_page_via_creating_emp(self, fname, lname):
-        self.add_employee(fname, lname)
+    def open_report_page_via_creating_emp(self):
+        # self.add_employee(fname, lname)
         self.switch_employee_detail_page("Report-to")
         page_ele = self.get_element(self.success_flag)
         if page_ele is not None:
@@ -69,10 +69,6 @@ class Reportto(EmployeeList):
         self.click(self.save_btn)
         Log.info("Add assigned supervisors successfully!")
 
-    # def verify_added_supervisor(self,fname, lname):
-    #     self.query_employee_by_name(fname + ' ' + lname)
-    #     #########
-
     def cancel_add_supervisors(self, name):
         self.click(self.add_supervisor_btn)
         self.input_text(name , self.supervisor_name)
@@ -80,10 +76,12 @@ class Reportto(EmployeeList):
         self.click(self.cancel_btn)
         Log.info("Cancel add assigned supervisors!")
 
-    def edit_added_supervisors(self, name, method):
+    def edit_added_supervisors(self, name, method, *args):
         self.click(('link_text', name))
         self.wait(2)
         self.set_combox_value(method,self.report_method)
+        if method == "Other":
+            self.input_text(args, self.specify)
         self.click(self.save_btn)
         Log.info("Edit added record!")
 
@@ -92,9 +90,9 @@ class Reportto(EmployeeList):
         ielement = ('XPATH', act_value)
         act_result = self.get_element_text(ielement)
         if method == "Other":
-            assert act_result ==args[0]
+            assert str(act_result) == args[0]
         else:
-            assert act_result == method
+            assert str(act_result) == method
         Log.info("Edited report method, actual result is equal to expected result.")
 
     def delete_supervisor(self, name):
