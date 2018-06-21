@@ -22,9 +22,9 @@ class AddLeaveEntitlement(Leave):
 
     valid_from = ('XPATH', '//td[3]/a')
     valid_to = ('XPATH', '//td[4]/a')
-    days = ('XPATH', '//td[5]/a' )
+    days = ('XPATH', '//td[5]/a')
 
-    flag = ('XPATH', '//*[@id="preview"]/div[1]/h3')
+    flag = ('XPATH', '//h3[text()="OrangeHRM - Matching Employees"]')
     list_name = '//td[1][text()= "{}"]'
     old_entitlement = '//td[1][text()= "{}"]/../td[2]'
     new_entitlement = '//td[1][text()= "{}"]/../td[3]'
@@ -77,11 +77,10 @@ class AddLeaveEntitlement(Leave):
         self.set_combox_value(leave_period, self.leave_period)
         self.input_text(entitlement2, self.entitle)
         self.click(self.save_btn)
-        self.sleep(2)
-        assert self.get_element_text(self.flag).encode("utf-8") == "OrangeHRM - Matching Employees"
-        emp_name = first_name + " "+ last_name
+        self.wait_unit_el_present(self.flag)
+        emp_name = first_name + " " + last_name
         assert emp_name in self.get_elements_texts(('XPATH', "//td[1]"))
-        emp_name2 = first_name + " "+ " " + last_name
+        emp_name2 = first_name + " " + " " + last_name
         assert Decimal(self.get_element_text(('XPATH', self.old_entitlement.format(emp_name2)))) == Decimal(entitlement1)
         all_entitlement = Decimal(entitlement1) + Decimal(entitlement2)
         assert Decimal(self.get_element_text(('XPATH', self.new_entitlement.format(emp_name2)))) == all_entitlement
