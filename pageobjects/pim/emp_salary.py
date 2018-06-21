@@ -142,6 +142,7 @@ class Salary(EmployeeList):
         r1 = rows[1].find_elements_by_tag_name("td")
         for i in r1:
             self.list.append(i.text.encode("utf-8"))
+        self.list[-1] = float(self.list[-1])
 
     def delete_salary(self, name):
         delete_checkbox = (
