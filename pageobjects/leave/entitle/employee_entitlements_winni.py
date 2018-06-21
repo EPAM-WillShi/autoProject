@@ -13,7 +13,7 @@ class EmployeeEntitlements(Leave):
     checkall_btn = ('id', 'ohrmList_chkSelectAll')
     delete_btn = ('id', 'btnDelete')
     ok_btn = ('id', 'dialogDeleteBtn')
-    cancel_btn = ('class_name', 'btn reset')
+    cancel_btn = ('xpath', '//input[@value="Cancel"]')
 
     def __init__(self, browser):
         super(EmployeeEntitlements, self).__init__(browser)
@@ -34,7 +34,20 @@ class EmployeeEntitlements(Leave):
             print("Record is found!")
 
     def delete_all_leave_entitlements(self):
-        self.click(self.checkall_btn)
-        self.click(self.delete_btn)
-        self.click(self.ok_btn)
+        if self.get_element_text(self.search_results) == "No Records Found":
+            print("No records can be deleted")
+        else:
+            self.click(self.checkall_btn)
+            self.click(self.delete_btn)
+            self.click(self.ok_btn)
+            Log.info("Record is deleted!")
+
+    def cancel_delete_all_leave_entitlements(self):
+        if self.get_element_text(self.search_results) == "No Records Found":
+            print("No records can be deleted")
+        else:
+            self.click(self.checkall_btn)
+            self.click(self.delete_btn)
+            self.click(self.cancel_btn)
+            Log.info("Cancel delete record!")
 

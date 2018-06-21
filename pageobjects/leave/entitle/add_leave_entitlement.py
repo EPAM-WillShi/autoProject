@@ -25,7 +25,7 @@ class AddLeaveEntitlement(Leave):
     days = ('XPATH', '//td[5]/a')
 
     flag = ('XPATH', '//h3[text()="OrangeHRM - Matching Employees"]')
-    list_name = '//td[1][text()= "{}"]'
+    list_name = '//td[1][normalize-space(text())= "{}"]'
     old_entitlement = '//td[1][normalize-space(text())= "{}"]/../td[2]'
     new_entitlement = '//td[1][normalize-space(text())= "{}"]/../td[3]'
     # old_entitlement = '//td[1][text()= "{}"]/../td[2]'
@@ -79,9 +79,8 @@ class AddLeaveEntitlement(Leave):
         self.set_combox_value(leave_period, self.leave_period)
         self.input_text(entitlement2, self.entitle)
         self.click(self.save_btn)
-        self.wait_unit_el_present(self.flag)
         emp_name = first_name + " " + last_name
-        assert emp_name in self.get_elements_texts(('XPATH', "//td[1]"))
+        self.wait_unit_el_present(('XPATH', self.list_name.format(emp_name)))
         assert Decimal(self.get_element_text(('XPATH', self.old_entitlement.format(emp_name)))) == Decimal(entitlement1)
         all_entitlement = Decimal(entitlement1) + Decimal(entitlement2)
         assert Decimal(self.get_element_text(('XPATH', self.new_entitlement.format(emp_name)))) == all_entitlement

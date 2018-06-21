@@ -7,24 +7,24 @@ from lib.log import Log
 from pageobjects.login import Login
 from pageobjects.pim.edit_emergencyContacts import EditEmergencyContacts
 
+
 class TestEditEmergencyContacts(unittest.TestCase):
     """
     Test Edit Emergency Contacts function
     """
     browser = config.BROWSER
-    first_name = 'wang'
-    last_name = 'test'
-    name = 'TestWang'
-    relationship = 'Relation'
-    homePhone = '123'
-    mobile = '000'
-    workPhone = '456'
     attachment = '1.png'
-    comment = 'TestCommt'
-
-    upname = 'editwang'
-    uprelationship = 'editship'
-    uphomePhone = '456'
+    first_name = utils.input_random_text()
+    last_name = utils.input_random_text()
+    name = utils.input_random_text()
+    relationship = utils.input_random_text()
+    homePhone = utils.input_random_number()
+    mobile = utils.input_random_number()
+    workPhone = utils.input_random_number()
+    comment = utils.input_random_text()
+    upname = utils.input_random_text()
+    uprelationship = utils.input_random_text()
+    uphomePhone = utils.input_random_number()
 
     @classmethod
     def setUpClass(cls):
