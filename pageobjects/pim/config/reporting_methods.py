@@ -14,6 +14,7 @@ class Report_method(PIM):
     save_btn = ('id',"btnSave")
     delete_checkbox = "//a[contains(text(), '{}')]/../preceding-sibling::td"
     message = ('xpath', "//div[contains(@class,'success')]")
+    no_record_flag = ('xpath', "//td[contains(text(), 'No Records')]")
 
     def __init__(self, browser):
         super(Report_method, self).__init__(browser)
@@ -33,3 +34,18 @@ class Report_method(PIM):
         self.click(iele)
         self.click(self.delete_btn)
         Log.info("Delete reporting method successfully!")
+
+    def search_method(self,*args):
+        page_ele = self.get_element(self.no_record_flag)
+        if page_ele is not None:
+            Log.info("No record in reporting method page!")
+            i = len(args)
+            if i>=1:
+                for j in (1, len(args)):
+                    self.add_report_method(args[j-1])
+        else:
+            Log.info("It has records in reporting method page!")
+
+
+
+
