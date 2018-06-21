@@ -47,10 +47,10 @@ class TestAssignLeave(unittest.TestCase):
     expected_result = "linda test" + "Vacation US" + "10.00" + "" + "0.00" + "0.00" + "0.00" + "10.00"
     comment = "added"
     expected_result_same_date = "linda test" + "Vacation US" + "10.00" + "" + "0.75" + "0.00" + "0.00" + "9.25"
-    expected_result_diff_date = "linda test" + "Vacation US" + "10.00" + "" + "3.06" + "0.00" + "0.00" + "6.94"
+    expected_result_diff_date = "linda test" + "Vacation US" + "10.00" + "" + "1.81" + "0.00" + "0.00" + "8.19"
     balance = "10.00view details"
     balance_same_date = "9.25view details"
-    balance_diff_date = "6.94view details"
+    balance_diff_date = "8.19view details"
 
     @classmethod
     def setUpClass(cls):
@@ -62,6 +62,7 @@ class TestAssignLeave(unittest.TestCase):
         cls.login.open_browser(config.LOGIN_URL)
         cls.login.login(config.USER_NAME, config.PASSWORD)
         cls.employeelist = EmployeeList(cls.driver)
+        cls.employeelist.delete_employee(cls.name)
         cls.employeelist.add_employee(cls.first_name, cls.last_name)
         cls.employeelist.find_employee(cls.name)
         cls.addleave = EmployeeEntitlements(cls.driver)
