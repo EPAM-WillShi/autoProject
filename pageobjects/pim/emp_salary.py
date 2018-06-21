@@ -125,11 +125,13 @@ class Salary(EmployeeList):
         self.input_text(ramount, self.ramount)
         self.wait(2)
         self.click(self.save_btn)
+        self.wait_unit_el_present(self.message)
 
     def show_direct_deposit(self, name):
         show_flag = (
             "xpath", "//*[@id='tblSalary']//tbody/tr[./td[2]//a[text() ='" + str(name) + "']]/td[7]/input[1]")
         self.click(show_flag)
+        self.wait_unit_el_present(self.deposit_flag)
         detail_title = self.get_element(self.deposit_flag)
         if detail_title is not None:
             Log.info("Show detail direct deposit")
@@ -140,6 +142,7 @@ class Salary(EmployeeList):
         r1 = rows[1].find_elements_by_tag_name("td")
         for i in r1:
             self.list.append(i.text.encode("utf-8"))
+        self.list[-1] = float(self.list[-1])
 
     def delete_salary(self, name):
         delete_checkbox = (
