@@ -17,8 +17,8 @@ class TestJob(unittest.TestCase):
     browser = config.BROWSER
 
     # Create an employee
-    first_name = "dora1"
-    last_name = "test"
+    first_name = "dora"
+    last_name = utils.input_random_text()
 
     jobtitle = "CEO"
     empStatus = "Freelance"
