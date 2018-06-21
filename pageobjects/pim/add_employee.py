@@ -52,9 +52,7 @@ class AddEmployee(PIM):
         3. click save button
         """
         Log.info("Add employee record")
-        self.clear_text(self.emp_firstname_field)
         self.input_text(firstname, self.emp_firstname_field)
-        self.clear_text(self.emp_lastname_field)
         self.input_text(lastname, self.emp_lastname_field)
         self.click(self.employee_save_btn)
         Log.info("New Employee Added")
@@ -63,22 +61,16 @@ class AddEmployee(PIM):
         """
         Input all fields: First Name/Middle Name/Last Name/Attached the Photograph
         """
-        self.clear_text(self.first_name_ele)
         self.input_text(first_name, self.first_name_ele)
-        self.clear_text(self.middle_name_ele)
         self.input_text(middle_name, self.middle_name_ele)
-        self.clear_text(self.last_name_ele)
         self.input_text(last_name, self.last_name_ele)
-        path = os.getcwd().split("testcase")[0]
-        logfile = path + upload_file
-        self.input_text(logfile, self.upload_file_ele)
+        self.upload_file(upload_file, self.upload_file_ele)
 
     def input_login_details(self, login_name, login_password, confirm_password, user_status):
         """
         Check 'create login details' box and input login details: User name/Password/Confirm Password/Status(Enable)
         """
         self.click(self.check_login_btn_ele)
-        self.clear_text(self.login_name_ele)
         self.input_text(login_name, self.login_name_ele)
         self.input_text(login_password, self.login_password_ele)
         self.input_text(confirm_password, self.confirm_password_ele)

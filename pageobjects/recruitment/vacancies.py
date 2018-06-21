@@ -83,9 +83,7 @@ class Vacancies(Recruitment):
         """
         self.click(self.add_btn_ele)
         self.set_combox_value(jobtitle, self.job_title_ele)
-        self.clear_text(self.vacancy_name_ele)
         self.input_text(vacancyname, self.vacancy_name_ele)
-        self.clear_text(self.hiring_manager_ele)
         self.input_text(hiringmanager, self.hiring_manager_ele)
         self.click(self.save_btn_ele)
         Log.info("Vacancies record added")
@@ -117,11 +115,8 @@ class Vacancies(Recruitment):
         Add an attachment
         """
         self.click(self.add_attachment_btn_ele)
-        path = os.getcwd().split("testcase")[0]
-        upload_file = path + attachment
         self.sleep(1)
-        self.input_text(upload_file, self.upload_attachment_ele)
-        self.clear_text(self.add_comment_ele)
+        self.upload_file(attachment, self.upload_attachment_ele)
         self.input_text(comment, self.add_comment_ele)
         self.click(self.upload_attachment_btn_ele)
 
@@ -130,13 +125,9 @@ class Vacancies(Recruitment):
         Edit the attachment - save comment only
         """
         self.click(self.edit_attachment_btn_ele)
-        path = os.getcwd().split("testcase")[0]
-        upload_file = path + new_attachment
-        self.input_text(upload_file, self.upload_attachment_ele)
-        self.clear_text(self.add_comment_ele)
+        self.upload_file(new_attachment, self.upload_attachment_ele)
         self.input_text(new_comment, self.add_comment_ele)
         self.click(self.save_comment_only_btn_ele)
-        attachment = attachment.split("testfiles\\")[1]
         check_attachment = self.get_element_text(self.attachment_ele)
         check_comment = self.get_element_text(self.comment_ele)
         assert check_attachment == attachment
@@ -161,8 +152,8 @@ class Vacancies(Recruitment):
         """
         Search vacancies by hiring manager
         """
+        self.sleep(2)
         self.set_combox_value(hiring_manager, self.search_hiring_manager_ele)
-        self.wait(2)
         self.click(self.search_btn_ele)
 
     def check_search_result(self, expected_row):
@@ -224,15 +215,10 @@ class Vacancies(Recruitment):
         """
         Input applicant details
         """
-        self.clear_text(self.first_name_ele)
         self.input_text(first_name, self.first_name_ele)
-        self.clear_text(self.last_name_ele)
         self.input_text(last_name, self.last_name_ele)
-        self.clear_text(self.email_ele)
         self.input_text(first_name+'_'+last_name+'@epam.com', self.email_ele)
-        path = os.getcwd().split("testcase")[0]
-        upload_file = path + resume
-        self.input_text(upload_file, self.resume_ele)
+        self.upload_file(resume, self.resume_ele)
         self.click(self.submit_btn_ele)
 
     def check_person_details(self, first_name, last_name):
