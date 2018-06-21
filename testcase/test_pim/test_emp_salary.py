@@ -31,8 +31,9 @@ class TestSalary(unittest.TestCase):
     a_type = random.choice(["Savings", "Checking", "Other"])
     num = ''.join(random.choice(string.digits) for _ in range(5))
     r_amount = str(round(random.uniform(1000, 7500), 2))
+    r_amount_float = float(r_amount)
     o_name = ''.join(random.choice(string.ascii_letters) for _ in range(6))
-    deposit_list = [num, a_type, num, r_amount]
+    deposit_list = [num, a_type, num, r_amount_float]
 
     @classmethod
     def setUpClass(cls):
