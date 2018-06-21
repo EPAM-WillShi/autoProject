@@ -31,7 +31,7 @@ class TestLeaveList(unittest.TestCase):
     duraton_input_samedate = "Full Day"
     comment_input = "Assign leave test"
     status_list = [-1, 0, 1, 2, 3]
-    sub_unit = random.choice(['All', 'Sales', 'Administration', 'IT', 'Finance'])
+    sub_unit = 'Sales'
     period = "2018-01-01 - 2018-12-31"
     entitlement = "10"
     leave_type_input = "Vacation US"
@@ -68,7 +68,7 @@ class TestLeaveList(unittest.TestCase):
         self.assignleave.input_comment(self.comment)
         self.assignleave.assign()
 
-    def test_case01_search_leave(self):
+    def test_case_01_search_leave(self):
         """
         test search function: fill in criteria to search
         """
@@ -78,7 +78,7 @@ class TestLeaveList(unittest.TestCase):
         self.tdate = datetime.datetime.strptime(self.tdate, '%Y-%m-%d')
         self.leavelist.verify_search_result(self.fdate, self.tdate, self.emp_name)
 
-    def test_case02_reset(self):
+    def test_case_02_reset(self):
         """
         test reset search function: fill in criteria and then click reset
         """
@@ -101,8 +101,12 @@ class TestLeaveList(unittest.TestCase):
         self.tdate = datetime.datetime.strptime(self.tdate, '%Y-%m-%d')
         self.leavelist.verify_search_result(self.fdate, self.tdate)
 
-    # def test_case06_search_by_subunit(self):
-    #     self.leavelist.search_by_subunit(self.sub_unit)
+    def test_case_06_search_by_subunit(self):
+        self.leavelist.add_subunit_for_emp(self.first_name,self.last_name)
+        self.leavelist.switch_main_menu("Leave")
+        self.leavelist.click_menu("Leave List")
+        self.leavelist.search_by_subunit(self.sub_unit)
+        self.leavelist.verify_search_result(self.emp_name)
 
     def test_case_07_search_by_emp_status(self):
         self.leavelist.terminate_emp(self.first_name, self.last_name, self.ter_date)
