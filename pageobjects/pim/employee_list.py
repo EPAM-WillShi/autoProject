@@ -193,9 +193,20 @@ class EmployeeList(PIM):
         # print ep_status
         utext_utf = utext.encode('utf-8')
         utext_utf = utext_utf.split("\n")
-        # print ep_status_utf
-        assert utext_utf == value
-        Log.info("Check result right")
+        print utext_utf
+        # assert utext_utf == value
+        # Log.info("Check result right")
+        if len(value)>len(utext_utf):
+            print "failed"
+        else:
+            for i in range(len(value)):
+                if value[i] in utext_utf:
+                    utext_utf.remove(value[i])
+                    if i == len(value)-1:
+                        print "pass"
+                else:
+                    print "failed"
+                    break
 
     def add_employee(self, first_name, last_name):
         """
