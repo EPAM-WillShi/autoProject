@@ -14,14 +14,19 @@ from lib.log import Log
 
 class TestUsers(unittest.TestCase):
     browser = config.BROWSER
-    first_name = "user" + utils.random_suffix()
-    last_name = "test" + utils.random_suffix()
-    user_role = choice(["Admin", "ESS"])
+    first_name = utils.input_random_text()
+    last_name = utils.input_random_text()
     employee_name = first_name + " " + last_name
-    user_name = first_name
+    user_name = "U" + first_name
+    first_name_u = first_name + "_u"
+    last_name_u = last_name + "_u"
+    employee_name_u = first_name_u + " " + last_name_u
+    user_name_u = user_name + "_u"
+    user_password = utils.input_random_password()
+    user_role = choice(["Admin", "ESS"])
     user_status = choice(["Enabled", "Disabled"])
-    user_password = utils.random_suffix()
-    update_user_name = user_name + "_updated" + utils.random_suffix()
+    user_role_u = choice(["Admin", "ESS"])
+    user_status_u = choice(["Enabled", "Disabled"])
 
     @classmethod
     def setUpClass(cls):
@@ -32,14 +37,7 @@ class TestUsers(unittest.TestCase):
         cls.login.login(config.USER_NAME, config.PASSWORD)
         cls.user = Users(driver)
 
-    def test_case1_add_user(self):
-        """
-        Test_case1: add a new user on Users page
-        1. Add an employee.
-        2. On Users page,check if the new username already n the user list, if existing then update to a new username.
-        3. Add a new user, fill with username, role, employee name,status and password.
-        4. If the new created user is not in the user list, assert error.
-        """
+    def test_case1_add_user(self):  # Test adding a new user on Users page.
         self.user.add_employee(self.first_name, self.last_name)
         self.user.open_user_page()
         while self.user.check_if_user_exists(self.user_name):
@@ -48,16 +46,54 @@ class TestUsers(unittest.TestCase):
         self.user.add_user(self.user_role, self.employee_name, self.user_name, self.user_status, self.user_password)
         self.assertTrue(self.user.check_if_user_exists(self.user_name), "Failed to add new user")
 
-    def test_case2_delete_user(self):
+    # def test_case2_search_new_user(self):
+    #     self.test_case1_add_user()
+    #     self.user.search_system_user(self.user_name, self.employee_name, self.user_role, self.user_status)
+    #     search_result = self.user.get_all_users()
+    #     print(search_result)
+
+    def test_case2_search_reset(self):  # Test search reset after searching
+        self.user.open_user_page()
+        users_original = self.user.get_all_users()
+        self.user.search_system_user(self.user_name, self.employee_name, self.user_role, self.user_status)
+        self.user.click_reset()
+        info = self.user.get_search_info()
+        users_reset = self.user.get_all_users()
+        self.assertEqual(["", "Type for hints...", "All", "All"], info, "Failed to reset the search input controls.")
+        self.assertEqual(users_original, users_reset, "Failed to reset the users table.")
+
+    def test_case3_edit_user(self):  # Test editing user without changing password.
         """
-        Test_case2: delete a user on Users page
-        1. On Users page,select the checkbox of the user and delete it by the Delete button.
-        2. If the deleted user is still in the user list, then assert error.
+        This case should run follow "test_case1_add_user"
+        """
+        # self.test_case1_add_user()
+        self.user.add_employee(self.first_name_u, self.last_name_u)
+        self.user.open_user_page()
+        self.user.open_user(self.user_name)
+        self.user.edit_user(self.user_name_u, self.employee_name_u, self.user_role_u, self.user_status_u)
+        self.user.open_user(self.user_name_u)
+        info_get = self.user.get_user_info()
+        info_set = [self.user_name_u, self.employee_name_u, self.user_role_u, self.user_status_u]
+        self.assertEqual(info_get, info_set, "Failed to edit the user or user not exists.")
+
+    def test_case4_delete_user(self):  # Test deleting a user.
+        """
+        This case should run after test_case1,2 and 3
         """
         self.user.open_user_page()
-        self.user.delete_user(self.user_name)
-        self.assertFalse(self.user.check_if_user_exists(self.user_name),
+        self.user.delete_user(self.user_name_u)
+        self.assertFalse(self.user.check_if_user_exists(self.user_name_u),
                          "Failed to delete the user or user not exists.")
+
+    # def test_temp(self):
+    #     user_list = []
+    #     self.user.open_user_page()
+    #     self.user.search_system_user("Admin")
+    #     result = self.user.get_all_users()
+    #     for value in result.values():
+    #         temp_str = ''.join(value)
+    #         user_list = user_list.append(temp_str)
+    #     print(user_list)
 
     @classmethod
     def tearDownClass(cls):
