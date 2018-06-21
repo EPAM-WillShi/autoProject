@@ -187,6 +187,15 @@ class EmployeeList(PIM):
     #     self.split_linewrap_text(text1)
     #     return self.split_linewrap_text(text1)
 
+    def validate_listvalue(self, keys, value):
+        utext = self.get_element_text(keys)
+        # print ep_status
+        utext_utf = utext.encode('utf-8')
+        utext_utf = utext.utf.split("\n")
+        # print ep_status_utf
+        assert utext_utf == value
+        Log.info("Check result right")
+
     def add_employee(self, first_name, last_name):
         """
         Add employee in Employee List page - added by Linda
