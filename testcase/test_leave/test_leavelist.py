@@ -82,7 +82,7 @@ class TestLeaveList(unittest.TestCase):
         """
         test reset search function: fill in criteria and then click reset
         """
-        self.test_case01_search_leave()
+        # self.test_case01_search_leave()
         self.leavelist.reset_search()
         self.leavelist.verify_reset_function()
 
