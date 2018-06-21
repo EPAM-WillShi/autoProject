@@ -43,7 +43,11 @@ class TestReportto(unittest.TestCase):
             self.emp_list.append(i + ' ' + self.last_name)
             self.report.add_employee(i, self.last_name)
 
+    def check_dropdownlist(self):
+        self.report.add_report_method()
+
     def test_case01_add_assigned_supervisor(self):
+        self.check_dropdownlist()
         self.generate_emp_name()
         self.report.open_report_page_via_creating_emp()
         self.report.add_assigned_supervisors(self.emp_list[1], self.method)
