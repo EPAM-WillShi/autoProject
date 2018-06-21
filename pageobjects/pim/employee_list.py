@@ -105,12 +105,11 @@ class EmployeeList(PIM):
         2. Choose the employee and click the delete option
         3. Click ok button
         """
-        ele_exist = self.query_employee_by_name(employee)
-        if ele_exist is True:
-            self.click(self.select_row)
-            self.click(self.delete_btn)
-            assert 'Delete records?' == self.get_element_text(self.delete_box)
-            self.click(self.ok_btn)
+        self.query_employee_by_name(employee)
+        self.click(self.select_row)
+        self.click(self.delete_btn)
+        assert 'Delete records?' == self.get_element_text(self.delete_box)
+        self.click(self.ok_btn)
 
     def check_delete_employee(self):
         assert 'No Records Found' == self.get_element_text(self.delete_result)
@@ -188,26 +187,6 @@ class EmployeeList(PIM):
     #     self.split_linewrap_text(text1)
     #     return self.split_linewrap_text(text1)
 
-    def validate_listvalue(self, keys, value):
-        utext = self.get_element_text(keys)
-        # print ep_status
-        utext_utf = utext.encode('utf-8')
-        utext_utf = utext_utf.split("\n")
-        print utext_utf
-        # assert utext_utf == value
-        # Log.info("Check result right")
-        if len(value)>len(utext_utf):
-            print "failed"
-        else:
-            for i in range(len(value)):
-                if value[i] in utext_utf:
-                    utext_utf.remove(value[i])
-                    if i == len(value)-1:
-                        print "pass"
-                else:
-                    print "failed"
-                    break
-
     def add_employee(self, first_name, last_name):
         """
         Add employee in Employee List page - added by Linda
@@ -250,3 +229,6 @@ class EmployeeList(PIM):
         row_data_ele = self.row_data.format(first_name, last_name)
         if self.get_element(('xpath', row_data_ele)) is None and self.query_employee_by_name(name) is False:
             self.add_employee(first_name, last_name)
+
+
+
