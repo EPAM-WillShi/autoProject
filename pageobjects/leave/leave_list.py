@@ -163,3 +163,10 @@ class LeaveList(Leave):
         self.job = Job(self.driver)
         self.job.open_job_page_via_editing_emp(fname, lname)
         self.job.terminate_employment(terdate)
+
+    def add_subunit_for_emp(self,fname, lname):
+        self.job = Job(self.driver)
+        self.job.open_job_page_via_editing_emp(fname, lname)
+        self.job.click(self.job.edit_btn)
+        self.job.select_option(self.job.sub_unit, 1)
+        self.job.click(self.job.edit_btn)
