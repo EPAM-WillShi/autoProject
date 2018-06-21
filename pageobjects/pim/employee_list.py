@@ -187,8 +187,8 @@ class EmployeeList(PIM):
     #     text1 = self.unicode_to_encode(text)
     #     self.split_linewrap_text(text1)
     #     return self.split_linewrap_text(text1)
-	
-	 def validate_listvalue(self, keys, value):
+
+    def validate_listvalue(self, keys, value):
         utext = self.get_element_text(keys)
         # print ep_status
         utext_utf = utext.encode('utf-8')

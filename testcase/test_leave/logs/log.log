@@ -1,0 +1,20 @@
+2018-06-21 10:37:18,897 INFO Input the password: fcamckw
+2018-06-21 10:37:27,289 INFO Arrive Login page
+2018-06-21 10:37:33,513 INFO Arrive Default page of HRM
+2018-06-21 10:37:36,894 INFO Arrive PIM page
+2018-06-21 10:37:36,894 INFO Click the %s menuname
+2018-06-21 10:37:37,611 INFO Arrive PIM Add Employee page
+2018-06-21 10:37:37,611 INFO Add employee record
+2018-06-21 10:37:39,365 INFO New Employee Added
+2018-06-21 10:37:39,365 INFO Arrive Default page of HRM
+2018-06-21 10:37:42,450 INFO Arrive Leave page
+2018-06-21 10:37:42,450 INFO Click the % s menu
+2018-06-21 10:37:42,525 INFO Click the % s menu
+2018-06-21 10:37:43,796 INFO Arrive Leave Add Entitlements page
+2018-06-21 10:37:50,328 INFO Successfully Added
+2018-06-21 10:37:50,328 INFO Arrive Default page of HRM
+2018-06-21 10:37:53,733 INFO Arrive Leave page
+2018-06-21 10:37:53,733 INFO Click the % s menu
+2018-06-21 10:37:53,780 INFO Click the % s menu
+2018-06-21 10:37:54,296 INFO Arrive Leave Add Entitlements page
+2018-06-21 10:37:58,391 INFO Entitlements added

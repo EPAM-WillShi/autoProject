@@ -1,0 +1,17 @@
+2018-06-21 11:12:39,418 INFO Arrive Login page
+2018-06-21 11:12:45,825 INFO Arrive Default page of HRM
+2018-06-21 11:12:49,240 INFO Arrive PIM page
+2018-06-21 11:12:49,240 INFO Click the %s menuname
+2018-06-21 11:12:49,828 INFO Arrive PIM Employee List page
+2018-06-21 11:12:53,677 INFO Arrive Job_page
+2018-06-21 11:12:53,677 INFO Start to edit job information...
+2018-06-21 11:12:57,492 INFO The path is D:\autoProject\testfiles\jobcontract.txt.
+2018-06-21 11:12:59,757 INFO Successfully Updated
+2018-06-21 11:12:59,757 INFO Start to replace contract...
+2018-06-21 11:13:00,321 INFO The path is D:\autoProject\testfiles\repcontract.txt.
+2018-06-21 11:13:03,789 INFO Successfully Updated
+2018-06-21 11:13:03,789 INFO Start to terminate employment...
+2018-06-21 11:13:08,118 INFO Successfully Updated
+2018-06-21 11:13:08,134 INFO Start to delete contract...
+2018-06-21 11:13:09,961 INFO Successfully Updated
+2018-06-21 11:13:11,164 INFO Successfully Updated
