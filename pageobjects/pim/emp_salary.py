@@ -9,9 +9,6 @@ from pageobjects.pim.employee_list import EmployeeList
 
 
 class Salary(EmployeeList):
-    """
-    PIM Add employee page main components
-    """
     # search_emp = ("ID", "empsearch_employee_name_empName")
     # include = ("id","empsearch_termination")
     # search_btn = ('id', 'searchBtn')
@@ -43,6 +40,7 @@ class Salary(EmployeeList):
     account_type = ('id', 'directdeposit_account_type')
     routing_num = ('id', 'directdeposit_routing_num')
     ramount = ('id', 'directdeposit_amount')
+    other_name = ('id', "directdeposit_account_type_other")
 
     deposit_flag = ('xpath', "//*[@id='tblSalary']//h3[text()= 'Direct Deposit Details']")
     v_anum = ('xpath', "//table[@id='tblSalary']//table")
@@ -86,6 +84,7 @@ class Salary(EmployeeList):
         self.set_combox_value(grade, self.pay_grade)
         self.input_text(component, self.salary_component)
         self.set_combox_value(frequency, self.pay_frequency)
+        self.wait_unit_el_present(self.currency)
         self.set_combox_value(currency, self.currency)
         self.input_text(amount, self.amount)
         self.click(self.save_btn)
@@ -112,7 +111,7 @@ class Salary(EmployeeList):
         else:
             Log.info("cancel fail!")
 
-    def edit_salary(self, component, amount, num, dtype, rout, ramount):
+    def edit_salary(self, component, amount, num, dtype, rout, ramount,*args):
         search_name = ('link_text', str(component))
         self.click(search_name)
         self.clear_text(self.amount)
@@ -120,6 +119,8 @@ class Salary(EmployeeList):
         self.click(self.add_deposit_detail)
         self.input_text(num, self.account_num)
         self.set_combox_value(dtype, self.account_type)
+        if dtype == "Other":
+            self.input_text(args, self.other_name)
         self.input_text(rout, self.routing_num)
         self.input_text(ramount, self.ramount)
         self.wait(2)
@@ -139,7 +140,6 @@ class Salary(EmployeeList):
         r1 = rows[1].find_elements_by_tag_name("td")
         for i in r1:
             self.list.append(i.text.encode("utf-8"))
-        print self.list
 
     def delete_salary(self, name):
         delete_checkbox = (
