@@ -2,6 +2,7 @@ import unittest
 from config import config
 from com import utils
 from pageobjects.performance.configure.trackers import Trackers
+from pageobjects.pim.employee_list import EmployeeList
 from pageobjects.login import Login
 # from pageobjects.pim.add_employee import AddEmployee
 
@@ -10,6 +11,8 @@ class TestAddTracker(unittest.TestCase):
     browser = config.BROWSER
     trackername = 'test'
     empname = 'Robert Craig'
+    first_name = 'Robert'
+    last_name = 'Craig'
     avareview = 'Hannah Flores'
     tableid = 'resultTable'
     # win_name = 'OrangeHRM - Confirmation Required'
@@ -22,10 +25,12 @@ class TestAddTracker(unittest.TestCase):
         cls.login = Login(cls.driver)
         cls.login.open_browser(config.LOGIN_URL)
         cls.login.login(config.USER_NAME, config.PASSWORD)
+        cls.employee_list = EmployeeList(cls.driver)
+        cls.employee_list.add_employee(cls.first_name, cls.last_name)
         cls.tracker = Trackers(cls.driver)
         # cls.addemp = AddEmployee(cls.driver)
         # cls.bps=BasePage(cls.driver)
-        cls.tracker.max_browser()
+        # cls.tracker.max_browser()
 
     def test_case1_add_pertracker(self):
         self.tracker.add_pertracker(self.trackername, self.empname, self.avareview)
