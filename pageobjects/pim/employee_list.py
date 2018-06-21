@@ -30,7 +30,7 @@ class EmployeeList(PIM):
     search_subunit = ('xpath', './/select[@name="empsearch[sub_unit]"]')
     search_includ = ('xpath', './/select[@name="empsearch[termination]"]')
     reset_btn = ('xpath', './/input[@name="_reset"]')
-    row1_column2 = ('xpath', './/tr[1]/td[3]')
+    row1_column2 = ('xpath', './/tr[1]/td[2]')
     row2_column2 = ('xpath', './/tr[2]/td[3]')
     edit_employee_ele = '//tr[./td[3]/a[text()="{}"]][./td[4]/a[text()="{}"]]//td[2]'
     add_btn_ele = ('id', 'btnAdd')
