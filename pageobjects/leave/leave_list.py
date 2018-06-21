@@ -50,6 +50,7 @@ class LeaveList(Leave):
         self.input_text(tdate, self.tdate)
         self.click(self.all)
         self.input_text(name, self.emp_name)
+        self.wait(2)
         self.click(self.search_btn)
 
     # def verify_search_result(self, value, fdate, tdate):
