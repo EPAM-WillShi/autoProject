@@ -163,3 +163,8 @@ class Reportto(EmployeeList):
         self.repmethod = Report_method(self.driver)
         self.repmethod.delete_report_method(name)
 
+    def add_report_method(self):
+        self.repmethod = Report_method(self.driver)
+        self.repmethod.search_method('Direct','Indirect')
+
+
