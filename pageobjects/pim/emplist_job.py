@@ -69,8 +69,10 @@ class Job(EmployeeList):
         self.set_combox_value(empStatus, self.emp_status)
         self.set_combox_value(jobcategory, self.job_cat)
         self.input_text(joindate, self.join_date)
-        self.set_combox_value(subunit, self.sub_unit)
-        self.set_combox_value(location, self.loc)
+        self.select_option(self.sub_unit, 1)
+        self.select_option(self.loc, 1)
+        # self.set_combox_value(subunit, self.sub_unit)
+        # self.set_combox_value(location, self.loc)
         self.input_text(startdate, self.contract_start_date)
         self.input_text(enddate, self.contract_end_date)
         self.upload_file(contract, self.contract_details)
@@ -112,8 +114,8 @@ class Job(EmployeeList):
         """
         Log.info("Start to terminate employment...")
         self.click(self.terminate)
-        assert self.get_element(self.ter_title).is_displayed
         self.wait_unit_el_present(self.ter_title)
+        assert self.get_element(self.ter_title).is_displayed()
         self.select_option(self.ter_reason, 7)
         self.input_text("test-terminate", self.ter_note)
         self.input_text(terdate, self.ter_date)
