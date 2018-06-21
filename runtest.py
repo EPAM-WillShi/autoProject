@@ -8,6 +8,7 @@ import time
 import sys
 import argparse
 import webbrowser
+import platform
 from lib.log import Log
 
 
@@ -19,44 +20,41 @@ example:
 {} -w auto_gui
 {} --case xx.py xx.py:case
 {} --id [seq]
-{} --falied """
+{} --failed """
 
-class Runner():
+
+class Runner:
     """
     This class driver test cases then run testing.
     """
     def __init__(self):
         pass
     
-    def setUp(self):
+    def setup(self):
         """
         SetUp environment
         """
         Log.info('Init the test environment')
-        '''
-        print information under commandLine
-        '''     
         
-    def tearDown(self):
-        
-        '''
-        clear up the test environmet
-        '''
+    def teardown(self):
+        """
+        clear up the test environment
+        """
         Log.info('clear the test environment')
         Log.close()
-        
-    def get_param(self,output_report):
+
+    def get_param(self, output_report):
         
         """
-        Define params for programe.
+        Define params for program.
         """        
-        programe = os.path.basename(sys.argv[0])
+        program = os.path.basename(sys.argv[0])
         parser = argparse.ArgumentParser(
-        usage=USAGE_STR.format(programe),
-        description=DESC_STR.format(programe),
-        version=VERSION_STR.format(programe),
-        epilog=EXAMPLE_STR.format(*(programe,) * 4),
-        formatter_class=argparse.RawDescriptionHelpFormatter)
+            usage=USAGE_STR.format(program),
+            description=DESC_STR.format(program),
+            version=VERSION_STR.format(program),
+            epilog=EXAMPLE_STR.format(*(program,) * 4),
+            formatter_class=argparse.RawDescriptionHelpFormatter)
         parser.add_argument('nosetests', action="store_const", const='-v')
         parser.add_argument('-r', '--report', metavar='report_name',
                             action="store", dest='--with-html --html-report',
@@ -82,20 +80,19 @@ class Runner():
         params = vars(args)
         return params
 
-        
-    def runTest(self): 
-        ''' 
+    def run_test(self):
+        """
         get case then run testing
-        '''
+        """
         cmd = []
         # set report name
-        reportName =  "TestReport.html"
+        report_name = "TestReport.html"
         Log.debug('start : run test method under Runner.py')
-        self.setUp()
+        self.setup()
         version = 'python ' + str(sys.version)
         Log.info(version)
         now = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
-        output_report = "report/{}_{}".format(now, reportName) 
+        output_report = "report/{}_{}".format(now, report_name)
         params = self.get_param(output_report)   
         for key, value in params.items():
             if key == 'nosetests':
@@ -111,24 +108,39 @@ class Runner():
                 cmd.append('{}'.format(key))
             else:
                 cmd.append('{} {}'.format(key, value))
-        #cmd.append(" -–with-ignore-docstrings")
+        # cmd.append(" -–with-ignore-docstrings")
         runcmd = ' '.join(cmd)
         print "[INFO]: Running testing under " + version
         print '****************************************'
-        print 'Current time is %s' %now  
+        print 'Current time is %s' % now
         print runcmd
         os.system(runcmd)
         Log.info('finish run test cases')
+        platform_type = platform.system()
         try:
-            reportpath = os.path.abspath(output_report)
-            webbrowser.open_new(reportpath)
-        except BaseException,Error:
-            print 'Error happend when open the test report:' + Error
-        cmd = 'taskkill /F /IM firefox.exe'
-        os.system(cmd)
-        cmd = 'taskkill /F /IM geckodriver.exe'
-        os.system(cmd)
-            
+            report_path = os.path.abspath(output_report)
+            if platform_type == 'Windows':
+                webbrowser.open_new(report_path)
+            elif platform_type == 'Linux':
+                print "The report path is {}".format(report_path)
+            else:
+                print "Currently not support this platform {}".format(platform_type)
+        except BaseException, e:
+            Log.error('Error happened when open the test report: %s' % e)
+        if platform_type == 'Linux':
+            os.system('pkill -9 chrome')
+            os.system('pkill -9 firefox')
+            os.system('pkill -9 geckodriver')
+            print "chrome, firefox and geckodriver processes don't exist."
+        elif platform_type == 'Windows':
+            os.system('taskkill /F /IM geckodriver.exe')
+            os.system('taskkill /F /IM firefox.exe')
+            os.system('taskkill /F /IM chrome.exe')
+            print "chrome, firefox and geckodriver processes don't exist."
+        else:
+            print "Currently not support this platform {}".format(platform_type)
+
             
 if __name__ == '__main__':
-    test = Runner().runTest()
+    test = Runner()
+    test.run_test()

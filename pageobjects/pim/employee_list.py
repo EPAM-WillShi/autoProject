@@ -186,6 +186,15 @@ class EmployeeList(PIM):
     #     text1 = self.unicode_to_encode(text)
     #     self.split_linewrap_text(text1)
     #     return self.split_linewrap_text(text1)
+	
+	 def validate_listvalue(self, keys, value):
+        utext = self.get_element_text(keys)
+        # print ep_status
+        utext_utf = utext.encode('utf-8')
+        utext_utf = utext_utf.split("\n")
+        # print ep_status_utf
+        assert utext_utf == value
+        Log.info("Check result right")
 
     def add_employee(self, first_name, last_name):
         """
@@ -229,6 +238,3 @@ class EmployeeList(PIM):
         row_data_ele = self.row_data.format(first_name, last_name)
         if self.get_element(('xpath', row_data_ele)) is None and self.query_employee_by_name(name) is False:
             self.add_employee(first_name, last_name)
-
-
-

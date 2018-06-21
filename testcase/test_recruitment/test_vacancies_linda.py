@@ -25,11 +25,11 @@ class TestVacancies(unittest.TestCase):
     hiring_manager_02 = "John Smith"
 
     # Add an attachment
-    attachment = r"testfiles\test.docx"
+    attachment = "test.docx"
     comment = "comment"
 
     # Edit an attachment
-    new_attachment = r"testfiles\testedit.docx"
+    new_attachment = "testedit.docx"
     new_comment = "edit comment"
 
     # Delete vacancies
@@ -38,7 +38,7 @@ class TestVacancies(unittest.TestCase):
     # Apply
     first_name = "linda"
     last_name = "zang"
-    resume = r"testfiles\test.docx"
+    resume = "test.docx"
 
     @classmethod
     def setUpClass(cls):
@@ -52,7 +52,7 @@ class TestVacancies(unittest.TestCase):
     def tearDownClass(cls):
         cls.vacancies.quit_browser()
 
-    def test_case7_vacancies_edit_attachment_save_comment_only(self):
+    def test_case07_vacancies_edit_attachment_save_comment_only(self):
         """
         Edit the attachment - save comment only
         """
@@ -60,6 +60,7 @@ class TestVacancies(unittest.TestCase):
         self.vacancies.delete_attachment()
         self.vacancies.add_attachment(self.attachment, self.comment)  # Add an attachment
         self.vacancies.edit_attachment(self.attachment, self.new_attachment, self.new_comment)  # Edit the attachment
+        self.vacancies.click_back_btn()
 
     def test_case12_vacancies_search_vacancies_by_hiringmanager(self):
         """

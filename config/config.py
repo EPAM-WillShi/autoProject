@@ -1,3 +1,4 @@
+
 # Setting the log file path.
 LOG_FILE = 'logs\log.log'
 LOG_LEVEL = 'debug'  # debug,info,warn,error,critical
@@ -10,9 +11,6 @@ UPLOAD_PATH = 'testfiles'
 BROWSER = "firefox"
 # BROWSER = "chrome"
 
-# If the value is "off", the image is disabled, if the value is "on" or "", the image is enabled
-IMAGE_ENABLED = ""
-
 # Login
 LOGIN_URL = "http://opensource.demo.orangehrmlive.com"
 USER_NAME = "Admin"
@@ -22,4 +20,5 @@ EMPLOYEE = "William Zhang"
 MANAGER = "Thomas Fleming"
 EMAIL_SUB = "Email Subscriptions"
 EMAIL_CON = "Email Configuration"
-EMAIL_LOCAL = "Localization"
+
+

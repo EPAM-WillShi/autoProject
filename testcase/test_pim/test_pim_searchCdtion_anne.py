@@ -35,28 +35,16 @@ class TestReset(unittest.TestCase):
         validate dropdownlist value
         """
         self.pim.wait(3)
-        ep_status = self.pim.get_element_text(self.pim.search_empsts)
-        print ep_status
-        ep_status_utf = ep_status.encode('utf-8')
-        print ep_status_utf.split("\n")
-        self.assertListEqual(ep_status_utf.split("\n"), self.lst_status, 'fail')
+        self.pim.validate_listvalue(self.pim.search_empsts, self.lst_status)
 
         # validate dropdownlist value
-        job_name = self.pim.get_element_text(self.pim.search_empjobtl)
-        print job_name
-        job_name_utf = job_name.encode('utf-8')
-        print job_name_utf.split("\n")
-        self.assertListEqual(job_name_utf.split("\n"), self.lst_jobtitle, 'fail')
+        self.pim.validate_listvalue(self.pim.search_empjobtl, self.lst_jobtitle)
 
         # validate sub unit list
-        sub_unit = self.pim.get_element_text(self.pim.search_subunit)
-        sub_unit_utf = sub_unit.encode('utf-8')
-        self.assertListEqual( sub_unit_utf.split("\n"),self.lst_subunit, 'fail')
+        self.pim.validate_listvalue(self.pim.search_subunit, self.lst_subunit)
 
         # validate include list
-        includ = self.pim.get_element_text(self.pim.search_includ)
-        includ_utf = includ.encode('utf-8')
-        self.assertListEqual(includ_utf.split("\n"), self.lst_include, 'fail')
+        self.pim.validate_listvalue(self.pim.search_includ, self.lst_include)
 
     @classmethod
     def tearDownClass(cls):

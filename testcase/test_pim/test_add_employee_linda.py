@@ -21,7 +21,7 @@ class TestAddEmployee(unittest.TestCase):
     first_name = "linda"
     middle_name = "test"
     last_name = "zang"
-    upload_file = r"testfiles\1.png"
+    upload_file = "1.png"
     login_name = "linda1"
     login_password = "password"
     confirm_password = "password"

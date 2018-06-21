@@ -19,7 +19,7 @@ class TestAddLeaveEntitlement(unittest.TestCase):
 
     # Create an employee
     first_name = "dora"
-    last_name = "testing"
+    last_name = utils.input_random_text()
 
     leave_type = "Vacation US"
     leave_period = "2018-01-01 - 2018-12-31"

@@ -15,33 +15,33 @@ class TestImmigration(unittest.TestCase):
     Create an employee, and then click it to go to Immigration page.
     """
     # Create an employee
-    first_name = "linda"
-    last_name = "test"
+    first_name = utils.input_random_text()
+    last_name = utils.input_random_text()
 
     # Attachment CRUD
     attachment = "test.docx"
-    comment = "Added attachment"
+    comment = utils.input_random_text()
     new_attachment = "testedit.docx"
-    new_comment = "Edited attachment"
+    new_comment = utils.input_random_text()
 
     # Immigration CRUD
-    document = "Visa"
-    number = "123AB"
-    issued_date = "2018-05-30"
-    expiry_date = "2018-05-31"
-    eligible_status = "Active"
-    issued_by = "China"
-    eligible_review_date = "2018-05-31"
-    comments = "Added"
+    # document = "Visa"
+    number = utils.input_random_number()
+    issued_date = utils.input_random_date()
+    expiry_date = utils.input_random_date(issued_date)
+    eligible_status = utils.input_random_text()
+    # issued_by = "China"
+    eligible_review_date = utils.input_random_date(issued_date)
+    comments = utils.input_random_text()
 
-    new_document = "Passport"
-    new_number = "456CD"
-    new_issued_date = "2018-06-01"
-    new_expiry_date = "2018-06-02"
-    new_eligible_status = "Cancel"
-    new_issued_by = "United States"
-    new_eligible_review_date = "2018-06-03"
-    new_comments = "Edited"
+    # new_document = "Passport"
+    new_number = utils.input_random_number()
+    new_issued_date = utils.input_random_date()
+    new_expiry_date = utils.input_random_date(new_issued_date)
+    new_eligible_status = utils.input_random_text()
+    # new_issued_by = "United States"
+    new_eligible_review_date = utils.input_random_date(new_issued_date)
+    new_comments = utils.input_random_text()
 
     @classmethod
     def setUpClass(cls):
@@ -58,79 +58,114 @@ class TestImmigration(unittest.TestCase):
         cls.immigration.delete_employee(cls.first_name + " " + cls.last_name)
         cls.immigration.quit_browser()
 
-    def test_add_immigration(self):  # Add an immigration record
-        self.immigration.add_immigration(self.document, self.number, self.issued_date,
-                                         self.expiry_date, self.eligible_status, self.issued_by,
-                                         self.eligible_review_date, self.comments)
+    def test_case01_add_immigration_with_required_fields(self):  # Add an immigration record with required fields only
+        self.immigration.click_add_btn()
+        self.document = self.immigration.get_document_data()
+        self.immigration.input_immigration_details(self.document, self.number)
+        self.immigration.save_immigration()
         self.assertTrue(self.immigration.check_immigration_exist(self.document))
-        self.immigration.check_immigration_details(self.document, self.number, self.issued_date,
-                                                   self.expiry_date, self.issued_by)
+        self.immigration.check_immigration_details(self.document, self.number)
         self.immigration.delete_all_immigration()
 
-    def test_edit_immigration(self):  # Edit an immigration record
-        self.immigration.add_immigration(self.document, self.number, self.issued_date,
-                                         self.expiry_date, self.eligible_status, self.issued_by,
-                                         self.eligible_review_date, self.comments)
-        self.immigration.edit_immigration(self.document, self.new_document, self.new_number, self.new_issued_date,
-                                          self.new_expiry_date, self.new_eligible_status, self.new_issued_by,
-                                          self.new_eligible_review_date, self.new_comments)
-        self.assertTrue(self.immigration.check_immigration_exist(self.new_document))
-        self.immigration.check_immigration_details(self.new_document, self.new_number, self.new_issued_date,
-                                                   self.new_expiry_date, self.new_issued_by)
-        self.immigration.delete_all_immigration()
-
-    def test_delete_immigration(self):  # Delete an immigration record
-        self.immigration.add_immigration(self.document, self.number, self.issued_date,
-                                         self.expiry_date, self.eligible_status, self.issued_by,
-                                         self.eligible_review_date, self.comments)
-        self.immigration.delete_immigration(self.document)
+    def test_case02_cancel_add_immigration(self):  # Cancel the immigration record creation
+        self.immigration.click_add_btn()
+        self.document = self.immigration.get_document_data()
+        self.issued_by = self.immigration.get_issued_by_data()
+        self.immigration.input_immigration_details(self.document, self.number,
+                                                   issued_date=self.issued_date,
+                                                   expiry_date=self.expiry_date,
+                                                   eligible_status=self.eligible_status,
+                                                   issued_by=self.issued_by,
+                                                   eligible_review_date=self.eligible_review_date,
+                                                   comments=self.comments)
+        self.immigration.cancel_immigration()
         self.assertFalse(self.immigration.check_immigration_exist(self.document))
 
-    def test_add_attachment(self):  # Add an attachment
+    def test_case03_add_immigration(self):  # Add an immigration record
+        self.immigration.click_add_btn()
+        self.document = self.immigration.get_document_data()
+        self.issued_by = self.immigration.get_issued_by_data()
+        self.immigration.input_immigration_details(self.document, self.number,
+                                                   issued_date=self.issued_date,
+                                                   expiry_date=self.expiry_date,
+                                                   eligible_status=self.eligible_status,
+                                                   issued_by=self.issued_by,
+                                                   eligible_review_date=self.eligible_review_date,
+                                                   comments=self.comments)
+        self.immigration.save_immigration()
+        self.assertTrue(self.immigration.check_immigration_exist(self.document))
+        self.immigration.check_immigration_details(self.document, self.number,
+                                                   issued_date=self.issued_date,
+                                                   expiry_date=self.expiry_date,
+                                                   issued_by=self.issued_by)
+
+    def test_case04_cancel_edit_immigration(self):  # Cancel the immigration record editing
+        self.document, self.issued_by = self.immigration.click_existing_record()
+        self.new_document = self.immigration.get_document_data()
+        self.new_issued_by = self.immigration.get_issued_by_data()
+        self.immigration.input_immigration_details(self.new_document, self.new_number,
+                                                   issued_date=self.new_issued_date,
+                                                   expiry_date=self.new_expiry_date,
+                                                   eligible_status=self.new_eligible_status,
+                                                   issued_by=self.new_issued_by,
+                                                   eligible_review_date=self.new_eligible_review_date,
+                                                   comments=self.new_comments)
+        self.immigration.cancel_immigration()
+        self.immigration.check_immigration_details(self.document, self.number,
+                                                   issued_date=self.issued_date,
+                                                   expiry_date=self.expiry_date,
+                                                   issued_by=self.issued_by)
+
+    def test_case05_edit_immigration(self):  # Edit an immigration record
+        self.immigration.click_existing_record()
+        self.new_document = self.immigration.get_document_data()
+        self.new_issued_by = self.immigration.get_issued_by_data()
+        self.immigration.input_immigration_details(self.new_document, self.new_number,
+                                                   issued_date=self.new_issued_date,
+                                                   expiry_date=self.new_expiry_date,
+                                                   eligible_status=self.new_eligible_status,
+                                                   issued_by=self.new_issued_by,
+                                                   eligible_review_date=self.new_eligible_review_date,
+                                                   comments=self.new_comments)
+        self.immigration.save_immigration()
+        self.assertTrue(self.immigration.check_immigration_exist(self.new_document))
+        self.immigration.check_immigration_details(self.new_document, self.new_number,
+                                                   issued_date=self.new_issued_date,
+                                                   expiry_date=self.new_expiry_date,
+                                                   issued_by=self.new_issued_by)
+
+    def test_case06_delete_immigration(self):  # Delete an immigration record
+        self.document = self.immigration.delete_immigration()
+        self.assertFalse(self.immigration.check_immigration_exist(self.document))
+
+    def test_case07_add_attachment(self):  # Add an attachment
         self.immigration.add_attachment(self.attachment, self.comment)
         self.assertTrue(self.immigration.check_attachment_exists(self.attachment))
         self.immigration.check_attachment(self.attachment, self.comment)
         self.immigration.delete_all_attachments()
 
-    def test_edit_attachment(self):  # Edit an attachment
+    def test_case08_edit_attachment(self):  # Edit an attachment
         self.immigration.add_attachment(self.attachment, self.comment)
         self.immigration.edit_attachment(self.new_attachment, self.new_comment)
         self.immigration.check_attachment(self.new_attachment, self.new_comment)
         self.immigration.delete_all_attachments()
 
-    def test_edit_attachment_comment_only(self):  # Only edit the comment of the attachment
+    def test_case09_edit_attachment_comment_only(self):  # Only edit the comment of the attachment
         self.immigration.add_attachment(self.attachment, self.comment)
         self.immigration.edit_attachment_comment_only(self.new_attachment, self.new_comment)
         self.immigration.check_attachment(self.attachment, self.new_comment)
         self.immigration.delete_all_attachments()
 
-    def test_delete_attachment(self):  # Delete an attachment
+    def test_case10_delete_attachment(self):  # Delete an attachment
         self.immigration.add_attachment(self.attachment, self.comment)
         self.immigration.delete_attachment(self.attachment)
         self.assertFalse(self.immigration.check_attachment_exists(self.attachment))
 
-    def test_cancel_add_immigration(self):  # Cancel the immigration record creation
-        self.immigration.cancel_add_immigration(self.document, self.number, self.issued_date,
-                                                self.expiry_date, self.eligible_status, self.issued_by,
-                                                self.eligible_review_date, self.comments)
-        self.assertFalse(self.immigration.check_immigration_exist(self.document))
-
-    def test_cancel_edit_immigration(self):  # Cancel the immigration record editing
-        self.immigration.add_immigration(self.document, self.number, self.issued_date,
-                                         self.expiry_date, self.eligible_status, self.issued_by,
-                                         self.eligible_review_date, self.comments)
-        self.immigration.cancel_edit_immigration(self.document, self.new_document, self.new_number,
-                                                 self.new_issued_date, self.new_expiry_date, self.new_eligible_status,
-                                                 self.new_issued_by, self.new_eligible_review_date, self.new_comments)
-        self.immigration.check_immigration_details(self.document, self.number, self.issued_date,
-                                                   self.expiry_date, self.issued_by)
-        self.immigration.delete_all_immigration()
-
-    def test_cancel_add_attachment(self):  # Cancel the attachment creation
+    def test_case11_cancel_add_attachment(self):  # Cancel the attachment creation
         self.immigration.cancel_add_attachment(self.attachment, self.comment)
         self.assertFalse(self.immigration.check_attachment_exists(self.attachment))
 
-    def test_cancel_edit_attachment(self):  # Cancel the attachment editing
+    def test_case12_cancel_edit_attachment(self):  # Cancel the attachment editing
         self.immigration.add_attachment(self.attachment, self.comment)
         self.immigration.cancel_edit_attachment(self.new_attachment, self.new_comment)
         self.immigration.check_attachment(self.attachment, self.comment)
