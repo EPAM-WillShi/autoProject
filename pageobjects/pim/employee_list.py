@@ -11,11 +11,11 @@ class EmployeeList(PIM):
     save_btn = ('id', 'btnSave')
     search_empid = ('id', 'empsearch_id')
     search_emp = ('id', 'empsearch_employee_name_empName')
-    search_btn = ('id', 'searchBtn')
+    search_btn = ('xpath', './/input[@id="searchBtn"]')
     select_row = ('id', 'ohrmList_chkSelectAll')
     delete_btn = ('id', 'btnDelete')
-    delete_box = ('xpath', '//div/p')
-    cancel_btn = ('xpath', '//input[@value="Cancel"]')
+    delete_box = ('xpath', './/div/p')
+    cancel_btn = ('xpath', './/input[@value="Cancel"]')
     ok_btn = ('id', 'dialogDeleteBtn')
     delete_result = ('xpath', '//td')
     check_all = ('id', 'ohrmList_chkSelectAll')
@@ -30,7 +30,7 @@ class EmployeeList(PIM):
     search_subunit = ('xpath', './/select[@name="empsearch[sub_unit]"]')
     search_includ = ('xpath', './/select[@name="empsearch[termination]"]')
     reset_btn = ('xpath', './/input[@name="_reset"]')
-    row1_column2 = ('xpath', './/tr[1]/td[2]')
+    row1_column2 = ('xpath', './/tr[1]/td[2]/a')
     row2_column2 = ('xpath', './/tr[2]/td[3]')
     edit_employee_ele = '//tr[./td[3]/a[text()="{}"]][./td[4]/a[text()="{}"]]//td[2]'
     add_btn_ele = ('id', 'btnAdd')
@@ -196,6 +196,26 @@ class EmployeeList(PIM):
         # print ep_status_utf
         assert utext_utf == value
         Log.info("Check result right")
+
+    def validate_list_value(self, keys, value):
+        utext = self.get_element_text(keys)
+        # print ep_status
+        utext_utf = utext.encode('utf-8')
+        utext_utf = utext_utf.split("\n")
+        print utext_utf
+        # assert utext_utf == value
+        # Log.info("Check result right")
+        if len(value) > len(utext_utf):
+            print "failed"
+        else:
+            for i in range(len(value)):
+                if value[i] in utext_utf:
+                    utext_utf.remove(value[i])
+                    if i == len(value) - 1:
+                        print "pass"
+                else:
+                    print "failed"
+                    break
 
     def add_employee(self, first_name, last_name):
         """
