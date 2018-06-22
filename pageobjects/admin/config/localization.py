@@ -37,9 +37,9 @@ class Localization(Admin):
         print value_list
         length = len(value_list)
         print length
-        if value_list[0] == '--Select--':
+        if value[0] == '--Select--':
             num = random.randint(1, length-1)
-        elif value_list[0] == '-- Month --':
+        elif value[0] == '-- Month --':
             num = random.randint(1, length - 1)
         else:
             num = random.randint(0, length-1)
@@ -57,12 +57,16 @@ class Localization(Admin):
         assert ptitle == self.get_element_text(self.title)
         handle = self.get_current_window()
         self.click(self.edit_btn)
-        self.select_randm_list(self.language)
+        self.set_combox_value('US English', self.language)
+        # self.select_randm_list(self.language)
+        # self.get_random_data(self.language)
         self.click(self.language_box)
         self.click(self.supp_language)
         self.sleep(3)
         self.click(self.Ok_btn)
-        self.select_randm_list(self.date_format)
+        self.sleep(2)
+        self.set_combox_value('yyyy-mm-dd ( 2018-06-21 )', self.date_format)
+        # self.select_randm_list(self.date_format)
         self.click(self.link)
         self.switch_to_tab()
         self.sleep(2)
@@ -71,6 +75,7 @@ class Localization(Admin):
         self.switch_to_window(handle)
         self.click(self.save_btn)
         Log.info("edit localization successfully")
+
 
 
 
