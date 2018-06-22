@@ -46,13 +46,21 @@ class TestUsers(unittest.TestCase):
         self.user.add_user(self.user_role, self.employee_name, self.user_name, self.user_status, self.user_password)
         self.assertTrue(self.user.check_if_user_exists(self.user_name), "Failed to add new user")
 
-    # def test_case2_search_new_user(self):
-    #     self.test_case1_add_user()
-    #     self.user.search_system_user(self.user_name, self.employee_name, self.user_role, self.user_status)
-    #     search_result = self.user.get_all_users()
-    #     print(search_result)
+    def test_case2_search_new_user(self):  # Test search the user after creating.
+        """
+        Search the new user after creating, run after the test_case1_add_user
+        """
+        user_list = []
+        self.user.search_system_user(self.user_name, self.employee_name, self.user_role, self.user_status)
+        search_result = self.user.get_all_users()
+        for value in search_result.values():
+            value_str = ''.join(value)
+            user_list.append(value_str)
+        user_list_expected = [self.user_name, self.employee_name, self.user_role, self.user_status]
+        self.assertEqual(user_list_expected.sort(), user_list.sort(),
+                         "Failed to search the new user, the result is not match.")
 
-    def test_case2_search_reset(self):  # Test search reset after searching
+    def test_case3_search_reset(self):  # Test search reset after searching
         self.user.open_user_page()
         users_original = self.user.get_all_users()
         self.user.search_system_user(self.user_name, self.employee_name, self.user_role, self.user_status)
@@ -62,11 +70,10 @@ class TestUsers(unittest.TestCase):
         self.assertEqual(["", "Type for hints...", "All", "All"], info, "Failed to reset the search input controls.")
         self.assertEqual(users_original, users_reset, "Failed to reset the users table.")
 
-    def test_case3_edit_user(self):  # Test editing user without changing password.
+    def test_case4_edit_user(self):  # Test editing user without changing password.
         """
-        This case should run follow "test_case1_add_user"
+        This case should run after "test_case1_add_user"
         """
-        # self.test_case1_add_user()
         self.user.add_employee(self.first_name_u, self.last_name_u)
         self.user.open_user_page()
         self.user.open_user(self.user_name)
@@ -76,24 +83,14 @@ class TestUsers(unittest.TestCase):
         info_set = [self.user_name_u, self.employee_name_u, self.user_role_u, self.user_status_u]
         self.assertEqual(info_get, info_set, "Failed to edit the user or user not exists.")
 
-    def test_case4_delete_user(self):  # Test deleting a user.
+    def test_case5_delete_user(self):  # Test deleting a user.
         """
-        This case should run after test_case1,2 and 3
+        This case should run after test_case1,2,3 and 4
         """
         self.user.open_user_page()
         self.user.delete_user(self.user_name_u)
         self.assertFalse(self.user.check_if_user_exists(self.user_name_u),
                          "Failed to delete the user or user not exists.")
-
-    # def test_temp(self):
-    #     user_list = []
-    #     self.user.open_user_page()
-    #     self.user.search_system_user("Admin")
-    #     result = self.user.get_all_users()
-    #     for value in result.values():
-    #         temp_str = ''.join(value)
-    #         user_list = user_list.append(temp_str)
-    #     print(user_list)
 
     @classmethod
     def tearDownClass(cls):

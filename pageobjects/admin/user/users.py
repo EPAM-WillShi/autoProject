@@ -73,13 +73,13 @@ class Users(Admin):
     def get_all_users(self):
         """
         :return a dictionary which include the username, employee name, role, status details
+        Note: dictionary is not ordered in python.
         """
-        username_list = self.get_elements_texts(self.username_list)
-        employee_name_list = self.get_elements_texts(self.employee_name_list)
-        user_role_list = self.get_elements_texts(self.user_role_list)
-        user_role_status = self.get_elements_texts(self.user_status_list)
-        all_user_info = {"UserName": username_list, "EmployeeName": employee_name_list,
-                         "UserRole": user_role_list, "UserStatus": user_role_status}
+        all_user_info = dict()
+        all_user_info["UserName"] = self.get_elements_texts(self.username_list)
+        all_user_info["EmployeeName"] = self.get_elements_texts(self.employee_name_list)
+        all_user_info["UserRole"] = self.get_elements_texts(self.user_role_list)
+        all_user_info["UserStatus"] = self.get_elements_texts(self.user_status_list)
         return all_user_info
 
     def check_if_user_exists(self, username):
@@ -148,7 +148,6 @@ class Users(Admin):
         On Edit Users page, edit an user
         """
         self.click(self.user_edit_save_btn)
-        # self.wait(1)
         self.set_combox_value(role, self.user_role_select)
         self.input_text(employee, self.emp_name_input)
         self.input_text(username, self.user_name_input)
