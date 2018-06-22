@@ -1,6 +1,6 @@
 
 # Setting the log file path.
-LOG_FILE = 'logs\log.log'
+LOG_FILE = '\logs\log.log'
 LOG_LEVEL = 'debug'  # debug,info,warn,error,critical
 LOG_FILEMODE = 'w'  # 'a','r', 'w', 'r+', 'w'
 
@@ -20,5 +20,6 @@ EMPLOYEE = "William Zhang"
 MANAGER = "Thomas Fleming"
 EMAIL_SUB = "Email Subscriptions"
 EMAIL_CON = "Email Configuration"
+EMAIL_LOCAL = "Localization" 
 
 
