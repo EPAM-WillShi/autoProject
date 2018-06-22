@@ -35,16 +35,16 @@ class TestReset(unittest.TestCase):
         validate dropdownlist value
         """
         self.pim.wait(3)
-        self.pim.validate_listvalue(self.pim.search_empsts, self.lst_status)
+        self.pim.validate_list_value(self.pim.search_empsts, self.lst_status)
 
         # validate dropdownlist value
-        self.pim.validate_listvalue(self.pim.search_empjobtl, self.lst_jobtitle)
+        self.pim.validate_list_value(self.pim.search_empjobtl, self.lst_jobtitle)
 
         # validate sub unit list
-        self.pim.validate_listvalue(self.pim.search_subunit, self.lst_subunit)
+        self.pim.validate_list_value(self.pim.search_subunit, self.lst_subunit)
 
         # validate include list
-        self.pim.validate_listvalue(self.pim.search_includ, self.lst_include)
+        self.pim.validate_list_value(self.pim.search_includ, self.lst_include)
 
     @classmethod
     def tearDownClass(cls):

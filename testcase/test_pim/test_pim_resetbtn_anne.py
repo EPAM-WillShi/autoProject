@@ -20,7 +20,6 @@ class TestReset(unittest.TestCase):
     job_title = 'HR Manager'
     sub_unit = 'Administration'
 
-
     @classmethod
     def setUpClass(cls):
         cls.driver = utils.get_browser_driver(cls.browser)
@@ -29,28 +28,25 @@ class TestReset(unittest.TestCase):
         cls.login.login(config.USER_NAME, config.PASSWORD)
         cls.pim = EmployeeList(cls.driver)
         # cls.bps=BasePage(cls.driver)
-        cls.pim.max_browser()
+        # cls.pim.max_browser()
 
     def test_case7_search_condition(self):
         """
         Input search condition, search and reset result
         """
         self.pim.wait(3)
-        self.pim.input_search_text(self.first_name,self.pim.search_empname)
+        self.pim.input_search_text(self.first_name, self.pim.search_empname)
         self.pim.input_search_text(self.epid, self.pim.search_empid)
         self.pim.input_search_text(self.sup_name, self.pim.search_empsupname)
         self.pim.select_downlist_option(self.status, self.pim.search_empsts)
         self.pim.select_downlist_option(self.job_title, self.pim.search_empjobtl)
-        self.pim.select_downlist_option(self.sub_unit,self.pim.search_subunit)
-
-    def test_case8_search_result(self):
+        self.pim.select_downlist_option(self.sub_unit, self.pim.search_subunit)
         self.pim.click(self.pim.search_btn)
-        self.pim.wait_unit_el_present(self.pim.row1_column2)
-        self.assertEqual(self.epid,self.pim.get_search_result(self.pim.row1_column2), 'failed')
 
-    def test_case9_reset_button(self):
+    def test_case8_reset_button(self):
         self.pim.get_reset_result(self.pim.row2_column2)
         assert u'All' == self.pim.get_first_select(self.pim.search_empsts)
+        print "pass"
         Log.info("Reset successfully")
 
     @classmethod
