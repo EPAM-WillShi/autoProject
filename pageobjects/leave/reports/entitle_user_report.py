@@ -78,7 +78,7 @@ class EntitleUserReport(Leave):
         """
         check the query out results meet the expected table contains the expected columns
         """
-        assert self.get_element(self.leave_type_table).is_displayed()
+        assert self.element_is_displayed(self.leave_type_table)
         column_1 = self.get_element_text(self.leave_type_table_1)
         assert column_1 == "Leave Type"
         Log.info("Employ report table show")
@@ -110,6 +110,6 @@ class EntitleUserReport(Leave):
 
         self.click(self.view_button)
         Log.info("View button is clicked")
-        assert self.get_element(self.leave_type_table).is_displayed()
+        assert self.element_is_displayed(self.leave_type_table)
 
         Log.info("Query Leave Table show success!")

@@ -138,8 +138,8 @@ class Salary(EmployeeList):
 
     def verify_deposit_detail(self):
         tabel = self.get_element(self.v_anum)
-        rows = tabel.find_elements_by_tag_name("tr")
-        r1 = rows[1].find_elements_by_tag_name("td")
+        rows = tabel.get_element(('tag', "tr"))
+        r1 = rows[1].get_element(('tag', "td"))
         for i in r1:
             self.list.append(i.text.encode("utf-8"))
         self.list[-1] = float(self.list[-1])

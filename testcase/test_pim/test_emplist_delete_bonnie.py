@@ -44,7 +44,7 @@ class TestEmpDel(unittest.TestCase):
         """
         Test Employee List cancel delete Function
         """
-        self.emplist.cancel_delete_employee(self.employee)
+        self.emplist.cancel_del_employee(self.employee)
     
     def test_case4_del_employee(self):
         """

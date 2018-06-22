@@ -80,7 +80,7 @@ class PIM(MainPage):
         """
         Add a new custom field record and check the record is saved successfully
         """
-        if self.get_element(self.custom_field_panel).get_attribute("style") != "display: none;":
+        if self.get_element_attribute(self.custom_field_panel, "style") != "display: none;":
             self.get_element(self.add_btn).click()
             self.input_text(name, self.custom_field_name)
             self.select_screen(screen)

@@ -44,14 +44,14 @@ class TestCandirej(unittest.TestCase):
         """
         Test Change the candidate status to reject Function
         """
-        self.vacancy.delete_vacancies( self.vacan_name)
-        self.vacancy.add_vacancies_required( self.job_title, 
-                self.vacan_name, self.hiring_manager)
-        self.candidates.delete_candidates( self.vacan_name)
-        self.candidates.add_candidates_required( self.first_name, 
-                self.last_name, self.email, self.vacan_name)
-        self.candidates.candidates_edit_status( self.vacan_name,
-                self.status, self.status_reason)
+        self.vacancy.delete_vacancies(self.vacan_name)
+        self.vacancy.add_vacancies_required(self.job_title,
+                                            self.vacan_name, self.hiring_manager)
+        self.candidates.delete_candidates(self.vacan_name)
+        self.candidates.add_candidates_required(self.first_name,
+                                                self.last_name, self.email, self.vacan_name)
+        self.candidates.candidates_edit_status(self.vacan_name,
+                                               self.status, self.status_reason)
 
     @classmethod
     def tearDownClass(cls):

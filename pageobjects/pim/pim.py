@@ -19,8 +19,8 @@ class PIM(MainPage):
         """
         Click PIM page menu
         """     
-        Log.info("Click the %s menuname") 
-        menu_name =  menuname.title() 
+        Log.info("Click the {}".format(menuname))
+        menu_name = menuname.title()
         try:
             element = self.get_element(("link_text", menu_name)) 
             element.click()

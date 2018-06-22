@@ -246,7 +246,7 @@ class BasePage(object):
         try:
             element = self.get_element(keys)
             if element is None:
-                return None
+                raise Exception
             else:
                 return element.text
         except BaseException, e:
@@ -358,9 +358,13 @@ class BasePage(object):
         Choose combox value
         """
         try:
-            Select(self.get_element(keys)).select_by_visible_text(value)
+            element = self.get_element(keys)
+            if element is None:
+                raise Exception
+            else:
+                Select(element).select_by_visible_text(value)
         except NoSuchElementException:
-            print "Could not locate the element value {}".format(value)
+            Log.error("Could not locate the element value {}".format(value))
 
     def get_first_select(self, keys):
         """
@@ -469,3 +473,12 @@ class BasePage(object):
         else:
             num = random.randint(0, length - 1)
         self.select_option(keys, num)
+
+    def element_is_displayed(self, keys):
+        try:
+            element = self.get_element(keys)
+            if element is not None:
+                element.is_displayed()
+        except BaseException, e:
+            Log.error(e)
+
