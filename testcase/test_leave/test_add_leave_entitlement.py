@@ -52,7 +52,8 @@ class TestAddLeaveEntitlement(unittest.TestCase):
         test_case2_add_entitlement_for_multiple_employees
         """
         self.leaveentitlement.add_entitlement_for_multiple_employees(self.first_name, self.last_name, self.leave_type,
-                                                             self.leave_period, self.entitlement1, self.entitlement2)
+                                                                     self.leave_period, self.entitlement1,
+                                                                     self.entitlement2)
         self.leaveentitlement.assert_message("Entitlements added")
 
     @classmethod

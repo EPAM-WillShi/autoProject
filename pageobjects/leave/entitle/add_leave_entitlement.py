@@ -79,7 +79,7 @@ class AddLeaveEntitlement(Leave):
         self.set_combox_value(leave_period, self.leave_period)
         self.input_text(entitlement2, self.entitle)
         self.click(self.save_btn)
-        self.sleep(2)
+        self.sleep(3)
         emp_name = first_name + " " + last_name
         self.wait_unit_el_present(('XPATH', self.list_name.format(emp_name)))
         assert Decimal(self.get_element_text(('XPATH', self.old_entitlement.format(emp_name)))) == Decimal(entitlement1)

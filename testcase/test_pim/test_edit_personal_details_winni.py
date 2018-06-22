@@ -16,26 +16,24 @@ class TestPersonalDetails(unittest.TestCase):
     passwd = config.PASSWORD
     browser = config.BROWSER
     # Add employee
-    first_name = "Winnitest"
-    last_name = "Zhangtest"
+    first_name = utils.input_random_text(5)
+    last_name = utils.input_random_text(5)
     #edit employee
-    firstname = "Winni"
-    middlename = "test"
-    lastname = "Zhang"
-    empid = "9999"
-    othid = "222"
-    licnum = "333"
+    middle_name = utils.input_random_text(5)
+    empid = utils.input_random_number(4)
+    othid = utils.input_random_number(3)
+    licnum = utils.input_random_number(3)
     lic_expdate = "2018-06-01"
     gender = "Male"
     marital = "Single"
     nation = "Chinese"
     dob = "1988-11-27"
     attachment1 = "1.png"
-    comments1 = "test automation"
+    comments1 = utils.input_random_text(10)
     attachment2 = "2.png"
-    comments2 = "update comments only"
+    comments2 = utils.input_random_text(10)
     attachment3 = "3.png"
-    comments3 = "update again"
+    comments3 = utils.input_random_text(10)
     file_name = "3.png"
 
     @classmethod
@@ -47,31 +45,31 @@ class TestPersonalDetails(unittest.TestCase):
         cls.edit_personal_details = EditPersonalDetails(cls.driver)
         cls.edit_personal_details.open_personal_details_via_adding_employee(cls.first_name, cls.last_name)
 
-    def test_case1_edit_personal_details_name(self):
-        self.edit_personal_details.edit_personal_details_name(self.firstname, self.middlename, self.lastname)
+    def test_case01_edit_personal_details_name(self):
+        self.edit_personal_details.edit_personal_details_name(self.first_name, self.middle_name, self.last_name)
 
-    def test_case2_edit_personal_details_id(self):
+    def test_case02_edit_personal_details_id(self):
         self.edit_personal_details.edit_personal_details_id(self.empid, self.othid, self.licnum, self.lic_expdate)
 
-    def test_case3_edit_personal_details_basic_information(self):
+    def test_case03_edit_personal_details_basic_information(self):
         self.edit_personal_details.edit_personal_details_basic_information(self.gender, self.marital, self.nation, self.dob)
 
-    def test_case4_edit_personal_details_cancel_add_attahment_comments(self):
+    def test_case04_edit_personal_details_cancel_add_attahment_comments(self):
         self.edit_personal_details.edit_personal_details_cancel_add_attahment_comments(self.attachment1, self.comments1)
 
-    def test_case5_edit_personal_details_add_attachment_comments(self):
+    def test_case05_edit_personal_details_add_attachment_comments(self):
         self.edit_personal_details.edit_personal_details_add_attachment_comments(self.attachment1, self.comments1)
 
-    def test_case6_edit_personal_details_edit_commentsonly(self):
+    def test_case06_edit_personal_details_edit_commentsonly(self):
         self.edit_personal_details.edit_personal_details_edit_commentsonly(self.attachment2, self.comments2)
 
-    def test_case7_edit_personal_details_cancel_edit_attachment_comments(self):
+    def test_case07_edit_personal_details_cancel_edit_attachment_comments(self):
         self.edit_personal_details.edit_personal_details_cancel_edit_attachment_comments(self.attachment2, self.comments2)
 
-    def test_case8_edit_personal_details_edit_attachment_comments(self):
+    def test_case08_edit_personal_details_edit_attachment_comments(self):
         self.edit_personal_details.edit_personal_details_edit_attachment_comments(self.attachment3, self.comments3)
 
-    def test_case9_edit_personal_details_delete_record_for_attachment(self):
+    def test_case09_edit_personal_details_delete_record_for_attachment(self):
         self.edit_personal_details.edit_personal_details_delete_record_for_attachment(self.file_name)
 
     def test_case10_edit_personal_details_delete_all_records(self):

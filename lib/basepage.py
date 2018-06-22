@@ -86,11 +86,11 @@ class BasePage(object):
         """ 
         self.driver.implicitly_wait(seconds) 
           
-    def wait_unit_el_present(self, keys):
+    def wait_unit_el_present(self, keys, sec=15):
         """
         Display wait,wait until element display, time out 15 sec
         """
-        wait = WebDriverWait(self.driver, 15)
+        wait = WebDriverWait(self.driver, sec)
         key = keys[0]
         value = keys[1]
         if key in ['XPATH', 'xpath']:
@@ -107,12 +107,12 @@ class BasePage(object):
             locator = (By.TAG_NAME, value)
         try:
             element = wait.until(ec.presence_of_element_located(locator))
+            return element
         except BaseException, e:
             Log.error(e)
             self.get_windows_img()
-        self.sleep(2)
-        return element
-    
+            return None
+
     def get_windows_img(self):
         """
         save the screenshot

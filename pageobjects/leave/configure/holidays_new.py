@@ -49,6 +49,9 @@ class HolidayNew(Leave):
 
     @staticmethod
     def create_random_date(start_year, end_year):
+        """
+        Create random date
+        """
         a1 = (start_year, 1, 1, 0, 0, 0, 0, 0, 0)  # 设置开始日期时间元组（XXXX-01-01 00：00：00）
         a2 = (end_year, 12, 31, 23, 59, 59, 0, 0, 0)  # 设置结束日期时间元组（XXXX-12-31 23：59：59）
         start = time.mktime(a1)  # 生成开始时间戳
@@ -57,6 +60,9 @@ class HolidayNew(Leave):
         return date
 
     def set_holiday_element(self):
+        """
+        Create random new holiday data, except holiday name
+        """
         date = self.create_random_date(2018, 2018)
         repeats = random.choice([0, 1])
         full_or_half = random.choice(['Full Day', 'Half Day'])
@@ -69,6 +75,9 @@ class HolidayNew(Leave):
         # print(full_or_half)
 
     def check_holiday_list(self, name):
+        """
+        Click holiday list, select data, check the data is correct
+        """
         list_row = self.holiday_list_row.format(name)
         list_data = self.get_elements_texts(('xpath', list_row))
         holiday_text = self.holiday_text.format(name)
@@ -87,6 +96,9 @@ class HolidayNew(Leave):
         self.click(self.cancel_btn)
 
     def add_holiday_save(self, name):
+        """
+        Add a new holiday and save
+        """
         self.click(self.add_btn)
         self.clear_text(self.holiday_name)
         self.input_text(name, self.holiday_name)
@@ -98,6 +110,9 @@ class HolidayNew(Leave):
             Log.info("Create a " + name + " holiday failed")
 
     def add_holiday_cancel(self, name):
+        """
+        Add a new holiday and cancel
+        """
         self.click(self.add_btn)
         self.clear_text(self.holiday_name)
         self.input_text(name, self.holiday_name)
@@ -106,6 +121,9 @@ class HolidayNew(Leave):
         Log.info("Create a new holiday and cancel.")
 
     def delete_all_holiday(self):
+        """
+        Delete all holidays
+        """
         self.click(self.holiday_list_check_all)
         self.click(self.delete_btn)
         if self.get_elements_texts(self.delete_text) == ['Delete records?']:
@@ -116,6 +134,9 @@ class HolidayNew(Leave):
         Log.info("Delete all holidays.")
 
     def delete_one_holiday(self, name):
+        """
+        Delete one holiday
+        """
         holiday_list_checkbox = self.holiday_list_checkbox.format(name)
         self.click(('xpath', holiday_list_checkbox))
         self.click(self.delete_btn)
@@ -127,6 +148,9 @@ class HolidayNew(Leave):
         Log.info("Delete " + name)
 
     def edit_holiday(self, name):
+        """
+        Edit one holiday
+        """
         holiday_text = self.holiday_text.format(name)
         self.click(('xpath', holiday_text))
         self.set_holiday_element()
@@ -134,6 +158,9 @@ class HolidayNew(Leave):
         Log.info("Edit " + name + " holiday and save.")
 
     def search_holiday(self):
+        """
+        Search holidays
+        """
         date1 = self.create_random_date(2017, 2018)
         date2 = self.create_random_date(2017, 2018)
         if date1 >= date2:

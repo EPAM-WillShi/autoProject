@@ -91,5 +91,6 @@ class TestAddDependents(unittest.TestCase):
     def tearDownClass(cls):
         cls.dep.quit_browser()
 
+
 if __name__ == "__main__":
     unittest.main()

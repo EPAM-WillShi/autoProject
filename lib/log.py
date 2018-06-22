@@ -43,6 +43,8 @@ class Log:
                     if os.path.exists(logfile):
                         filename = logfile
                     else:
+                        os.chdir(path)
+                        os.mkdir('logs')
                         filename = 'logs/log.log'
                     Log._fileHdlr = logging.FileHandler(filename, LOG_FILEMODE)
                     formatter = logging.Formatter(
