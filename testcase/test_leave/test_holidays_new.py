@@ -29,12 +29,16 @@ class TestHolidayNew(unittest.TestCase):
 
     @staticmethod
     def set_holiday_name():
+        """
+        Create a random holiday name
+        """
         name = ''.join(random.sample(string.ascii_letters + string.digits, 6)) + " Holiday"  # 随机产生一个6位的字符串
         return name
 
     def test_add_holiday_save(self):
         name = self.set_holiday_name()
         self.holidays.add_holiday_save(name)
+        self.holidays.delete_one_holiday(name)
 
     def test_add_holiday_cancel(self):
         name = self.set_holiday_name()
@@ -54,6 +58,7 @@ class TestHolidayNew(unittest.TestCase):
         name = self.set_holiday_name()
         self.holidays.add_holiday_save(name)
         self.holidays.edit_holiday(name)
+        self.holidays.delete_one_holiday(name)
 
     def test_search_holiday(self):
         self.holidays.search_holiday()
@@ -62,6 +67,7 @@ class TestHolidayNew(unittest.TestCase):
         name = self.set_holiday_name()
         self.holidays.add_holiday_save(name)
         self.holidays.check_holiday_list(name)
+        self.holidays.delete_one_holiday(name)
 
     @classmethod
     def tearDownClass(cls):
