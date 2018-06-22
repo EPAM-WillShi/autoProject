@@ -105,11 +105,12 @@ class EmployeeList(PIM):
         2. Choose the employee and click the delete option
         3. Click ok button
         """
-        self.query_employee_by_name(employee)
-        self.click(self.select_row)
-        self.click(self.delete_btn)
-        assert 'Delete records?' == self.get_element_text(self.delete_box)
-        self.click(self.ok_btn)
+        ele_exist = self.query_employee_by_name(employee)
+        if ele_exist is True:
+            self.click(self.select_row)
+            self.click(self.delete_btn)
+            assert 'Delete records?' == self.get_element_text(self.delete_box)
+            self.click(self.ok_btn)
 
     def check_delete_employee(self):
         assert 'No Records Found' == self.get_element_text(self.delete_result)
