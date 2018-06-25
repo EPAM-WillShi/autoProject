@@ -48,10 +48,11 @@ class LeaveTable(Leave):
         """
         Go to Leave Entitlements and Usage Report page
         """
-        self.driver.implicitly_wait(2)
+        self.driver.implicitly_wait(5)
         self.click_menu("Reports")
-        self.driver.implicitly_wait(2)
+        self.driver.implicitly_wait(5)
         self.click_menu("Leave Entitlements and Usage Report")
+        self.driver.implicitly_wait(5)
         Log.info("Arrive Leave Entitlements and Usage Report page")
 
     def set_leaveperiod(self, startmonth, startdate):
