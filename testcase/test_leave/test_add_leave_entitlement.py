@@ -47,14 +47,14 @@ class TestAddLeaveEntitlement(unittest.TestCase):
                                                              self.leave_period, self.entitlement1)
         self.leaveentitlement.assert_message("Successfully Added")
 
-    def test_case2_add_entitlement_for_multiple_employees(self):
-        """
-        test_case2_add_entitlement_for_multiple_employees
-        """
-        self.leaveentitlement.add_entitlement_for_multiple_employees(self.first_name, self.last_name, self.leave_type,
-                                                                     self.leave_period, self.entitlement1,
-                                                                     self.entitlement2)
-        self.leaveentitlement.assert_message("Entitlements added")
+    # def test_case2_add_entitlement_for_multiple_employees(self):
+    #     """
+    #     test_case2_add_entitlement_for_multiple_employees
+    #     """
+    #     self.leaveentitlement.add_entitlement_for_multiple_employees(self.first_name, self.last_name, self.leave_type,
+    #                                                                  self.leave_period, self.entitlement1,
+    #                                                                  self.entitlement2)
+    #     self.leaveentitlement.assert_message("Entitlements added")
 
     @classmethod
     def tearDownClass(cls):
