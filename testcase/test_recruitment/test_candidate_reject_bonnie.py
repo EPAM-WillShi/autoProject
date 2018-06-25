@@ -10,7 +10,7 @@ from config import config
 from com import utils
 from pageobjects.login import Login
 from pageobjects.recruitment.candidates import Candidates
-from pageobjects.recruitment.vacancies import Vacancies
+from pageobjects.recruitment.vacancy import Vacancy
 
 
 class TestCandirej(unittest.TestCase):
@@ -29,6 +29,8 @@ class TestCandirej(unittest.TestCase):
     email = first_name + '.' + last_name + '@epam.com'
     status = 'Reject'
     status_reason = 'Test vacancy rejection'
+    desc = 'test'
+    positionNo = '112'
 
     @classmethod
     def setUpClass(cls):
@@ -38,7 +40,7 @@ class TestCandirej(unittest.TestCase):
         cls.login.open_browser(config.LOGIN_URL)
         cls.login.login(config.USER_NAME, config.PASSWORD)
         cls.candidates = Candidates(cls.driver)
-        cls.vacancy = Vacancies(cls.driver)
+        cls.vacancy = Vacancy(cls.driver)
 
     def test_vacancy_rej(self):
         """
@@ -46,10 +48,10 @@ class TestCandirej(unittest.TestCase):
         """
         self.vacancy.delete_vacancies(self.vacan_name)
         self.vacancy.add_vacancies_required(self.job_title,
-                                            self.vacan_name, self.hiring_manager)
+                                            self.vacan_name, self.hiring_manager, self.positionNo, self.desc)
         self.candidates.delete_candidates(self.vacan_name)
         self.candidates.add_candidates_required(self.first_name,
-                                                self.last_name, self.email, self.vacan_name)
+                                                self.last_name, self.email, self.positionNo, self.vacan_name)
         self.candidates.candidates_edit_status(self.vacan_name,
                                                self.status, self.status_reason)
 
