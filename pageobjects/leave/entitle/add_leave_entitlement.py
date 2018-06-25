@@ -25,6 +25,7 @@ class AddLeaveEntitlement(Leave):
     days = ('XPATH', '//td[5]/a')
 
     flag = ('XPATH', '//h3[text()="OrangeHRM - Matching Employees"]')
+    
     list_name = '//td[1][normalize-space(text())= "{}"]'
     old_entitlement = '//td[1][normalize-space(text())= "{}"]/../td[2]'
     new_entitlement = '//td[1][normalize-space(text())= "{}"]/../td[3]'
