@@ -89,9 +89,11 @@ class EmploymentStatus(Admin):
         self.input_text(employment_status_name, self.empstatus_namefield)
         self.sleep(2)
         self.click(self.save_btn)
-        assert "Successfully Saved" in self.get_element_text(self.success_flag)
-        Log.info("Create employment status Successfully")
-
+        if self.get_element_text(self.success_flag) is not None:
+            assert "Successfully Saved" in self.get_element_text(self.success_flag)
+            Log.info("Create employment status Successfully")
+        else:
+            raise Exception("Didn't get the message about Successfully Saved")
 
     def edit_employee_status(self, exist_name, edit_name):
         """

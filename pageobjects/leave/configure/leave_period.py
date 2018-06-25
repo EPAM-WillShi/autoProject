@@ -79,8 +79,11 @@ class LeavePeriod(Leave):
         self.wait_unit_el_present(self.save_button)
         self.click(self.save_button)
         self.wait_unit_el_present(self.success_msg)
-        assert("Successfully Saved" in self.get_element_text(self.success_msg))
-        Log.info("New Leave Period is saved and success message show - pass!")
+        if self.get_element_text(self.success_msg) is not None:
+            assert ("Successfully Saved" in self.get_element_text(self.success_msg))
+            Log.info("New Leave Period is saved and success message show - pass!")
+        else:
+            raise Exception("Didn't get the message about Successfully Saved")
 
     def reset_leaveperiod(self, startmonth, startdate):
         """

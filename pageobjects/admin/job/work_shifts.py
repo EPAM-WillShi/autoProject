@@ -193,7 +193,10 @@ class WorkShifts(Admin):
         selector = ('xpath', self.namelink.format(orig_name))
         self.click(selector)
         self.sleep(3)
-        assert self.get_element(self.add_edit_flag).text == 'Edit Work Shift'
+        if self.get_element_text(self.add_edit_flag) is not None:
+            assert self.get_element_text(self.add_edit_flag) == 'Edit Work Shift'
+        else:
+            raise Exception("'Edit Work Shift' is not found")
         self.input_text(edit_name, self.shift_name)
         self.set_combox_value(edit_workhourf, self.workhour_from)
         self.set_combox_value(edit_workhourt, self.workhour_to)
@@ -227,6 +230,10 @@ class WorkShifts(Admin):
         """
         Assert the result of current operation
         """
-        assert return_message in self.get_element_text(self.message)
-        Log.info(return_message)
+        if self.get_element_text(self.message) is not None:
+            assert return_message in self.get_element_text(self.message)
+            Log.info(return_message)
+        else:
+            raise Exception("%s is not found" % return_message)
+
 
