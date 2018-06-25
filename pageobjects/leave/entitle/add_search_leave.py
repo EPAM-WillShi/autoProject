@@ -105,7 +105,7 @@ class AddLeaveEntitlement(Leave):
         """
         self.click(self.save_btn)
         self.sleep(3)
-        assert self.get_element(self.search_title).is_displayed()
+        assert self.element_is_displayed(self.search_title)
         Log.info("Save the new leave successfully")
 
     def cancel(self):
@@ -114,7 +114,7 @@ class AddLeaveEntitlement(Leave):
         """
         self.click(self.cancel_btn)
         self.sleep(3)
-        assert self.get_element(self.search_title).is_displayed()
+        assert self.element_is_displayed(self.search_title)
         Log.info("Cancel to add new leave")
 
     def save_and_match(self):
@@ -126,7 +126,7 @@ class AddLeaveEntitlement(Leave):
 
         self.wait_unit_el_present(self.match_title)
         self.click(self.match_btn)
-        assert self.get_element(self.search_title).is_displayed()
+        assert self.element_is_displayed(self.search_title)
         Log.info("Save the new leave for multiple employees successfully")
 
     def click_search_btn(self):
@@ -141,8 +141,8 @@ class AddLeaveEntitlement(Leave):
         Click add to multiple employees button
         """
         self.click(self.multiple_employee_checkbox)
-        assert self.get_element(self.location).is_displayed()
-        assert self.get_element(self.sub_unit).is_displayed()
+        assert self.element_is_displayed(self.location)
+        assert self.element_is_displayed(self.sub_unit)
 
     def input_location_unit(self, location, unit):
         """
@@ -155,7 +155,7 @@ class AddLeaveEntitlement(Leave):
         """
         Verify no record in search table
         """
-        assert self.get_element(self.no_result).is_displayed()
+        assert self.element_is_displayed(self.no_result)
         Log.info("No new leave is added")
 
     def verify_new_leave(self, leave_period, entitlement):
