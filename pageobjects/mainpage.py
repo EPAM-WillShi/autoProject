@@ -52,7 +52,7 @@ class MainPage(BasePage):
         else:
             print "Didn't find the menu %s" % menuname
         targetMenu = self.get_element(("xpath",menu))
-        self.sleep(1)
+        self.sleep(2)
         if targetMenu is not None:
             self.click(("xpath", menu))  
                          

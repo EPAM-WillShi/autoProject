@@ -108,8 +108,12 @@ class Memberships(EmployeeList):
         Assert the result of current operation
 
         """
-        assert return_message in self.get_element_text(self.message)
-        Log.info(return_message)
+        if self.get_element_text(self.message) is not None:
+            assert return_message in self.get_element_text(self.message)
+            Log.info(return_message)
+        else:
+            raise Exception("%s is not found" % return_message)
+
 
     def cancel_adding_attachment(self, filename, description):
         """

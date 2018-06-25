@@ -25,7 +25,7 @@ class AddLeaveEntitlement(Leave):
     days = ('XPATH', '//td[5]/a')
 
     flag = ('XPATH', '//h3[text()="OrangeHRM - Matching Employees"]')
-    
+
     list_name = '//td[1][normalize-space(text())= "{}"]'
     old_entitlement = '//td[1][normalize-space(text())= "{}"]/../td[2]'
     new_entitlement = '//td[1][normalize-space(text())= "{}"]/../td[3]'
@@ -66,8 +66,11 @@ class AddLeaveEntitlement(Leave):
         Assert the result of current operation
 
         """
-        assert return_message in self.get_element_text(self.message)
-        Log.info(return_message)
+        if self.get_element_text(self.message) is not None:
+            assert return_message in self.get_element_text(self.message)
+            Log.info(return_message)
+        else:
+            raise Exception("%s is not found" % return_message)
 
     def add_entitlement_for_multiple_employees(self, first_name, last_name, leave_type, leave_period,
                                                entitlement1, entitlement2):
