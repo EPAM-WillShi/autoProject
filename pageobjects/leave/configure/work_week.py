@@ -33,6 +33,7 @@ class WorkWeek(Leave):
     friday_choice = random.choice(day_value)
     saturday_choice = random.choice(day_value)
     sunday_choice = random.choice(day_value)
+    menu_configure = ('id', 'saveBtn')
 
     def __init__(self, browser):
         super(WorkWeek, self).__init__(browser)
@@ -53,3 +54,15 @@ class WorkWeek(Leave):
         self.select_month()
         self.click(self.edit_button)
         Log.info("Save workweek successfully!")
+
+    def reset_default_workweek(self):
+        self.click(self.edit_button)
+        self.set_combox_value('Full Day', self.monday_dropdown)
+        self.set_combox_value('Full Day', self.tuesday_dropdown)
+        self.set_combox_value('Full Day', self.wednesday_dropdown)
+        self.set_combox_value('Full Day', self.thursday_dropdown)
+        self.set_combox_value('Full Day', self.friday_dropdown)
+        self.set_combox_value('Non-working Day', self.saturday_dropdown)
+        self.set_combox_value('Non-working Day', self.sunday_dropdown)
+        self.click(self.edit_button)
+

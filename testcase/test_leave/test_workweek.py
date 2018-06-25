@@ -36,6 +36,8 @@ class TestWorkWeek(unittest.TestCase):
         self.assertTrue("WorkWeek" in self.workweek.get_page_url())
         self.workweek.save_workweek()
         self.assertTrue("Successfully Saved" in self.workweek.get_element_text(self.workweek.message))
+        self.workweek.wait(1)
+        self.workweek.reset_default_workweek()
 
     @classmethod
     def tearDownClass(cls):
