@@ -55,7 +55,7 @@ class Candidates(Recruitment):
         """
         delete candidates   ---added by julia
         """
-        self.get_element(self.backbtn).click()
+        self.click(self.backbtn)
         tcandi_xpath = self.tcandi_xpath.format(vacan_name)
         tcandi = ('xpath', tcandi_xpath)
         candi = self.get_element(tcandi)
@@ -121,7 +121,7 @@ class Candidates(Recruitment):
             status = ('xpath', status_xpath)
             assert 'Rejected' == self.get_element_text(status)
         else:
-            raise Exception, "Unable to locate the candidate record"
+            Log.error("Unable to locate the candidate record")
 
     def candidates_change_status(self, status, status_reason):
         """
