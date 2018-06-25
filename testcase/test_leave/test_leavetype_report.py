@@ -34,8 +34,8 @@ class Test_LeaveType_Report(unittest.TestCase):
         cls.login.login(config.USER_NAME, config.PASSWORD)
         cls.leave = EntitleUserReport(cls.driver)
 
-    def test_select_LeaveType(self):
-        self.leave.select_LeaveType(self.generatetype,self.leavetype,self.datefrom,self.role,self.checkvalue,self.departname)
+    # def test_select_LeaveType(self):
+    #     self.leave.select_LeaveType(self.generatetype,self.leavetype,self.datefrom,self.role,self.checkvalue,self.departname)
 
     @classmethod
     def tearDownClass(cls):
