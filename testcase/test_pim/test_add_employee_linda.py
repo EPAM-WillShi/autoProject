@@ -45,10 +45,7 @@ class TestAddEmployee(unittest.TestCase):
     def tearDownClass(cls):
         cls.addemployee.quit_browser()
 
-    def test_case5_addemployee_without_login(self):
-        """
-        Test Add Employee - Not create login details
-        """
+    def test_case5_addemployee_without_login(self):  # Test Add Employee - Not create login details
         self.addemployee.input_employee_details(self.first_name, self.middle_name,
                                                 self.last_name, self.upload_file)  # Input employee details
         self.employee_id = self.addemployee.get_employee_id_add_page()  # Obtain employee id
@@ -56,10 +53,7 @@ class TestAddEmployee(unittest.TestCase):
         self.addemployee.check_employee_details(self.first_name, self.middle_name,
                                                 self.last_name, self.employee_id)  # Check employee details
 
-    def test_case6_addemployee_with_login(self):
-        """
-        Test Add Employee - create login details(enable status)
-        """
+    def test_case6_addemployee_with_login(self):  # Test Add Employee - create login details(enable status)
         self.addemployee.input_employee_details(self.first_name, self.middle_name,
                                                 self.last_name, self.upload_file)  # Input employee details
         self.addemployee.input_login_details(self.login_name, self.login_password,

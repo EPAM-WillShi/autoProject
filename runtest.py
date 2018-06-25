@@ -129,6 +129,7 @@ class Runner:
             Log.error('Error happened when open the test report: %s' % e)
         if platform_type == 'Linux':
             os.system('pkill -9 chrome')
+            os.system('pkill -9 chromedriver')
             os.system('pkill -9 firefox')
             os.system('pkill -9 geckodriver')
             print "chrome, firefox and geckodriver processes don't exist."
@@ -136,6 +137,7 @@ class Runner:
             os.system('taskkill /F /IM geckodriver.exe')
             os.system('taskkill /F /IM firefox.exe')
             os.system('taskkill /F /IM chrome.exe')
+            os.system('taskkill /F /IM chromedriver.exe')
             print "chrome, firefox and geckodriver processes don't exist."
         else:
             print "Currently not support this platform {}".format(platform_type)

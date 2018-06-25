@@ -52,20 +52,14 @@ class TestVacancies(unittest.TestCase):
     def tearDownClass(cls):
         cls.vacancies.quit_browser()
 
-    def test_case07_vacancies_edit_attachment_save_comment_only(self):
-        """
-        Edit the attachment - save comment only
-        """
+    def test_case07_vacancies_edit_attachment_save_comment_only(self):  # Edit the attachment - save comment only
         self.vacancies.open_vacancy(self.job_title, self.vacancy, self.hiring_manager)  # Open a vacancy
         self.vacancies.delete_attachment()
         self.vacancies.add_attachment(self.attachment, self.comment)  # Add an attachment
         self.vacancies.edit_attachment(self.attachment, self.new_attachment, self.new_comment)  # Edit the attachment
         self.vacancies.click_back_btn()
 
-    def test_case12_vacancies_search_vacancies_by_hiringmanager(self):
-        """
-        Vacancies search by hiring manager
-        """
+    def test_case12_vacancies_search_vacancies_by_hiringmanager(self):  # Vacancies search by hiring manager
         self.vacancies.delete_vacancies(self.vacancy)  # Delete all vacancies
         self.vacancies.delete_vacancies(self.vacancy_02)
         self.vacancies.delete_vacancies(self.vacancy_03)
@@ -79,10 +73,7 @@ class TestVacancies(unittest.TestCase):
         self.vacancies.search_vacancies_by_hiring_manager(self.hiring_manager)  # Search vacancies by hiring_manager
         self.vacancies.check_search_result(self.expected_row)  # Verify row number is equal to expected row
 
-    def test_case3_vacancies_Apply_for_a_job(self):
-        """
-        Apply for a job via Web Page URL
-        """
+    def test_case3_vacancies_Apply_for_a_job(self):  # Apply for a job via Web Page URL
         self.vacancies.open_vacancy(self.job_title, self.vacancy, self.hiring_manager)  # Open a vacancy
         self.vacancies.click_web_page_url()  # Open application page
         self.vacancies.click_apply_btn(self.vacancy)  # Apply for a job

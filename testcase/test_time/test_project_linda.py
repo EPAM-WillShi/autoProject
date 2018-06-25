@@ -57,10 +57,7 @@ class TestProjectInfo(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_case8_project_create_activity(self):
-        """
-        Create new activity
-        """
+    def test_case8_project_create_activity(self):  # Create new activity
         self.project.click_add_btn()  # Create a project with new customer
         self.project.add_customer(self.customer_name, self.customer_description)
         self.project.input_project_details(self.project_name, self.project_admin, self.project_description)
@@ -70,10 +67,7 @@ class TestProjectInfo(unittest.TestCase):
         self.project.add_activity(self.activity_name)  # Create an activity
         self.project.check_activity(self.activity_name)  # Verify new activity is listed
 
-    def test_case16_project_search_by_projectadmin(self):
-        """
-        Project search by project admin
-        """
+    def test_case16_project_search_by_projectadmin(self):  # Project search by project admin
         self.project.click_add_btn()  # Create a project with project admin: 'Franc Bridges'
         self.project.add_customer(self.customer_name, self.customer_description)
         self.project.input_project_details(self.project_name, self.project_admin, self.project_description)
