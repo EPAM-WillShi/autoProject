@@ -19,7 +19,7 @@ class PIM(MainPage):
         """
         Click PIM page menu
         """     
-        Log.info("Click the {}".format(menuname))
+        Log.info("Click the %s" % menuname)
         menu_name = menuname.title()
         try:
             element = self.get_element(("link_text", menu_name)) 
@@ -36,7 +36,7 @@ class PIM(MainPage):
             except BaseException, e:
                 print e
                 Log.error(e)
-                raise "Element %s not found" %menuname 
+                raise "Element %s not found" % menuname
 
         
 
