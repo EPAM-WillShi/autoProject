@@ -36,4 +36,4 @@ class Time(MainPage):
             except BaseException, e:
                 print e
                 Log.error(e)
-                raise "Element %s not found" %menuname  
+                raise Exception("Element %s not found" % menuname)
