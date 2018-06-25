@@ -23,7 +23,7 @@ class AddEmployee(PIM):
     login_name_ele = ('ID', 'user_name')
     login_password_ele = ('ID', 'user_password')
     confirm_password_ele = ('ID', 're_password')
-    user_status_ele = ('ID', 'status')
+    user_status_ele = ('id', 'status')
     employee_id_ele = ('ID', 'employeeId')
 
     # Check new employee
