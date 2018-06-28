@@ -246,7 +246,7 @@ class BasePage(object):
         try:
             element = self.get_element(keys)
             if element is None:
-                Log.error("Could not locate the element value {}".format(keys))
+                raise Exception(Log.error("Could not locate the element value {}".format(keys)))
             else:
                 return element.text
         except BaseException, e:
@@ -360,7 +360,7 @@ class BasePage(object):
         try:
             element = self.get_element(keys)
             if element is None:
-                Log.error("Could not locate the element value {}".format(keys))
+                raise Exception(Log.error("Could not locate the element value {}".format(keys)))
             else:
                 Select(element).select_by_visible_text(value)
         except NoSuchElementException:
